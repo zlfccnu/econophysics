@@ -1,0 +1,12 @@
+Package: econophysics
+Title: Functions for econophysics
+Description: This is used for econophysics analysis
+Version: 0.2.2
+Author: Longfeng Zhao <zlfccnu@mails.ccnu.edu.cn>
+Maintainer: Longfeng Zhao <zlfccnu@mails.ccnu.edu.cn>
+Description: Package for detrended fluctuation analysis and planar max filter graph
+Depends: R (>= 3.1.3), data.table (>= 1.9.4), pipeR (>= 0.6), doMC (>= 1.3.3), Rcpp (>= 0.11.5), BH (>= 1.55.0-3), igraph (>= 0.7.1), RcppEigen (>= 0.3.2.4.0), MASS (>= 7.3-39)
+License: MIT
+LazyData: true
+IMports: Rcpp, BH, igraph, RcppEigen, MASS
+LinkingTo: Rcpp, BH, RcppEigen, doMC, data.table, MASS
