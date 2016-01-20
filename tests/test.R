@@ -1,4 +1,5 @@
 ### WTF####
+### how to push###
 fbmH0.75=diff(circFBM(n = 100000,H = 0.75))
 
 temp0.75=hurstExponent(x= fbmH0.75,nVec=nVec,sampleNum=NULL,thread = 3,qVec=seq(-5,5,0.1),detrendOrder=4,sampleMethod=2)
