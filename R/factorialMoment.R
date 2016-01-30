@@ -4,6 +4,6 @@
 #'@return a value between -1 and 1
 #'@export
 
-factorMoment=function(x){
+factorialMoment=function(x){
   
 }
