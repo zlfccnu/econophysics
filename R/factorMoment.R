@@ -3,3 +3,7 @@
 #'@param mat2 the second matrix
 #'@return a value between -1 and 1
 #'@export
+
+factorMoment=function(x){
+  
+}
