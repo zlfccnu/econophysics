@@ -1,20 +1,15 @@
-#'Function used to calculate the square DFA fluctuation
-#'@param covariance the covariance matrix
-#'@param returns argument should be a m x n matrix with one column per security
-#'@param max.allocation is the maximum % allowed for any one security (reduces concentration)
-#'@param risk.premium.up is the upper limit of the risk premium modeled (see for loop below)
-#'@param risk.increment is the increment (by) value used in the for loop
-#'@param thread the multithreads argument
-#'@return a data.frame
-#'@export
+#' Function used to calculate the square DFA fluctuation
+#' @param covariance the covariance matrix
+#' @param returns argument should be a m x n matrix with one column per security
+#' @param max.allocation is the maximum % allowed for any one security (reduces concentration)
+#' @param risk.premium.up is the upper limit of the risk premium modeled (see for loop below)
+#' @param risk.increment is the increment (by) value used in the for loop
+#' @param thread the multithreads argument
+#' @references http://economistatlarge.com/portfolio-theory/r-optimized-portfolio/r-code-graph-efficient-frontier
+#' @return a data.frame
+#' @export
 
 eff.frontier <- function (covariance,returns, short="no", max.allocation=NULL, risk.premium.up=20, risk.increment=.05,thread=3){
-  # return argument should be a m x n matrix with one column per security
-  # short argument is whether short-selling is allowed; default is no (short selling prohibited)
-  # max.allocation is the maximum % allowed for any one security (reduces concentration)
-  # risk.premium.up is the upper limit of the risk premium modeled (see for loop below)
-  # risk.increment is the increment (by) value used in the for loop
-  
   #covariance <- cov(returns)
   # print(covariance)
   n <- ncol(covariance)## the covariance is determined
