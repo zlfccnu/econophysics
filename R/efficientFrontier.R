@@ -1,4 +1,4 @@
-#' Function used to calculate the square DFA fluctuation
+#' Function used to find the efficient frontier by using the modern portofilio theory
 #' @param covariance the covariance matrix
 #' @param returns argument should be a m x n matrix with one column per security
 #' @param max.allocation is the maximum % allowed for any one security- reduces concentration

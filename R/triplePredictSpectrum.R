@@ -13,13 +13,12 @@ triplePredictSpectrum=function(Alpha,fAlpha,tol=1e-6){
   LT=as.data.frame(LT)
   colnames(LT)= c("x","y")
   triple["alpha0"]=LT[,1][floor(dim(LT)[1]/2)+1]
-  fitEq=function(x,a,b,c,d,e){
-    a+b*(x- triple["alpha0"])+c*(x- triple["alpha0"])^2+d*(x- triple["alpha0"])^3+e*(x- triple["alpha0"])^4
-  }
-  f_LT=nls(y~fitEq(x,a,b,c,d,e),data = LT,start = list(a=0.1,b=0.1,c=0.1,d=0.1,e=0.1))
+  x=LT[,"x"]
+  y=LT[,"y"]
+  f_LT=lm(y~poly(x,4))
   x_index=seq(0,2,tol)
-  x_min=x_index[min(which(predict(f_LT,list(x=x_index))>=0))]
-  x_max=x_index[max(which(predict(f_LT,list(x=x_index))>=0))]
+  x_min=x_index[min(which(predict(f_LT,data.frame(x=x_index))>=0))]
+  x_max=x_index[max(which(predict(f_LT,data.frame(x=x_index))>=0))]
   triple["W"]=x_max - x_min
   triple["r"]=(x_max- triple["alpha0"])/(triple["alpha0"] - x_min)
   return(triple)
