@@ -9,7 +9,7 @@ library(doMC)
 #'@param sampleMethod 1 means the determined sample number method, other values mean the nonoverlap method
 #'@return the generalized hurst exponent
 #'@export
-function(x,nVec=NULL,sampleNum=NULL,thread=3,qVec=c(-5:5),detrendOrder=3,sampleMethod=1){
+hurstExponent<- function(x,nVec=NULL,sampleNum=NULL,thread=3,qVec=c(-5:5),detrendOrder=3,sampleMethod=1){
   dfa_fluctuation = F_DFA(x=x,nVec = nVec,qVec = qVec,thread = thread,sampleNum = sampleNum ,detrendOrder=detrendOrder,sampleMethod=sampleMethod)
   registerDoMC(thread)
   foreach(i= 2:(dim(dfa_fluctuation)[2]),.combine = c)%dopar%{

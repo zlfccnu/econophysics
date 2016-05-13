@@ -9,7 +9,7 @@ library("RcppEigen")
 #'@param sampleMethod 1 means the determined sample number method, other values mean the nonoverlap method
 #'@return the DFA fluctuation which enhanced by q^th order, a dataframe
 #'@export
-F_DFA=function(x,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),thread=3,detrendOrder=3,sampleMethod=1){
+F_DFA=function(x,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),thread=3,detrendOrder=3,sampleMethod=2){
   registerDoMC(thread)
   f2_DFA=F2_DFA(x = x,nVec = nVec,sampleNum = sampleNum,thread = thread,detrendOrder = detrendOrder,sampleMethod=sampleMethod)##a list,every element is fluctuation for one scale
   
