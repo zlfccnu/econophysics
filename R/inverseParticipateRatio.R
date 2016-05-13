@@ -1,7 +1,7 @@
-#'Function used to calculate the inverse participate ratio
-#'@param mat a matrix
-#'@return a vector of length equals to the number of the eigenvalue
-#'@export
+#' Function used to calculate the inverse participate ratio
+#' @param mat a matrix
+#' @return a vector of length equals to the number of the eigenvalue
+#' @export
 
 inverseParticipateRatio=function(mat){
   eigenValue=eigen(mat)

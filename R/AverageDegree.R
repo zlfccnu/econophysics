@@ -2,6 +2,6 @@
 #' @param GRAPH A igraph object
 #' @export
 #' @return A numeric value
-AverageDegree = function( GRAPH ) {
+averageDegree = function( GRAPH ) {
   mean( degree( GRAPH ) )
 }
