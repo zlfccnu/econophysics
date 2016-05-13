@@ -8,11 +8,15 @@ triplePredict<- function(h_q,qVec,tol=1e-6){
   triple=c(0,0,0)
   names(triple)<- c("alpha0","W","r")
   LT=legendreTransform(h_q,qVec)
-  f_LT=splinefun(LT[,1],LT[,2],"natural")
+  colnames(LT)= c("x","y")
+  triple["alpha0"]=LT[,1][floor(dim(LT)[1]/2)+1]
+  fitEq=function(x,a,b,c,d,e){
+    a+b*(x- triple["alpha0"])+c*(x- triple["alpha0"])^2+d*(x- triple["alpha0"])^3+e*(x- triple["alpha0"])^4
+  }
+  f_LT=nls(y~fitEq(x,a,b,c,d,e),data = LT,start = list(a=0.1,b=0.1,c=0.1,d=0.1,e=0.1))
   x_index=seq(0,2,tol)
-  triple["alpha0"]=x_index[which(f_LT(x_index,deriv = 1)<=0)%>>%min]
-  x_min=x_index[min(which(f_LT(x_index)>=0))]
-  x_max=x_index[max(which(f_LT(x_index)>=0))]
+  x_min=x_index[min(which(predict(f_LT,list(x=x_index))>=0))]
+  x_max=x_index[max(which(predict(f_LT,list(x=x_index))>=0))]
   triple["W"]=x_max - x_min
   triple["r"]=(x_max- triple["alpha0"])/(triple["alpha0"] - x_min)
   return(triple)

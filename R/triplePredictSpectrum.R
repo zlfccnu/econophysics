@@ -4,13 +4,16 @@ triplePredictSpectrum=function(Alpha,fAlpha,tol=1e-6){
   Alpha=as.numeric(Alpha)
   fAlpha=as.numeric(fAlpha)
   LT=cbind(Alpha,fAlpha)
-  f_LT=splinefun(LT[,1],LT[,2],"natural")
-  x_index=seq(min(LT[,1])-0.2,max(LT[,1])+0.2,tol)
-  triple["alpha0"]=x_index[which.max(f_LT(x_index))]
-  x_min=x_index[min(which(f_LT(x_index)>=0))]
-  x_max=x_index[max(which(f_LT(x_index)>=0))]
-  print(x_max)
-  print(x_min)
+  LT=as.data.frame(LT)
+  colnames(LT)= c("x","y")
+  triple["alpha0"]=LT[,1][floor(dim(LT)[1]/2)+1]
+  fitEq=function(x,a,b,c,d,e){
+    a+b*(x- triple["alpha0"])+c*(x- triple["alpha0"])^2+d*(x- triple["alpha0"])^3+e*(x- triple["alpha0"])^4
+  }
+  f_LT=nls(y~fitEq(x,a,b,c,d,e),data = LT,start = list(a=0.1,b=0.1,c=0.1,d=0.1,e=0.1))
+  x_index=seq(0,2,tol)
+  x_min=x_index[min(which(predict(f_LT,list(x=x_index))>=0))]
+  x_max=x_index[max(which(predict(f_LT,list(x=x_index))>=0))]
   triple["W"]=x_max - x_min
   triple["r"]=(x_max- triple["alpha0"])/(triple["alpha0"] - x_min)
   return(triple)
