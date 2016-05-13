@@ -21,6 +21,6 @@ triplePredictSpectrum=function(Alpha,fAlpha,tol=1e-4){
   x_max=x_index[max(which(predict(f_LT,data.frame(x=x_index))>=0))]
   triple["W"]=x_max - x_min
   triple["r"]=(x_max- triple["alpha0"])/(triple["alpha0"] - x_min)
-  triple['A']=(2*triple["alpha0"]-max(Alpha)-min(Alpha))/(max(Alpha)-min(Alpha))
+  triple['A']=(2*triple["alpha0"]-max(x)-min(x))/(max(x)-min(x))
   return(triple)
 }
