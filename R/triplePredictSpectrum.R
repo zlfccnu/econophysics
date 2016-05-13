@@ -1,3 +1,9 @@
+#' Compute the triplets to evaluate the complexity of the fractal spectrum
+#' @param Alpha the holder exponent
+#' @param fAlpha the probability density of the holder exponent
+#' @param tol the tolerence used to determine the x_min and x_max in the fractal spectrum
+#' @return A vector with three elements
+#' @export
 triplePredictSpectrum=function(Alpha,fAlpha,tol=1e-6){
   triple=c(0,0,0)
   names(triple)<- c("alpha0","W","r")
