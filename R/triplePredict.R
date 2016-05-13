@@ -5,8 +5,8 @@
 #' @return A vector with three elements
 #' @export
 triplePredict<- function(h_q,qVec,tol=1e-4){
-  triple=c(0,0,0)
-  names(triple)<- c("alpha0","W","r")
+  triple=c(0,0,0,0)
+  names(triple)<- c("alpha0","W","r","A")
   LT=legendreTransform(h_q,qVec)
   colnames(LT)= c("x","y")
   triple["alpha0"]=LT[,1][floor(dim(LT)[1]/2)+1]
@@ -18,5 +18,6 @@ triplePredict<- function(h_q,qVec,tol=1e-4){
   x_max=x_index[max(which(predict(f_LT,data.frame(x=x_index))>=0))]
   triple["W"]=x_max - x_min
   triple["r"]=(x_max- triple["alpha0"])/(triple["alpha0"] - x_min)
+  triple['A']=(2*triple["alpha0"]-max(Alpha)-min(Alpha))/(max(Alpha)-min(Alpha))
   return(triple)
 }
