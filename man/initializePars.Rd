@@ -6,6 +6,9 @@
 \usage{
 initializePars()
 }
+\value{
+can not be seen
+}
 \description{
 Function used to initialize some system parameters
 }

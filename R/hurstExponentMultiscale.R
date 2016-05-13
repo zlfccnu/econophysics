@@ -1,2 +1,6 @@
 #' Function to cnstrcut the multiscale hurst exponent
-hurstExponentMultiscale=function()
+#' @return multiscale hurst exponent
+#' @export
+hurstExponentMultiscale=function(){
+  x=1+1
+}

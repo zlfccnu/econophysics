@@ -5,7 +5,7 @@
 \title{Function used to calculate the DFA fluctuation}
 \usage{
 F_DFA(x, nVec = NULL, sampleNum = NULL, qVec = c(-5:5), thread = 3,
-  detrendOrder = 3, sampleMethod = 1)
+  detrendOrder = 3, sampleMethod = 2)
 }
 \arguments{
 \item{x}{the time series}
