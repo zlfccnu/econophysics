@@ -12,8 +12,8 @@ triplePredict<- function(h_q,qVec,tol=1e-4){
   triple["alpha0"]=LT[,1][floor(dim(LT)[1]/2)+1]
   x=LT[,"x"]
   y=LT[,"y"]
-  f_LT=lm(y~poly(x,4))
-  x_index=seq(0,2,tol)
+  f_LT=lm(y~poly(x,4,raw = TRUE))
+  x_index=seq(triple["alpha0"]-0.3,triple["alpha0"]+0.4,tol)
   x_min=x_index[min(which(predict(f_LT,data.frame(x=x_index))>=0))]
   x_max=x_index[max(which(predict(f_LT,data.frame(x=x_index))>=0))]
   triple["W"]=x_max - x_min
