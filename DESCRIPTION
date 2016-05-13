@@ -1,7 +1,7 @@
 Package: econophysics
 Title: Functions for econophysics
 Description: This is used for econophysics analysis
-Version: 0.2.2
+Version: 0.2.3
 Author: Longfeng Zhao <zlfccnu@mails.ccnu.edu.cn>
 Maintainer: Longfeng Zhao <zlfccnu@mails.ccnu.edu.cn>
 Description: Package for detrended fluctuation analysis and planar max filter graph
