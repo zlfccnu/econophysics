@@ -35,8 +35,8 @@ rankBasedThresholdNetworkStatiscs = function(MAT, mix=FALSE, d = 2) {
       edgeListDe=edgeListDe[order(-edgeListDe[,1]),]
     }
     ## GRAPH
-    GRAPH_As = graph.empty(n = 0)+ vertices(nameList)
-    GRAPH_De = graph.empty(n = 0)+ vertices(nameList)
+    GRAPH_As = graph.empty(n = 0,directed = FALSE)+ vertices(nameList)
+    GRAPH_De = graph.empty(n = 0,directed = FALSE)+ vertices(nameList)
     vNum=vcount(GRAPH_As)
     edgeNodeRatioAs=c()
     edgeNodeRatioDe=c()
@@ -49,7 +49,6 @@ rankBasedThresholdNetworkStatiscs = function(MAT, mix=FALSE, d = 2) {
     meanClusterSizeAs=c()
     meanClusterSizeDe=c()
     for(i in 1:dim(edgeListAs)[1]){
-      
       GRAPH_As=GRAPH_As+edge(edgeListAs[i,2:3])
       csizeAs=clusters(GRAPH_As)
       if(is.simple(GRAPH_As)){
@@ -76,7 +75,6 @@ rankBasedThresholdNetworkStatiscs = function(MAT, mix=FALSE, d = 2) {
       }else{
         GRAPH_De=simplify(GRAPH_De)
       }
-      
     }
     
     ## return vlues

@@ -30,8 +30,8 @@ rankBasedThresholdNetwork = function(MAT, mix=FALSE, d = 2) {
   }
   
   ## GRAPH
-  GRAPH_As = graph.empty(n = 0)+ vertices(nameList)
-  GRAPH_De = graph.empty(n = 0)+ vertices(nameList)
+  GRAPH_As = graph.empty(n = 0,directed = FALSE)+ vertices(nameList)
+  GRAPH_De = graph.empty(n = 0,directed = FALSE)+ vertices(nameList)
   GRAPH_ListAs=list()
   GRAPH_ListDe=list()
   for(i in 1:dim(edgeListAs)[1]){

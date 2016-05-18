@@ -11,10 +11,13 @@ MAT0809 = MAT0809 + t(MAT0809)
 percolation=rankBasedThresholdNetworkStatiscs(MAT,d = 2)
 mixPercolation=rankBasedThresholdNetworkStatiscs(MAT,mix=TRUE,d = 2)
 
-percolation0809=rankBasedThresholdNetwork(MAT0809,d = 2)
-mixPercolation0809=rankBasedThresholdNetwork(MAT0809,mix=TRUE,d = 2)
+percolation0809=rankBasedThresholdNetworkStatiscs(MAT0809,d = 2)
+mixPercolation0809=rankBasedThresholdNetworkStatiscs(MAT0809,mix=TRUE,d = 2)
 
-GRAPH= rankBasedThresholdNetwork(MAT)
+GRAPH= rankBasedThresholdNetwork(MAT0809)
+par(mar=c(2,2,2,2))
+plot(GRAPH[[1]][[442]],vertex.label=NA,layout=layout.fruchterman.reingold,vertex.size=3)
+power.law.fit(degree(GRAPH[[1]][[442]])+1,xmin=3)
 
 
 ## s_max
@@ -78,53 +81,127 @@ lines(percolationRand$edgeNodeRatioDe,percolationRand$norGiantSizeDe,type='l',lw
 
 
 
-NormalMat=matrix(0,3000,3000)
-NormalMat[upper.tri(NormalMat)]=rnorm(2999*3000/2,mean=0,sd=1)
-NormalMat=NormalMat+t(NormalMat)
-rownames(NormalMat)<- c(1:3000)
-colnames(NormalMat)<- c(1:3000)
-percolationNormal=rankBasedThresholdNetworkStatiscs(NormalMat,d=2)
-mixPercolationNormal=rankBasedThresholdNetworkStatiscs(NormalMat,d=2,mix = TRUE)
+## normal distribution########
+for(i in c(500,1000,2000,3000,4000)){
+  normalMat=matrix(0,i,i)
+  normalMat[upper.tri(normalMat)]=rnorm((i-1)*i/2)
+  normalMat=normalMat+t(normalMat)
+  rownames(normalMat)= c(1:i)
+  colnames(normalMat)=c(1:i)
+  assign(paste0("percolationNormal",i),rankBasedThresholdNetworkStatiscs(normalMat,d=2))
+  assign(paste0("mixPercolationNormal",i),rankBasedThresholdNetworkStatiscs(normalMat,mix = TRUE,d=2))
+  print(i)
+}
 
-par(mfcol=c(1,2),mar=c(2,2,2,2))
-plot(percolationNormal$edgeNodeRatioAs,percolationNormal$norGiantSizeAs,type='l',lwd=3)
-lines(percolationNormal$edgeNodeRatioDe,percolationNormal$norGiantSizeDe,type='l',lwd=3,col="red")
-abline(v=1,h=1)
-plot(mixPercolationNormal$edgeNodeRatioAs,mixPercolationNormal$norGiantSizeAs,type='l',lwd=2)
-lines(mixPercolationNormal$edgeNodeRatioDe,mixPercolationNormal$norGiantSizeDe,col="red",lwd=2)
-abline(v=1,h=1)
+cairo_ps("~/test/normal500-4000.eps")
+par(mfcol=c(1,2),mar=c(4,4,2,2))
+plot(percolationNormal500$edgeNodeRatioDe,percolationNormal500$norGiantSizeDe,type='l',lwd=2,main="De",xlab = "t",ylab=expression(S[max]/n))
+lines(percolationNormal1000$edgeNodeRatioDe,percolationNormal1000$norGiantSizeDe,type='l',lwd=2,col="red")
+lines(percolationNormal2000$edgeNodeRatioDe,percolationNormal2000$norGiantSizeDe,type='l',lwd=2,col="green")
+lines(percolationNormal3000$edgeNodeRatioDe,percolationNormal3000$norGiantSizeDe,type='l',lwd=2,col="blue")
+lines(percolationNormal4000$edgeNodeRatioDe,percolationNormal4000$norGiantSizeDe,type='l',lwd=2,col="purple")
 
+plot(percolationNormal500$edgeNodeRatioAs,percolationNormal500$norGiantSizeAs,type='l',lwd=2,main = "As",xlab = "t",ylab=expression(S[max]/n))
+lines(percolationNormal1000$edgeNodeRatioAs,percolationNormal1000$norGiantSizeAs,type='l',lwd=2,col="red")
+lines(percolationNormal2000$edgeNodeRatioAs,percolationNormal2000$norGiantSizeAs,type='l',lwd=2,col="green")
+lines(percolationNormal3000$edgeNodeRatioAs,percolationNormal3000$norGiantSizeAs,type='l',lwd=2,col="blue")
+lines(percolationNormal4000$edgeNodeRatioAs,percolationNormal4000$norGiantSizeAs,type='l',lwd=2,col="purple")
+dev.off()
 
-
-gammMat=matrix(0,2000,2000)
-gammMat[upper.tri(gammMat)]=rgamma(1999*2000/2,1)
-gammMat=gammMat+t(gammMat)
-rownames(gammMat)= c(1:2000)
-colnames(gammMat)=c(1:2000)
-percolationGamma=rankBasedThresholdNetworkStatiscs(gammMat,d=2)
-mixPercolationGamma=rankBasedThresholdNetworkStatiscs(gammMat,mix = TRUE,d=2)
-par(mfcol=c(1,2),mar=c(2,2,2,2))
-plot(percolationGamma$edgeNodeRatioAs,percolationGamma$norGiantSizeAs,type='l',lwd=2)
-lines(percolationGamma$edgeNodeRatioDe,percolationGamma$norGiantSizeDe,type='l',lwd=2,col="red")
-abline(v=1,h=1)
-plot(mixPercolationGamma$edgeNodeRatioAs,mixPercolationGamma$norGiantSizeAs,type='l',lwd=2)
-lines(mixPercolationGamma$edgeNodeRatioDe,mixPercolationGamma$norGiantSizeDe,lwd=2,col="red")
-abline(v=1,h=1)
+cairo_ps("~/meanClusterSizeNormal.eps")
+plot(percolationGamma1000$edgeNodeRatioAs,percolationGamma1000$meanClusterSizeAs)
 
 
-unionMat=matrix(0,2000,2000)
-unionMat[upper.tri(unionMat)]=runif(1999*2000/2)
-unionMat=unionMat+t(unionMat)
-rownames(unionMat)=c(1:2000)
-colnames(unionMat)=c(1:2000)
-percolationUnion=rankBasedThresholdNetworkStatiscs(unionMat,d=2)
-mixPercolationUnion=rankBasedThresholdNetworkStatiscs(unionMat,mix=TRUE,d=2)
-par(mfcol=c(1,2),mar=c(2,2,2,2))
-plot(percolationUnion$edgeNodeRatioAs,percolationUnion$norGiantSizeAs,type='l',lwd=2)
-lines(percolationUnion$edgeNodeRatioDe,percolationUnion$norGiantSizeDe,lwd=2,col="red")
-abline(v=1,h=1)
-plot(mixPercolationUnion$edgeNodeRatioAs,mixPercolationUnion$norGiantSizeAs,lwd=2,type='l')
-lines(mixPercolationUnion$edgeNodeRatioDe,mixPercolationUnion$norGiantSizeDe,lwd=2,col="red")
-abline(v=1,h=1)
-  
-  
+
+
+
+
+## gamma distribution#######
+for(i in c(500,1000,2000,3000,4000)){
+  gammaMat=matrix(0,i,i)
+  gammaMat[upper.tri(gammaMat)]=rgamma((i-1)*i/2,1)
+  gammaMat=gammaMat+t(gammaMat)
+  rownames(gammaMat)= c(1:i)
+  colnames(gammaMat)=c(1:i)
+  assign(paste0("percolationGamma",i),rankBasedThresholdNetworkStatiscs(gammaMat,d=2))
+  assign(paste0("mixPercolationGamma",i),rankBasedThresholdNetworkStatiscs(gammaMat,mix = TRUE,d=2))
+  print(i)
+}
+
+cairo_ps("~/test/gamma500-4000.eps")
+par(mfcol=c(1,2),mar=c(4,4,2,2))
+plot(percolationGamma500$edgeNodeRatioDe,percolationGamma500$norGiantSizeDe,type='l',lwd=2,main="De",xlab = "t",ylab=expression(S[max]/n))
+lines(percolationGamma1000$edgeNodeRatioDe,percolationGamma1000$norGiantSizeDe,type='l',lwd=2,col="red")
+lines(percolationGamma2000$edgeNodeRatioDe,percolationGamma2000$norGiantSizeDe,type='l',lwd=2,col="green")
+lines(percolationGamma3000$edgeNodeRatioDe,percolationGamma3000$norGiantSizeDe,type='l',lwd=2,col="blue")
+lines(percolationGamma4000$edgeNodeRatioDe,percolationGamma4000$norGiantSizeDe,type='l',lwd=2,col="purple")
+
+plot(percolationGamma500$edgeNodeRatioAs,percolationGamma500$norGiantSizeAs,type='l',lwd=2,main = "As",xlab = "t",ylab=expression(S[max]/n))
+lines(percolationGamma1000$edgeNodeRatioAs,percolationGamma1000$norGiantSizeAs,type='l',lwd=2,col="red")
+lines(percolationGamma2000$edgeNodeRatioAs,percolationGamma2000$norGiantSizeAs,type='l',lwd=2,col="green")
+lines(percolationGamma3000$edgeNodeRatioAs,percolationGamma3000$norGiantSizeAs,type='l',lwd=2,col="blue")
+lines(percolationGamma4000$edgeNodeRatioAs,percolationGamma4000$norGiantSizeAs,type='l',lwd=2,col="purple")
+dev.off()
+
+
+## union distribution#####
+for(i in c(500,1000,2000,3000,4000)){
+  unifMat=matrix(0,i,i)
+  unifMat[upper.tri(unifMat)]=rnorm((i-1)*i/2)
+  unifMat=unifMat+t(unifMat)
+  rownames(unifMat)= c(1:i)
+  colnames(unifMat)=c(1:i)
+  assign(paste0("percolationUnif",i),rankBasedThresholdNetworkStatiscs(unifMat,d=2))
+  assign(paste0("mixPercolationUnif",i),rankBasedThresholdNetworkStatiscs(unifMat,mix = TRUE,d=2))
+  print(i)
+}
+
+cairo_ps("~/test/unif500-4000.eps")
+par(mfcol=c(1,2),mar=c(4,4,2,2))
+plot(percolationUnif500$edgeNodeRatioDe,percolationUnif500$norGiantSizeDe,type='l',lwd=2,main="De",xlab = "t",ylab=expression(S[max]/n))
+lines(percolationUnif1000$edgeNodeRatioDe,percolationUnif1000$norGiantSizeDe,type='l',lwd=2,col="red")
+lines(percolationUnif2000$edgeNodeRatioDe,percolationUnif2000$norGiantSizeDe,type='l',lwd=2,col="green")
+lines(percolationUnif3000$edgeNodeRatioDe,percolationUnif3000$norGiantSizeDe,type='l',lwd=2,col="blue")
+lines(percolationUnif4000$edgeNodeRatioDe,percolationUnif4000$norGiantSizeDe,type='l',lwd=2,col="purple")
+
+plot(percolationUnif500$edgeNodeRatioAs,percolationUnif500$norGiantSizeAs,type='l',lwd=2,main = "As",xlab = "t",ylab=expression(S[max]/n))
+lines(percolationUnif1000$edgeNodeRatioAs,percolationUnif1000$norGiantSizeAs,type='l',lwd=2,col="red")
+lines(percolationUnif2000$edgeNodeRatioAs,percolationUnif2000$norGiantSizeAs,type='l',lwd=2,col="green")
+lines(percolationUnif3000$edgeNodeRatioAs,percolationUnif3000$norGiantSizeAs,type='l',lwd=2,col="blue")
+lines(percolationUnif4000$edgeNodeRatioAs,percolationUnif4000$norGiantSizeAs,type='l',lwd=2,col="purple")
+dev.off()
+
+
+##### power law distribution#######
+for(i in c(500,1000,2000,3000,4000)){
+  powerMat=matrix(0,i,i)
+  powerMat[upper.tri(powerMat)]=rplcon((i-1)*i/2,xmin = 1,2)
+  powerMat=powerMat+t(powerMat)
+  rownames(powerMat)= c(1:i)
+  colnames(powerMat)=c(1:i)
+  assign(paste0("percolationPower",i),rankBasedThresholdNetworkStatiscs(powerMat,d=2))
+  assign(paste0("mixPercolationPower",i),rankBasedThresholdNetworkStatiscs(powerMat,mix = TRUE,d=2))
+  print(i)
+}
+
+cairo_ps("~/test/power500-4000.eps")
+par(mfcol=c(1,2),mar=c(4,4,2,2))
+plot(percolationPower500$edgeNodeRatioDe,percolationPower500$norGiantSizeDe,type='l',lwd=2,main="De",xlab = "t",ylab=expression(S[max]/n))
+lines(percolationPower1000$edgeNodeRatioDe,percolationPower1000$norGiantSizeDe,type='l',lwd=2,col="red")
+lines(percolationPower2000$edgeNodeRatioDe,percolationPower2000$norGiantSizeDe,type='l',lwd=2,col="green")
+lines(percolationPower3000$edgeNodeRatioDe,percolationPower3000$norGiantSizeDe,type='l',lwd=2,col="blue")
+lines(percolationPower4000$edgeNodeRatioDe,percolationPower4000$norGiantSizeDe,type='l',lwd=2,col="purple")
+
+plot(percolationPower500$edgeNodeRatioAs,percolationPower500$norGiantSizeAs,type='l',lwd=2,main = "As",xlab = "t",ylab=expression(S[max]/n))
+lines(percolationPower1000$edgeNodeRatioAs,percolationPower1000$norGiantSizeAs,type='l',lwd=2,col="red")
+lines(percolationPower2000$edgeNodeRatioAs,percolationPower2000$norGiantSizeAs,type='l',lwd=2,col="green")
+lines(percolationPower3000$edgeNodeRatioAs,percolationPower3000$norGiantSizeAs,type='l',lwd=2,col="blue")
+lines(percolationPower4000$edgeNodeRatioAs,percolationPower4000$norGiantSizeAs,type='l',lwd=2,col="purple")
+dev.off()
+
+####
+MAT=matrix(0,30,30)
+MAT[upper.tri(MAT)]=rnorm(29*30/2,mean=0,sd=1)
+MAT=MAT+t(MAT)
+rownames(MAT)<- c(1:30)
+colnames(MAT)<- c(1:30)
