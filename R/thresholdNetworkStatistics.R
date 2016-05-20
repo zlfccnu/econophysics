@@ -9,6 +9,10 @@ rankBasedThresholdNetworkStatiscs = function(MAT, mix=FALSE, d = 2) {
     ## edgelist for both ascending and descending order
     edgeListAs = data.frame()
     edgeListDe = data.frame()
+    if(is.null(colnames(MAT))){
+      colnames(MAT)= 1:dim(MAT)[1]
+      rownames(MAT)=1:dim(MAT)[1]
+    }
     nameList = rownames(MAT)
     for (i in 1:d) {
       ## the index for the d_th largest elements
@@ -49,7 +53,7 @@ rankBasedThresholdNetworkStatiscs = function(MAT, mix=FALSE, d = 2) {
     meanClusterSizeAs=c()
     meanClusterSizeDe=c()
     for(i in 1:dim(edgeListAs)[1]){
-      GRAPH_As=GRAPH_As+edge(edgeListAs[i,2:3])
+      GRAPH_As=GRAPH_As+edge(edgeListAs[i,2],edgeListAs[i,3])
       csizeAs=clusters(GRAPH_As)
       if(is.simple(GRAPH_As)){
         edgeNodeRatioAs=append(edgeNodeRatioAs,ecount(GRAPH_As)/vNum)
@@ -63,7 +67,7 @@ rankBasedThresholdNetworkStatiscs = function(MAT, mix=FALSE, d = 2) {
         GRAPH_As=simplify(GRAPH_As)
       }
       
-      GRAPH_De=GRAPH_De+edge(edgeListDe[i,2:3])
+      GRAPH_De=GRAPH_De+edge(edgeListDe[i,2],edgeListDe[i,3])
       csizeDe=clusters(GRAPH_De)
       if(is.simple(GRAPH_De)){
         edgeNodeRatioDe=append(edgeNodeRatioDe,ecount(GRAPH_De)/vNum)

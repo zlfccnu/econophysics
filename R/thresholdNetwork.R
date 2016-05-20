@@ -3,6 +3,10 @@ rankBasedThresholdNetwork = function(MAT, mix=FALSE, d = 2) {
   ## edgelist for both ascending and descending order
   edgeListAs = data.frame()
   edgeListDe = data.frame()
+  if(is.null(colnames(MAT))){
+    colnames(MAT)= 1:dim(MAT)[1]
+    rownames(MAT)=1:dim(MAT)[1]
+  }
   nameList = rownames(MAT)
   for (i in 1:d) {
     ## the index for the d_th largest elements
@@ -35,14 +39,14 @@ rankBasedThresholdNetwork = function(MAT, mix=FALSE, d = 2) {
   GRAPH_ListAs=list()
   GRAPH_ListDe=list()
   for(i in 1:dim(edgeListAs)[1]){
-    GRAPH_As=GRAPH_As+edge(edgeListAs[i,2:3])
+    GRAPH_As=GRAPH_As+edge(edgeListAs[i,2],edgeListAs[i,3])
     if(is.simple(GRAPH_As)){
       GRAPH_ListAs[[length(GRAPH_ListAs)+1]]=GRAPH_As
     }else{
       GRAPH_As=simplify(GRAPH_As)
     }
     
-    GRAPH_De=GRAPH_De+edge(edgeListDe[i,2:3])
+    GRAPH_De=GRAPH_De+edge(edgeListDe[i,2],edgeListDe[i,3])
     if(is.simple(GRAPH_De)){
       GRAPH_ListDe[[length(GRAPH_ListDe)+1]]=GRAPH_De
     }else{

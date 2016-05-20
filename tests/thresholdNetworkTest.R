@@ -1,73 +1,68 @@
-
+## 0809######
 MAT0809 = as.matrix(
   read.csv(
-    "/home/oliver/Work/R/WorldStocksData/sp500subPrime/cor/cor2008-09-03.dat",
+    "/home/oliver/Work/R/WorldStocksData/sp500HeteroTimeWindow/sp500MonthlyCor/2008-09-01.dat",
     row.names = 1,
     header = TRUE
   )
 )
 MAT0809 = MAT0809 + t(MAT0809)
 
-percolation=rankBasedThresholdNetworkStatiscs(MAT,d = 2)
-mixPercolation=rankBasedThresholdNetworkStatiscs(MAT,mix=TRUE,d = 2)
+percolation0809=rankBasedThresholdNetworkStatiscs(MAT0809,d = 3)
+mixPercolation0809=rankBasedThresholdNetworkStatiscs(MAT0809,mix=TRUE,d = 3)
 
-percolation0809=rankBasedThresholdNetworkStatiscs(MAT0809,d = 2)
-mixPercolation0809=rankBasedThresholdNetworkStatiscs(MAT0809,mix=TRUE,d = 2)
+GRAPH0809= rankBasedThresholdNetwork(MAT0809)
+par(mar=c(2,2,2,2))
+plot(GRAPH[[1]][[442]],vertex.label=NA,layout=layout.fruchterman.reingold,vertex.size=3)
+power.law.fit(degree(GRAPH[[1]][[442]])+1,xmin=3)
+## s_max
+cairo_ps("~/test/percolationComponent0809.eps")
+par(mfcol=c(1,2))
+plot(percolation0809$edgeNodeRatioAs,percolation0809$norGiantSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[max]/n))
+lines(percolation0809$edgeNodeRatioDe,percolation0809$norGiantSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[max]/n))
+plot(mixPercolation0809$edgeNodeRatioAs,mixPercolation0809$norGiantSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[max]/n))
+lines(mixPercolation0809$edgeNodeRatioDe,mixPercolation0809$norGiantSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[max]/n))
+dev.off()
 
-GRAPH= rankBasedThresholdNetwork(MAT0809)
+## <s^2>/<s>
+cairo_ps("~/test/PercolationMeanComponent0809.eps")
+plot(percolation0809$edgeNodeRatioDe,percolation0809$meanClusterSizeDe/max(na.omit(percolation0809$meanClusterSizeDe)),type='l',lwd=2,xlab="t",ylab=expression(S[mean]))
+lines(percolation0809$edgeNodeRatioAs,percolation0809$meanClusterSizeAs/max(na.omit(percolation0809$meanClusterSizeAs)),type='l',lwd=2,xlab="t",ylab=expression(S[mean]),col="red")
+dev.off()
+
+## 0505###
+MAT0505 = as.matrix(
+  read.csv(
+    "/home/oliver/Work/R/WorldStocksData/sp500HeteroTimeWindow/sp500MonthlyCor/2005-05-01.dat",
+    row.names = 1,
+    header = TRUE
+  )
+)
+MAT0505 = MAT0505 + t(MAT0505)
+
+percolation0505=rankBasedThresholdNetworkStatiscs(MAT0505,d = 3)
+mixPercolation0505=rankBasedThresholdNetworkStatiscs(MAT0505,mix=TRUE,d = 3)
+
+GRAPH0505= rankBasedThresholdNetwork(MAT0505)
 par(mar=c(2,2,2,2))
 plot(GRAPH[[1]][[442]],vertex.label=NA,layout=layout.fruchterman.reingold,vertex.size=3)
 power.law.fit(degree(GRAPH[[1]][[442]])+1,xmin=3)
 
 
 ## s_max
-cairo_ps("~/test/percolationComponent.eps")
+cairo_ps("~/test/percolationComponent0505.eps")
 par(mfcol=c(1,2))
-plot(mixPercolation$edgeNodeRatioAs,mixPercolation$norGiantSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[max]/n))
-lines(mixPercolation$edgeNodeRatioDe,mixPercolation$norGiantSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[max]/n))
-abline(v=1,col="blue")
-
-plot(percolation$edgeNodeRatioAs,percolation$norGiantSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[max]/n))
-lines(percolation$edgeNodeRatioDe,percolation$norGiantSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[max]/n))
-abline(v=1,col="blue")
+plot(percolation0505$edgeNodeRatioAs,percolation0505$norGiantSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[max]/n))
+lines(percolation0505$edgeNodeRatioDe,percolation0505$norGiantSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[max]/n))
+plot(mixPercolation0505$edgeNodeRatioAs,mixPercolation0505$norGiantSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[max]/n))
+lines(mixPercolation0505$edgeNodeRatioDe,mixPercolation0505$norGiantSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[max]/n))
 dev.off()
 
 ## <s^2>/<s>
-cairo_ps("~/test/PercolationMeanComponent.eps")
-par(mfcol=c(1,2),mar=c(2,2,2,2))
-plot(mixPercolation$edgeNodeRatioAs,mixPercolation$meanClusterSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[mean]))
-lines(mixPercolation$edgeNodeRatioDe,mixPercolation$meanClusterSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[max]/n))
-
-plot(percolation$edgeNodeRatioAs,percolation$meanClusterSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[mean]))
-lines(percolation$edgeNodeRatioDe,percolation$meanClusterSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[mean]))
+cairo_ps("~/test/PercolationMeanComponent0505.eps")
+plot(percolation0505$edgeNodeRatioDe,percolation0505$meanClusterSizeDe/max(na.omit(percolation0505$meanClusterSizeDe)),type='l',lwd=2,xlab="t",ylab=expression(S[mean]))
+lines(percolation0505$edgeNodeRatioAs,percolation0505$meanClusterSizeAs/max(na.omit(percolation0505$meanClusterSizeAs)),type='l',lwd=2,xlab="t",ylab=expression(S[mean]),col="red")
 dev.off()
-
-
-
-cairo_ps("~/test/percolationComponent0809.eps")
-par(mfcol=c(1,2))
-plot(mixPercolation0809$edgeNodeRatioAs,mixPercolation0809$norGiantSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[max]/n))
-lines(mixPercolation$edgeNodeRatioDe,mixPercolation$norGiantSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[max]/n))
-abline(v=1,col="blue")
-
-plot(percolation0809$edgeNodeRatioAs,percolation0809$norGiantSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[max]/n))
-lines(percolation0809$edgeNodeRatioDe,percolation0809$norGiantSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[max]/n))
-abline(v=1,col="blue")
-dev.off()
-
-## <s^2>/<s>
-cairo_ps("~/test/PercolationMeanComponent0809.eps")
-par(mfcol=c(2,2),mar=c(2,2,2,2))
-plot(mixPercolation0809$edgeNodeRatioAs,mixPercolation0809$meanClusterSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[mean]))
-plot(mixPercolation0809$edgeNodeRatioDe,mixPercolation0809$meanClusterSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[max]/n))
-abline(v=1,col="blue")
-
-plot(percolation0809$edgeNodeRatioAs,percolation0809$meanClusterSizeAs,type='l',lwd=2,xlab="t",ylab=expression(S[mean]))
-plot(percolation0809$edgeNodeRatioDe,percolation0809$meanClusterSizeDe,type='l',lwd=2,xlab="t",col="red",ylab=expression(S[mean]))
-abline(v=1,col="blue")
-dev.off()
-
-
 
 #### random matrix test############
 randomMat[upper.tri(randomMat)]<- rnorm(399*400/2,mean = mean(MAT[upper.tri(MAT)]),sd =sd(MAT[upper.tri(MAT)]))
@@ -109,9 +104,12 @@ lines(percolationNormal4000$edgeNodeRatioAs,percolationNormal4000$norGiantSizeAs
 dev.off()
 
 cairo_ps("~/meanClusterSizeNormal.eps")
-plot(percolationGamma1000$edgeNodeRatioAs,percolationGamma1000$meanClusterSizeAs)
-
-
+plot(percolationNormal500$edgeNodeRatioAs,percolationNormal500$meanClusterSizeAs/max(na.omit(percolationNormal500$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size")
+lines(percolationNormal1000$edgeNodeRatioAs,percolationNormal1000$meanClusterSizeAs/max(na.omit(percolationNormal1000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="red")
+lines(percolationNormal2000$edgeNodeRatioAs,percolationNormal2000$meanClusterSizeAs/max(na.omit(percolationNormal2000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="green")
+lines(percolationNormal3000$edgeNodeRatioAs,percolationNormal3000$meanClusterSizeAs/max(na.omit(percolationNormal3000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="blue")
+lines(percolationNormal4000$edgeNodeRatioAs,percolationNormal4000$meanClusterSizeAs/max(na.omit(percolationNormal4000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="purple")
+dev.off()
 
 
 
@@ -144,10 +142,18 @@ lines(percolationGamma4000$edgeNodeRatioAs,percolationGamma4000$norGiantSizeAs,t
 dev.off()
 
 
+cairo_ps("~/test/meanClusterSizeGamma.eps")
+plot(percolationGamma500$edgeNodeRatioAs,percolationGamma500$meanClusterSizeAs/max(na.omit(percolationGamma500$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size")
+lines(percolationGamma1000$edgeNodeRatioAs,percolationGamma1000$meanClusterSizeAs/max(na.omit(percolationGamma1000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="red")
+lines(percolationGamma2000$edgeNodeRatioAs,percolationGamma2000$meanClusterSizeAs/max(na.omit(percolationGamma2000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="green")
+lines(percolationGamma3000$edgeNodeRatioAs,percolationGamma3000$meanClusterSizeAs/max(na.omit(percolationGamma3000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="blue")
+lines(percolationGamma4000$edgeNodeRatioAs,percolationGamma4000$meanClusterSizeAs/max(na.omit(percolationGamma4000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="purple")
+dev.off()
+
 ## union distribution#####
 for(i in c(500,1000,2000,3000,4000)){
   unifMat=matrix(0,i,i)
-  unifMat[upper.tri(unifMat)]=rnorm((i-1)*i/2)
+  unifMat[upper.tri(unifMat)]=runif((i-1)*i/2)
   unifMat=unifMat+t(unifMat)
   rownames(unifMat)= c(1:i)
   colnames(unifMat)=c(1:i)
@@ -171,7 +177,13 @@ lines(percolationUnif3000$edgeNodeRatioAs,percolationUnif3000$norGiantSizeAs,typ
 lines(percolationUnif4000$edgeNodeRatioAs,percolationUnif4000$norGiantSizeAs,type='l',lwd=2,col="purple")
 dev.off()
 
-
+cairo_ps("~/meanClusterSizeUnif.eps")
+plot(percolationUnif500$edgeNodeRatioAs,percolationUnif500$meanClusterSizeAs/max(na.omit(percolationUnif500$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size")
+lines(percolationUnif1000$edgeNodeRatioAs,percolationUnif1000$meanClusterSizeAs/max(na.omit(percolationUnif1000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="red")
+lines(percolationUnif2000$edgeNodeRatioAs,percolationUnif2000$meanClusterSizeAs/max(na.omit(percolationUnif2000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="green")
+lines(percolationUnif3000$edgeNodeRatioAs,percolationUnif3000$meanClusterSizeAs/max(na.omit(percolationUnif3000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="blue")
+lines(percolationUnif4000$edgeNodeRatioAs,percolationUnif4000$meanClusterSizeAs/max(na.omit(percolationUnif4000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="purple")
+dev.off()
 ##### power law distribution#######
 for(i in c(500,1000,2000,3000,4000)){
   powerMat=matrix(0,i,i)
@@ -199,6 +211,14 @@ lines(percolationPower3000$edgeNodeRatioAs,percolationPower3000$norGiantSizeAs,t
 lines(percolationPower4000$edgeNodeRatioAs,percolationPower4000$norGiantSizeAs,type='l',lwd=2,col="purple")
 dev.off()
 
+
+cairo_ps("~/meanClusterSizePower.eps")
+plot(percolationPower500$edgeNodeRatioAs,percolationPower500$meanClusterSizeAs/max(na.omit(percolationPower500$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size")
+lines(percolationPower1000$edgeNodeRatioAs,percolationPower1000$meanClusterSizeAs/max(na.omit(percolationPower1000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="red")
+lines(percolationPower2000$edgeNodeRatioAs,percolationPower2000$meanClusterSizeAs/max(na.omit(percolationPower2000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="green")
+lines(percolationPower3000$edgeNodeRatioAs,percolationPower3000$meanClusterSizeAs/max(na.omit(percolationPower3000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="blue")
+lines(percolationPower4000$edgeNodeRatioAs,percolationPower4000$meanClusterSizeAs/max(na.omit(percolationPower4000$meanClusterSizeAs)),type='l',xlim = c(0,2),xlab = "t",ylab="mean size",col="purple")
+dev.off()
 ####
 MAT=matrix(0,30,30)
 MAT[upper.tri(MAT)]=rnorm(29*30/2,mean=0,sd=1)
