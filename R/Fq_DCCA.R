@@ -69,6 +69,7 @@ Fq_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMeth
   Fq_DCCA_Tmp=foreach(q=qVec,.combine = cbind)%dopar%{
     sapply(f2_DCCA, function(x){mean(sign(x)*(abs(x)^(q/2)))})
   }
+  Fq_DCCA_Tmp=as.data.frame(Fq_DCCA_Tmp)
   colnames(Fq_DCCA_Tmp)<- paste0("q",qVec)
   rownames(Fq_DCCA_Tmp)<- paste0("n",nVec)
   return(Fq_DCCA_Tmp)
