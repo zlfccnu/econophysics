@@ -1,4 +1,4 @@
-#'Function used to calculate the Jensen-Shannon between two matrices, i.e, the distance between eigenvalue distribution
+#'Function used to calculate the Jensen-Shannon between two discrete probability distribution distribution
 #'  @param p1 a discrete probability density function
 #'  @param p2 a discrete probability density function
 #'  @return a numeric value between 0 and 1
