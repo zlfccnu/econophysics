@@ -9,10 +9,10 @@
 #' @return a data.frame
 #' @export
 
-eff.frontier.nonConvex <- function (covariance,returns, short="no", max.allocation=NULL, risk.premium.up=20, risk.increment=.05,thread=3){
+eff.frontier.Cov <- function (covariance,returns, short="no", max.allocation=NULL, risk.premium.up=20, risk.increment=.05,thread=3){
   #covariance <- cov(returns)
   # print(covariance)
-  n <- ncol(covariance)## the covariance is determined
+  n <- ncol(covariance)## the covariance is determined by ourself.
   
   # Create initial Amat and bvec assuming only equality constraint (short-selling is allowed, no allocation constraints)
   Amat <- matrix (1, nrow=n)
