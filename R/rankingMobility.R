@@ -1,0 +1,1 @@
+#' Function use the estimate the ranking mobility of stocks
