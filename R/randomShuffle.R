@@ -5,7 +5,7 @@
 #' @export
 randomShuffle <- function(x,n){
   for (i in 1:n ) {
-    x = x[.Internal(sample(n,n, FALSE, NULL))]
+    x = x[.Internal(sample(length(x),length(x), FALSE, NULL))]
   }
   return(x)
 }
