@@ -26,7 +26,4 @@ a data.frame
 \description{
 Function used to find the efficient frontier by using the modern portofilio theory
 }
-\references{
-"http://economistatlarge.com/portfolio-theory/r-optimized-portfolio/r-code-graph-efficient-frontier"
-}
 
