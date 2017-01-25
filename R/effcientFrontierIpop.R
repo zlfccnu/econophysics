@@ -40,8 +40,12 @@ eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,r
       cMat=i*matrix(-colMeans(returns),nrow=n)
       effTemp=ipop(c=cMat,H=covMat,A=Amat,b=b,l=l,u=u,r=r)
       effTemp=primal(effTemp)
-      effTemp=c(effTemp,i,sqrt(sum(effTemp*colSums((cov(returns) * effTemp)))),as.numeric(effTemp %*% colMeans(returns)),as.numeric(effTemp %*% colMeans(returns))/sqrt(sum(effTemp *colSums((cov(returns) * effTemp)))))
-      names(effTemp)<- c(colnames(returns),"riskAversion","Std.Dev","Exp.Return","sharpe")
+      effTemp[abs(effTemp)<=1e-7]<- 0
+      W=as.matrix(as.numeric(effTemp),nrow=n)
+      Std.Dev=sqrt(t(W)%*%cov(returns)%*%W)[1,1]
+      Exp.Return=(t(W)%*%colSums(returns))[1,1]
+      effTemp=c(effTemp,i,Std.Dev,Exp.Return)
+      names(effTemp)<- c(colnames(returns),"riskAversion","Std.Dev","Exp.Return")
       return(effTemp)
     }
   }
