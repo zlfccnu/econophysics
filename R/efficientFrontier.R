@@ -9,8 +9,9 @@
 #' @export
 
 eff.frontier <- function (covariance,returns, short="no", max.allocation=NULL, risk.premium.up=20, risk.increment=.05,thread=3){
-  #covariance <- cov(returns)
-  # print(covariance)
+  if(is.null(covariance)){
+    covariance=cov(returns)
+  }
   n <- ncol(covariance)## the covariance is determined
   
   # Create initial Amat and bvec assuming only equality constraint (short-selling is allowed, no allocation constraints)
@@ -40,7 +41,7 @@ eff.frontier <- function (covariance,returns, short="no", max.allocation=NULL, r
   eff<- foreach(i=seq(from=0, to=risk.premium.up, by=risk.increment), .combine='rbind')%dopar%{
     dvec <- colMeans(returns) * i # This moves the solution up along the efficient frontier
     sol <- solve.QP(covariance, dvec=dvec, Amat=Amat, bvec=bvec, meq=meq)
-    results<- c(sol$solution,i,sqrt(sum(sol$solution *colSums((covariance * sol$solution)))),as.numeric(sol$solution %*% colMeans(returns)),as.numeric(sol$solution %*% colMeans(returns))/sqrt(sum(sol$solution *colSums((covariance * sol$solution)))))
+    results<- c(sol$solution,i,sqrt(sum(sol$solution *colSums((cov(returns) * sol$solution)))),as.numeric(sol$solution %*% colMeans(returns)),as.numeric(sol$solution %*% colMeans(returns))/sqrt(sum(sol$solution *colSums((cov(returns) * sol$solution)))))
     names(results)<- c(colnames(returns),"riskAversion","Std.Dev","Exp.Return","sharpe")
     return(results)
   }
