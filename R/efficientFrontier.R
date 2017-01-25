@@ -5,7 +5,6 @@
 #' @param risk.premium.up is the upper limit of the risk premium modeled
 #' @param risk.increment is the increment value used in the for loop
 #' @param thread the multithreads argument
-#' @references "http://economistatlarge.com/portfolio-theory/r-optimized-portfolio/r-code-graph-efficient-frontier"
 #' @return a data.frame
 #' @export
 
