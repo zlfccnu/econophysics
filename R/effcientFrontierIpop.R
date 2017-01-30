@@ -9,7 +9,7 @@
 #'@param maxiter Maximum number of iterations
 #'@return a data.frame include the weight, variance, return and shape ratio
 #'@export
-eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,risk.premium.up=20,risk.increment=0.5,thread=3,maxiter=40){
+eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,risk.premium.up=20,thread=3,maxiter=40){
   ## parameter definition
   b=1
   r=0
@@ -26,8 +26,9 @@ eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,r
   }
   registerDoMC(thread)
   eff=NULL
+  riskSeq=exp(seq(0.01,log(risk.premium.up),0.1))
   if(is.null(covMat)){
-    eff<- foreach(i=seq(from=0, to=risk.premium.up, by=risk.increment),.combine = "rbind")%dopar%{
+    eff<- foreach(i=riskSeq,.combine = "rbind")%dopar%{
       cMat=i*matrix(-colMeans(returns),nrow=n)
       effTemp=ipop(c=cMat,H=cov(returns),A=Amat,b=b,l=l,u=u,r=r,maxiter = maxiter)
       effTemp=primal(effTemp)
@@ -41,7 +42,7 @@ eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,r
     }
   }
   if(!is.null(covMat)){
-    eff<- foreach(i=seq(from=0, to=risk.premium.up, by=risk.increment),.combine = "rbind")%dopar%{
+    eff<- foreach(i=riskSeq,.combine = "rbind")%dopar%{
       cMat=i*matrix(-colMeans(returns),nrow=n)
       effTemp=ipop(c=cMat,H=covMat,A=Amat,b=b,l=l,u=u,r=r)
       effTemp=primal(effTemp)
