@@ -3,13 +3,17 @@
 #' @param bulk whether use the bulk eigenvalues to construct the correlation matrix or not
 #' @references Random matrix approach to cross correlations in financial data
 filteredCovMat<- function(returns,bulk=FALSE){
+  standardlizing= function(x){
+    x=(x-mean(x))/sd(x)
+    return(x)
+  }
   ## returns should be adjusted to N*L dimension
   if(dim(returns)[1]>= dim(returns)[2]){
     returns<- t(returns)
   }
   dimReturns<- dim(returns)
   sdReturns<- apply(returns,1,sd)
-  standardReturns<- t(apply(returns,1, standardizing))
+  standardReturns<- t(apply(returns,1, standardlizing))
   corMat<- (1/dimReturns[2])*standardReturns%*%t(standardReturns)
   eigenCorMat<- eigen(corMat)
   D<- diag(sdReturns)
