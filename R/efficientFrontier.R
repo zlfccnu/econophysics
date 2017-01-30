@@ -41,11 +41,11 @@ eff.frontier <- function (covariance,returns, short="no", max.allocation=NULL, r
   eff<- foreach(i=seq(from=0, to=risk.premium.up, by=risk.increment), .combine='rbind')%dopar%{
     dvec <- colMeans(returns) * i # This moves the solution up along the efficient frontier
     sol <- solve.QP(covariance, dvec=dvec, Amat=Amat, bvec=bvec, meq=meq)
-    sol$solution[abs(sol$solution)<=1e-7]<- 0
+    sol$solution[abs(sol$solution)<= 1e-7]<- 0
     W=as.matrix(as.numeric(sol$solution),nrow=n)
     Std.Dev=sqrt(t(W)%*%cov(returns)%*%W)[1,1]
-    Exp.Return=(t(W)%*%as.matrix(colSums(returns)))[1,1]
-    resluts=c(sol$solution,i,Std.Dev,Exp.Return)
+    Exp.Return=(t(W)%*%as.matrix(colMeans(returns)))[1,1]
+    results=c(sol$solution,i,Std.Dev,Exp.Return)
     names(results)<- c(colnames(returns),"riskAversion","Std.Dev","Exp.Return")
     return(results)
   }

@@ -6,9 +6,10 @@
 #'@param risk.premim the maximum risk aversion parameter
 #'@param risk.increment the incremental of the risk aversion
 #'@param thread the multi threads number
+#'@param maxiter Maximum number of iterations
 #'@return a data.frame include the weight, variance, return and shape ratio
 #'@export
-eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,risk.premium.up=20,risk.increment=0.5,thread=3){
+eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,risk.premium.up=20,risk.increment=0.5,thread=3,maxiter=40){
   ## parameter definition
   b=1
   r=0
@@ -28,10 +29,14 @@ eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,r
   if(is.null(covMat)){
     eff<- foreach(i=seq(from=0, to=risk.premium.up, by=risk.increment),.combine = "rbind")%dopar%{
       cMat=i*matrix(-colMeans(returns),nrow=n)
-      effTemp=ipop(c=cMat,H=cov(returns),A=Amat,b=b,l=l,u=u,r=r)
+      effTemp=ipop(c=cMat,H=cov(returns),A=Amat,b=b,l=l,u=u,r=r,maxiter = maxiter)
       effTemp=primal(effTemp)
-      effTemp=c(effTemp,i,sqrt(sum(effTemp*colSums((cov(returns) * effTemp)))),as.numeric(effTemp %*% colMeans(returns)),as.numeric(effTemp %*% colMeans(returns))/sqrt(sum(effTemp *colSums((cov(returns) * effTemp)))))
-      names(effTemp)<- c(colnames(returns),"riskAversion","Std.Dev","Exp.Return","sharpe")
+      effTemp[abs(effTemp)<= 1e-7]<- 0
+      W=as.matrix(as.numeric(effTemp),nrow=n)
+      Std.Dev=sqrt(t(W)%*%cov(returns)%*%W)[1,1]
+      Exp.Return=(t(W)%*%colSums(returns))[1,1]
+      effTemp=c(effTemp,i,Std.Dev,Exp.Return)
+      names(effTemp)<- c(colnames(returns),"riskAversion","Std.Dev","Exp.Return")
       return(effTemp)
     }
   }
@@ -40,10 +45,10 @@ eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,r
       cMat=i*matrix(-colMeans(returns),nrow=n)
       effTemp=ipop(c=cMat,H=covMat,A=Amat,b=b,l=l,u=u,r=r)
       effTemp=primal(effTemp)
-      effTemp[abs(effTemp)<=1e-7]<- 0
+      effTemp[abs(effTemp)<= 1e-7]<- 0
       W=as.matrix(as.numeric(effTemp),nrow=n)
       Std.Dev=sqrt(t(W)%*%cov(returns)%*%W)[1,1]
-      Exp.Return=(t(W)%*%colSums(returns))[1,1]
+      Exp.Return=(t(W)%*%colMeans(returns))[1,1]
       effTemp=c(effTemp,i,Std.Dev,Exp.Return)
       names(effTemp)<- c(colnames(returns),"riskAversion","Std.Dev","Exp.Return")
       return(effTemp)
