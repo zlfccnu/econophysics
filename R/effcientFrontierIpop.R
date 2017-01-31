@@ -26,7 +26,7 @@ eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,r
   }
   registerDoMC(thread)
   eff=NULL
-  riskSeq=exp(seq(0.01,log(risk.premium.up),0.1))
+  riskSeq= (exp(seq(0.001,log(risk.premium.up),0.1))-1)
   if(is.null(covMat)){
     eff<- foreach(i=riskSeq,.combine = "rbind")%dopar%{
       cMat=i*matrix(-colMeans(returns),nrow=n)
