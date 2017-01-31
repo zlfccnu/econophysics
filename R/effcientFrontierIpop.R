@@ -44,7 +44,7 @@ eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,r
   if(!is.null(covMat)){
     eff<- foreach(i=riskSeq,.combine = "rbind")%dopar%{
       cMat=i*matrix(-colMeans(returns),nrow=n)
-      effTemp=ipop(c=cMat,H=covMat,A=Amat,b=b,l=l,u=u,r=r)
+      effTemp=ipop(c=cMat,H=covMat,A=Amat,b=b,l=l,u=u,r=r,maxiter = maxiter)
       effTemp=primal(effTemp)
       effTemp[abs(effTemp)<= 1e-7]<- 0
       W=as.matrix(as.numeric(effTemp),nrow=n)
