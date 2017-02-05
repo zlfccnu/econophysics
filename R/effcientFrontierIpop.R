@@ -15,7 +15,7 @@ eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,r
   r=0
   n=dim(returns)[2]## number of assets
   ## the average return of every asset, the minus means maximize the return
-  Amat=matrix(1,ncol=401)
+  Amat=matrix(1,ncol=n)
   if(short=="no"){
     l=matrix(0,n)
     u=matrix(1,n)
