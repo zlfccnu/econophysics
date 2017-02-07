@@ -8,6 +8,8 @@
 #' @param lambda the coupling strength between the oscillators
 #' @param weight a logical value, whether use edge weight or not
 #' @param N the size of the network
+#' @return a list with the order parameter and the phase
+#' @export
 kuramoto=function(graph,h=0.01,phase=runif(N,0,2*pi),natFeq=rnorm(N),thread=3,steps=1000,lambda=0.1,weight=TRUE,N=vcount(graph)){
   
   N=vcount(graph)
@@ -19,7 +21,8 @@ kuramoto=function(graph,h=0.01,phase=runif(N,0,2*pi),natFeq=rnorm(N),thread=3,st
   order_parameter=NULL
   
   for(j in 1:steps){
-    registerDoMC(thread)
+    cl=makeCluster(thread,type = "FORK")
+    registerDoMC(cl)
     phase=foreach(i=1:N,.combine = "c")%dopar%{
       adjNode=neighborhood(graph,i,order = 1)
       couple_vec=lambda*adjMat[i,]
