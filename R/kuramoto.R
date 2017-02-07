@@ -10,7 +10,7 @@
 #' @param N the size of the network
 #' @return a list with the order parameter and the phase
 #' @export
-kuramoto=function(graph=NULL,adjMat,h=0.01,phase=runif(N,0,2*pi),natFeq=rnorm(N),thread=3,steps=1000,lambda=0.1,weight=TRUE,N=vcount(graph)){
+kuramoto=function(graph=NULL,adjMat,h=0.01,phase=runif(N,0,2*pi),natFreq=rnorm(N),thread=3,steps=1000,lambda=0.1,weight=TRUE,N=vcount(graph)){
   if(is.null(graph)){
     adjMat=adjMat
     N=dim(adjMat)[1]
@@ -26,19 +26,16 @@ kuramoto=function(graph=NULL,adjMat,h=0.01,phase=runif(N,0,2*pi),natFeq=rnorm(N)
   adjMat=lambda*adjMat## construct the effective adjMat
   diag(adjMat)<- 0 ## not couple with itself
   order_parameter=double(steps)
-  cl=makeForkCluster(thread)
-  registerDoParallel(cl)
-  
+  registerDoMC(thread)
   for(j in 1:steps){
-    
-    phase=foreach(i=1:N,.combine = "c")%dopar%{
+      phase=foreach(i=1:N,.combine = "c")%dopar%{
       RK(theta_i = phase[i],theta_j = phase,couple_vec = adjMat[i,],h=h,natFreq = natFeq[i])
     }
     
     complex_phase=complex(imaginary = phase)
     order_parameter[j]=Mod(mean(exp(complex_phase)))
   }
-  stopCluster(cl)
+  
 
   return(list(order_parameter,phase))
 }
