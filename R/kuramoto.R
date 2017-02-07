@@ -23,20 +23,22 @@ kuramoto=function(graph=NULL,adjMat,h=0.01,phase=runif(N,0,2*pi),natFeq=rnorm(N)
     }
   }
   
-  order_parameter=NULL
+  adjMat=lambda*adjMat## construct the effective adjMat
+  diag(adjMat)<- 0 ## not couple with itself
+  order_parameter=double(steps)
+  cl=makeForkCluster(thread)
+  registerDoParallel(cl)
   
   for(j in 1:steps){
-    cl=makeForkCluster(thread)
-    registerDoParallel(cl)
+    
     phase=foreach(i=1:N,.combine = "c")%dopar%{
-      couple_vec=lambda*adjMat[i,]
-      couple_vec[i]=0 ##i does not couple with itself
-      RK(theta_i = phase[i],theta_j = phase,couple_vec = couple_vec,h=h,natFreq = natFeq[i])
+      RK(theta_i = phase[i],theta_j = phase,couple_vec = adjMat[i,],h=h,natFreq = natFeq[i])
     }
-    stopCluster(cl)
+    
     complex_phase=complex(imaginary = phase)
-    order_parameter=c(order_parameter,Mod(mean(exp(complex_phase))))
+    order_parameter[j]=Mod(mean(exp(complex_phase)))
   }
-  
+  stopCluster(cl)
+
   return(list(order_parameter,phase))
 }
