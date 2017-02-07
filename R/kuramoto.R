@@ -29,7 +29,7 @@ kuramoto=function(graph=NULL,adjMat,h=0.01,phase=runif(N,0,2*pi),natFreq=rnorm(N
   registerDoMC(thread)
   for(j in 1:steps){
       phase=foreach(i=1:N,.combine = "c")%dopar%{
-      RK(theta_i = phase[i],theta_j = phase,couple_vec = adjMat[i,],h=h,natFreq = natFeq[i])
+      RK(theta_i = phase[i],theta_j = phase,couple_vec = adjMat[i,],h=h,natFreq = natFreq[i])
     }
     
     complex_phase=complex(imaginary = phase)
