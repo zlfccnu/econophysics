@@ -10,26 +10,30 @@
 #' @param N the size of the network
 #' @return a list with the order parameter and the phase
 #' @export
-kuramoto=function(graph,h=0.01,phase=runif(N,0,2*pi),natFeq=rnorm(N),thread=3,steps=1000,lambda=0.1,weight=TRUE,N=vcount(graph)){
-  
-  N=vcount(graph)
-  if(weight==TRUE){
-    adjMat=get.adjacency(graph,sparse = FALSE,attr = "weight")
+kuramoto=function(graph=NULL,adjMat,h=0.01,phase=runif(N,0,2*pi),natFeq=rnorm(N),thread=3,steps=1000,lambda=0.1,weight=TRUE,N=vcount(graph)){
+  if(is.null(graph)){
+    adjMat=adjMat
+    N=dim(adjMat)[1]
   }else{
-    adjMat=get.adjacency(graph,sparse = FALSE)
+    N=vcount(graph)
+    if(weight==TRUE){
+      adjMat=get.adjacency(graph,sparse = FALSE,attr = "weight")
+    }else{
+      adjMat=get.adjacency(graph,sparse = FALSE)
+    }
   }
+  
   order_parameter=NULL
   
   for(j in 1:steps){
-    cl=makeCluster(thread,type = "FORK")
-    registerDoMC(cl)
+    cl=makeForkCluster(thread)
+    registerDoParallel(cl)
     phase=foreach(i=1:N,.combine = "c")%dopar%{
-      adjNode=neighborhood(graph,i,order = 1)
       couple_vec=lambda*adjMat[i,]
       couple_vec[i]=0 ##i does not couple with itself
       RK(theta_i = phase[i],theta_j = phase,couple_vec = couple_vec,h=h,natFreq = natFeq[i])
     }
-    
+    stopCluster(cl)
     complex_phase=complex(imaginary = phase)
     order_parameter=c(order_parameter,Mod(mean(exp(complex_phase))))
   }
