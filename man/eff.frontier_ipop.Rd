@@ -5,23 +5,22 @@
 \title{get the efficient frontier, no matter the covariance matrix is postive semidefinite or not}
 \usage{
 eff.frontier_ipop(returns, covMat = NULL, short = "yes",
-  max.allocation = NULL, risk.premium.up = 20, risk.increment = 0.5,
-  thread = 3)
+  risk.premium.up = 20, thread = 3, maxiter = 40)
 }
 \arguments{
 \item{covMat}{The predefined covariance matrix}
 
 \item{short}{whether short selling is prohibited or not}
 
-\item{max.allocation}{the maximum allocation of the asset, can control the over conceration}
-
-\item{risk.increment}{the incremental of the risk aversion}
-
 \item{thread}{the multi threads number}
+
+\item{maxiter}{Maximum number of iterations}
 
 \item{retruns}{The return matrix of all the assets,T*N dimension}
 
 \item{risk.premim}{the maximum risk aversion parameter}
+
+\item{risk.increment}{the incremental of the risk aversion}
 }
 \value{
 a data.frame include the weight, variance, return and shape ratio

@@ -4,19 +4,19 @@
 \alias{eff.frontier}
 \title{Function used to find the efficient frontier by using the modern portofilio theory}
 \usage{
-eff.frontier(covariance, returns, short = "no", max.allocation = NULL,
-  risk.premium.up = 20, risk.increment = 0.05, thread = 3)
+eff.frontier(returns, covMat = NULL, short = "no", max.allocation = NULL,
+  risk.premium.up = 20, thread = 3)
 }
 \arguments{
-\item{covariance}{the covariance matrix}
-
 \item{returns}{argument should be a m x n matrix with one column per security}
+
+\item{covMat}{the covariance matrix}
+
+\item{short}{short selling or not}
 
 \item{max.allocation}{is the maximum % allowed for any one security- reduces concentration}
 
 \item{risk.premium.up}{is the upper limit of the risk premium modeled}
-
-\item{risk.increment}{is the increment value used in the for loop}
 
 \item{thread}{the multithreads argument}
 }

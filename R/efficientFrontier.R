@@ -3,7 +3,7 @@
 #' @param returns argument should be a m x n matrix with one column per security
 #' @param max.allocation is the maximum % allowed for any one security- reduces concentration
 #' @param risk.premium.up is the upper limit of the risk premium modeled
-#' @param risk.increment is the increment value used in the for loop
+#' @param short short selling or not
 #' @param thread the multithreads argument
 #' @return a data.frame
 #' @export

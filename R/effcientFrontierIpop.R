@@ -2,14 +2,13 @@
 #'@param retruns The return matrix of all the assets,T*N dimension
 #'@param covMat The predefined covariance matrix
 #'@param short whether short selling is prohibited or not
-#'@param max.allocation the maximum allocation of the asset, can control the over conceration
 #'@param risk.premim the maximum risk aversion parameter
 #'@param risk.increment the incremental of the risk aversion
 #'@param thread the multi threads number
 #'@param maxiter Maximum number of iterations
 #'@return a data.frame include the weight, variance, return and shape ratio
 #'@export
-eff.frontier_ipop=function(returns,covMat=NULL,short="yes",max.allocation=NULL,risk.premium.up=20,thread=3,maxiter=40){
+eff.frontier_ipop=function(returns,covMat=NULL,short="yes",risk.premium.up=20,thread=3,maxiter=40){
   ## parameter definition
   b=1
   r=0
