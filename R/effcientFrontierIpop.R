@@ -47,7 +47,7 @@ eff.frontier_ipop=function(returns,covMat=NULL,short="yes",risk.premium.up=20,th
       effTemp=primal(effTemp)
       effTemp[abs(effTemp)<= 1e-7]<- 0
       W=as.matrix(as.numeric(effTemp),nrow=n)
-      Std.Dev=sqrt(t(W)%*%cov(returns)%*%W)[1,1]
+      Std.Dev=sqrt(t(W)%*%covMat%*%W)[1,1]
       Exp.Return=(t(W)%*%colMeans(returns))[1,1]
       effTemp=c(effTemp,i,Std.Dev,Exp.Return)
       names(effTemp)<- c(colnames(returns),"riskAversion","Std.Dev","Exp.Return")

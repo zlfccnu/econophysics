@@ -44,7 +44,7 @@ eff.frontier <- function (returns, covMat=NULL, short="no", max.allocation=NULL,
     sol <- solve.QP(covMat, dvec=dvec, Amat=Amat, bvec=bvec, meq=meq)
     sol$solution[abs(sol$solution)<= 1e-7]<- 0
     W=as.matrix(as.numeric(sol$solution),nrow=n)
-    Std.Dev=sqrt(t(W)%*%cov(returns)%*%W)[1,1]
+    Std.Dev=sqrt(t(W)%*%covMat%*%W)[1,1]
     Exp.Return=(t(W)%*%as.matrix(colMeans(returns)))[1,1]
     results=c(sol$solution,i,Std.Dev,Exp.Return)
     names(results)<- c(colnames(returns),"riskAversion","Std.Dev","Exp.Return")
