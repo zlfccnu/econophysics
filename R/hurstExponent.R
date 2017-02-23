@@ -8,9 +8,9 @@
 #'@param sampleMethod 1 means the determined sample number method, other values mean the nonoverlap method
 #'@return the generalized hurst exponent,a data.frame
 #'@export
-hurstExponent<- function(x,nVec=NULL,sampleNum=NULL,thread=3,qVec=c(-5:5),detrendOrder=3,sampleMethod=2){
+hurstExponent<- function(x,nVec=NULL,sampleNum=NULL,thread=3,qVec=c(-5:5),detrendOrder=3,sampleMethod=2,lengthRatio=0.05){
   require(parallel)
-  dfa_fluctuation = F_DFA(x=x,nVec = nVec,qVec = qVec,thread = thread,sampleNum = sampleNum ,detrendOrder=detrendOrder,sampleMethod=sampleMethod)
+  dfa_fluctuation = F_DFA(x=x,nVec = nVec,qVec = qVec,thread = thread,sampleNum = sampleNum ,detrendOrder=detrendOrder,sampleMethod=sampleMethod,lengthRatio=lengthRatio)
   registerDoMC(thread)
   hurst=foreach(i= 2:(dim(dfa_fluctuation)[2]),.combine = c)%dopar%{
     dfaLM = lm(log(dfa_fluctuation[,i])~log(dfa_fluctuation[,1]))

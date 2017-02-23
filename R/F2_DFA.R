@@ -8,11 +8,11 @@ library("RcppEigen")
 #'@param sampleMethod 1 means the determined sample number method, other values mean the nonoverlap method
 #'@return A list of the square DFA fluctuation for scale nVec
 #'@export
-F2_DFA=function(x,nVec=NULL,sampleNum=NULL,thread=3,detrendOrder=3,sampleMethod=2){
+F2_DFA=function(x,nVec=NULL,sampleNum=NULL,thread=3,detrendOrder=3,sampleMethod=2,lengthRatio=0.05){
   require(parallel)
   na.fail(x)
   if(is.null(nVec)){
-    nNum=floor(log2(length(x)/10))
+    nNum=floor(log2(lengthRatio*length(x)))
     if(nNum<=4){
       stop("time series is too short!")
     }
