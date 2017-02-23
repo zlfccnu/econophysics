@@ -8,11 +8,15 @@ library("RcppEigen")
 #'@param sampleMethod 1 means the determined sample number method, other values mean the nonoverlap method
 #'@return A list of the square DFA fluctuation for scale nVec
 #'@export
-F2_DFA=function(x,nVec=NULL,sampleNum=NULL,thread=3,detrendOrder=3,sampleMethod=1){
+F2_DFA=function(x,nVec=NULL,sampleNum=NULL,thread=3,detrendOrder=3,sampleMethod=2){
+  na.fail(x)
   require(parallel)
   ##calcuate the F2_DFA series
   ## the determined sample number method
   if(sampleMethod==1){
+    if(is.null(sampleNum)){
+      stop("sampleNum should be given when sampleMethod is 1!")
+    }
     registerDoMC(thread)
     x=cumsum(x-mean(x))
     foreach(n = nVec)%dopar%{
