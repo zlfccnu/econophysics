@@ -10,6 +10,15 @@ library("RcppEigen")
 #'@return the DFA fluctuation which enhanced by q^th order, a dataframe
 #'@export
 F_DFA=function(x,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),thread=3,detrendOrder=3,sampleMethod=2){
+  require(parallel)
+  na.fail(x)
+  if(is.null(nVec)){
+    nNum=floor(log2(length(x)/10))
+    if(nNum<=4){
+      stop("time series is too short!")
+    }
+    nVec=2^(4:nNum)
+  }
   registerDoMC(thread)
   f2_DFA=F2_DFA(x = x,nVec = nVec,sampleNum = sampleNum,thread = thread,detrendOrder = detrendOrder,sampleMethod=sampleMethod)##a list,every element is fluctuation for one scale
   

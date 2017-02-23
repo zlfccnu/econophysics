@@ -9,8 +9,15 @@ library("RcppEigen")
 #'@return A list of the square DFA fluctuation for scale nVec
 #'@export
 F2_DFA=function(x,nVec=NULL,sampleNum=NULL,thread=3,detrendOrder=3,sampleMethod=2){
-  na.fail(x)
   require(parallel)
+  na.fail(x)
+  if(is.null(nVec)){
+    nNum=floor(log2(length(x)/10))
+    if(nNum<=4){
+      stop("time series is too short!")
+    }
+    nVec=2^(4:nNum)
+  }
   ##calcuate the F2_DFA series
   ## the determined sample number method
   if(sampleMethod==1){
