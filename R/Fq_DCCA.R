@@ -1,4 +1,4 @@
-#' Function used to calculate the DCCA fluctuation
+#' Function used to calculate the DCCA power of fluctuation
 #'@param x  a numeric vector which convert from a time series
 #'@param y  a numeric vector which convert from a time series
 #'@param nVec  the time scale of the detrended operation
@@ -10,12 +10,14 @@
 #'@param lengthRatio detremine how long is the largest scale
 #'@return the the sqrt DCCA fluctuation
 #'@export
-Fq_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
+Fq_DCCA=function(x,y,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
   require(parallel)
   require(RcppEigen)
   na.fail(x)
   na.fail(y)
-  registerDoMC(thread)
+  if(0%in%qVec){
+    qVec=qVec[-which(qVec==0)]
+  }
   ##calcuate the Fq_DCCA
   x=cumsum(x-mean(x))
   y=cumsum(y-mean(y))
@@ -27,11 +29,13 @@ Fq_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMeth
     }
     nVec=2^(4:nNum)
   }
+  
   if(sampleMethod==1){
     
     if(is.null(sampleNum)){
       stop("sampleNum should be given when sampleMethod is 1!")
     }
+    registerDoMC(thread)
     f2_DCCA=foreach(n=nVec)%dopar%{
       startIndex=sample((length(x)-n+1),sampleNum)
       f2_DCCA_Tmp=1:sampleNum
@@ -51,7 +55,7 @@ Fq_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMeth
     y_inv=rev(y)
     x_len=length(x)
     y_len=length(y)
-    
+    registerDoMC(thread)
     f2_DCCA=foreach(n=nVec)%dopar%{
       sampleNum=floor(x_len/n)
       startIndex=1+(0:sampleNum)*n
@@ -78,11 +82,12 @@ Fq_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMeth
     
   }
  ## qth order DCCA
+  registerDoMC(thread)
   Fq_DCCA_Tmp=foreach(q=qVec,.combine = cbind)%dopar%{
     sapply(f2_DCCA, function(x){mean(sign(x)*(abs(x)^(q/2)))})
   }
   Fq_DCCA_Tmp=as.data.frame(Fq_DCCA_Tmp)
-  colnames(Fq_DCCA_Tmp)<- paste0("q",qVec)
-  rownames(Fq_DCCA_Tmp)<- paste0("n",nVec)
-  return(Fq_DCCA_Tmp)
+  colnames(Fq_DCCA_Tmp)<- sprintf("q%.2f",qVec)
+  rownames(Fq_DCCA_Tmp)<- sprintf("n%d",nVec)
+  return(as.data.frame(cbind(nVec,Fq_DCCA_Tmp)))
 }

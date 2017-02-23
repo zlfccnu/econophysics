@@ -10,13 +10,20 @@
 #'@param lengthRatio determine how long is the largest scale
 #'@return the generalized hurst exponent,a data.frame
 #'@export
-hurstExponent_xy<- function(x,y,nVec=NULL,sampleNum=NULL,thread=3,qVec=c(-5:5),detrendOrder=3,sampleMethod=2,lengthRatio=0.05){
+hurstExponent_xy<- function(x,y,nVec=NULL,sampleNum=NULL,thread=3,qVec=c(-5:5),detrendOrder=3,sampleMethod=2,lengthRatio=0.05,returnFluctuation=FALSE){
+  if(0%in%qVec){
+    qVec=qVec[-which(qVec==0)]
+  }
   require(parallel)
   dcca_fluctuation = Fq_DCCA(x=x,y=y,nVec=nVec, qVec=qVec,thread=thread,sampleNum =sampleNum,detrendOrder=detrendOrder,sampleMethod=sampleMethod,lengthRatio=lengthRatio)
   registerDoMC(thread)
   hurst=foreach(i= 2:(dim(dcca_fluctuation)[2]),.combine = c)%dopar%{
-    dccaLM = lm(log(dcca_fluctuation[,i])~log(dcca_fluctuation[,1]))
+    dccaLM = lm(log((dcca_fluctuation[,i])^(1/qVec[i-1]))~log(dcca_fluctuation[,1]))
     return(as.numeric(dccaLM$coefficients[2]))
   }
-  return(cbind(qVec,hurst))
+  if(returnFluctuation==TRUE){
+    return(list(dcca_fluctuation,cbind(qVec,hurst)))
+  }else{
+    return(cbind(qVec,hurst))
+  }
 }
