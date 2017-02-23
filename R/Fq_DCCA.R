@@ -7,6 +7,7 @@
 #'@param detrendOrder the detrending polynomial order
 #'@param thread the multithread number
 #'@param sampleMethod 1 means the determined sample number, other values means the nonoverlap method
+#'@param lengthRatio detremine how long is the largest scale
 #'@return the the sqrt DCCA fluctuation
 #'@export
 Fq_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
@@ -27,10 +28,10 @@ Fq_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMeth
     nVec=2^(4:nNum)
   }
   if(sampleMethod==1){
+    
     if(is.null(sampleNum)){
       stop("sampleNum should be given when sampleMethod is 1!")
     }
-    
     f2_DCCA=foreach(n=nVec)%dopar%{
       startIndex=sample((length(x)-n+1),sampleNum)
       f2_DCCA_Tmp=1:sampleNum
