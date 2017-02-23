@@ -1,4 +1,3 @@
-library("RcppEigen")
 #'Function used to calculate the DFA fluctuation
 #'@param x the time series
 #'@param nVec the detrended length vector
@@ -11,6 +10,7 @@ library("RcppEigen")
 #'@export
 F_DFA=function(x,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),thread=3,detrendOrder=3,sampleMethod=2,lengthRatio=0.05){
   require(parallel)
+  require(RcppEigen)
   na.fail(x)
   if(is.null(nVec)){
     nNum=floor(log2(lengthRatio*length(x)))

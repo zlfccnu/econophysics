@@ -1,4 +1,3 @@
-library("RcppEigen")
 #' Function used to calculate the DCCA fluctuation
 #'@param x  a numeric vector which convert from a time series
 #'@param y  a numeric vector which convert from a time series
@@ -10,15 +9,27 @@ library("RcppEigen")
 #'@param sampleMethod 1 means the determined sample number, other values means the nonoverlap method
 #'@return the the sqrt DCCA fluctuation
 #'@export
-Fq_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMethod=1){
+Fq_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
+  require(parallel)
+  require(RcppEigen)
+  na.fail(x)
+  na.fail(y)
   registerDoMC(thread)
   ##calcuate the Fq_DCCA
   x=cumsum(x-mean(x))
   y=cumsum(y-mean(y))
   f2_DCCA=list()
-  
-  
+  if(is.null(nVec)){
+    nNum=floor(log2(lengthRatio*length(x)))
+    if(nNum<=4){
+      stop("time series is too short!")
+    }
+    nVec=2^(4:nNum)
+  }
   if(sampleMethod==1){
+    if(is.null(sampleNum)){
+      stop("sampleNum should be given when sampleMethod is 1!")
+    }
     
     f2_DCCA=foreach(n=nVec)%dopar%{
       startIndex=sample((length(x)-n+1),sampleNum)

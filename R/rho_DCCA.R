@@ -10,9 +10,9 @@ library("RcppEigen")
 #'@param sampleMethod 1 means the determined sample number, other values means the nonoverlap method
 #'@return the DCCA coefficient ranging from -1 to 1, a dataframe
 #'@export
-rho_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMethod=1){
-  dcca_x=Fq_DCCA(x=x,y=x,nVec,sampleNum,qVec,detrendOrder,thread,sampleMethod)
-  dcca_y=Fq_DCCA(x=y,y=y,nVec,sampleNum,qVec,detrendOrder,thread,sampleMethod)
-  dcca_xy=Fq_DCCA(x=x,y=y,nVec,sampleNum,qVec,detrendOrder,thread,sampleMethod)
+rho_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
+  dcca_x=Fq_DCCA(x=x,y=x,nVec,sampleNum,qVec,detrendOrder,thread,sampleMethod,lengthRatio)
+  dcca_y=Fq_DCCA(x=y,y=y,nVec,sampleNum,qVec,detrendOrder,thread,sampleMethod,lengthRatio)
+  dcca_xy=Fq_DCCA(x=x,y=y,nVec,sampleNum,qVec,detrendOrder,thread,sampleMethod,lengthRatio)
   return(dcca_xy/sqrt(dcca_x*dcca_y))
 }

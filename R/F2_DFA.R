@@ -1,4 +1,3 @@
-library("RcppEigen")
 #'Function used to calculate the square DFA fluctuation
 #'@param x  a numeric vector which convert from a time series
 #'@param nVec  the time scale of the detrended operation
@@ -10,6 +9,7 @@ library("RcppEigen")
 #'@export
 F2_DFA=function(x,nVec=NULL,sampleNum=NULL,thread=3,detrendOrder=3,sampleMethod=2,lengthRatio=0.05){
   require(parallel)
+  require(RcppEigen)
   na.fail(x)
   if(is.null(nVec)){
     nNum=floor(log2(lengthRatio*length(x)))
