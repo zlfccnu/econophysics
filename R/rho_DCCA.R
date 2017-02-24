@@ -8,6 +8,7 @@ library("RcppEigen")
 #'@param detrendOrder the order of the polynomial fit
 #'@param thread number of the multithread
 #'@param sampleMethod 1 means the determined sample number, other values means the nonoverlap method
+#'@param lengthRatio the ratio of largest detrending scale over the time series length
 #'@return the DCCA coefficient ranging from -1 to 1, a dataframe
 #'@export
 rho_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
