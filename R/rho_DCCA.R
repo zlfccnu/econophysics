@@ -11,9 +11,11 @@ library("RcppEigen")
 #'@param lengthRatio the ratio of largest detrending scale over the time series length
 #'@return the DCCA coefficient ranging from -1 to 1, a dataframe
 #'@export
-rho_DCCA=function(x,y,nVec,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
+rho_DCCA=function(x,y,nVec=NULL,sampleNum=NULL,qVec,detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
   dcca_x=Fq_DCCA(x=x,y=x,nVec,sampleNum,qVec,detrendOrder,thread,sampleMethod,lengthRatio)
   dcca_y=Fq_DCCA(x=y,y=y,nVec,sampleNum,qVec,detrendOrder,thread,sampleMethod,lengthRatio)
   dcca_xy=Fq_DCCA(x=x,y=y,nVec,sampleNum,qVec,detrendOrder,thread,sampleMethod,lengthRatio)
-  return(dcca_xy/sqrt(dcca_x*dcca_y))
+  resluts=(dcca_xy/sqrt(dcca_x*dcca_y))
+  resluts[,1]<- nVec
+  return(resluts)
 }

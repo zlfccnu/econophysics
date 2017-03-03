@@ -1,12 +1,9 @@
-library("igraph")
-library("Rcpp")
-library("BH")
 #' Planar Graph Edgelist
 #'@param corMat a correlation matrix
 #'@param outputFile a string as the name of outout file
 #'@return a edgelist file in current directory
 #'@export
-funcGetPlanarFromCorMat=function(corMat,outputFile){
+funcGetPlanarFromCorMat=function(corMat,outputFile=NULL,desending=TRUE){
   ## construct the sorted correlation data.frame
   N=dim(corMat)[1]
   L=N*(N-1)/2
@@ -27,7 +24,12 @@ funcGetPlanarFromCorMat=function(corMat,outputFile){
   }
   ##GET THE DATAFRAME
   corSort=data.frame(v1,v2,corValue)
-  corSort=corSort[order(corSort[,3],decreasing = TRUE),]
+  if(desending==TRUE){
+    corSort=corSort[order(corSort[,3],decreasing = TRUE),]
+  }else{
+    corSort=corSort[order(corSort[,3],decreasing = FALSE),]
+  }
+  
   PMFG=graph.empty(N,directed = FALSE)
   for(i in c(1:L)){
     if(ecount(PMFG)==(3*(N-2))){
@@ -42,5 +44,9 @@ funcGetPlanarFromCorMat=function(corMat,outputFile){
       }
     }
   }
-  write.graph(PMFG,outputFile,format="edgelist")
+  if(!is.null(outputFile)){
+    write.graph(PMFG,outputFile,format="edgelist")
+  }else{
+    return(PMFG)
+  }
 }
