@@ -28,6 +28,8 @@ Fq_DCCA=function(x,y,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),detrendOrder=3,thread
       stop("time series is too short!")
     }
     nVec=2^(4:nNum)
+  }else{
+    nVec=ceiling(nVec)
   }
   
   if(sampleMethod==1){

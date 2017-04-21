@@ -7,22 +7,14 @@ library("RcppEigen")
 #'@param q the order of the multifractal
 #'@return the the DCCA fluctuation
 #'@export
-F_DCCA=function(x,y,n,overlap=0.99999999,q=2){
+F_DCCA=function(x,y,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
   ##calcuate the F2_DCCA series
-  x=cumsum(x-mean(x))
-  y=cumsum(y-mean(y))
-  f2_DCCA=c()
-  n1=ceiling((1-overlap)*n)
-  for(i in seq(1,(length(x)-n+1),by=n1)){
-    modelMat=cbind(1,c(i:(i+n-1)))
-    res_x=residuals(fastLmPure(modelMat,x[i:(i+n-1)]))
-    res_y=residuals(fastLmPure(modelMat,y[i:(i+n-1)]))
-    f2_DCCA=append(f2_DCCA,mean(res_x*res_y))
+  F2_DCCA=Fq_DCCA(x=x,y=y,nVec=nVec,sampleNum=sampleNum,qVec=qVec,detrendOrder=detrendOrder,thread=thread,sampleMethod=sampleMethod,lengthRatio=lengthRatio)
+  if(0%in%qVec){
+    qVec=qVec[-which(qVec==0)]
   }
-  
-  if(q!=0){
-    return((mean(f2_DCCA^(q/2)))^(1/q))
-  }else{
-    return(exp(0.5*(mean(log(f2_DCCA)))))
-  }
+  FDCCA=sapply(qVec,function(x){(F2_DCCA[,sprintf("q%.2f",x)])^(1/x)})
+  FDCCA=cbind(F2_DCCA[,1],FDCCA)
+  colnames(FDCCA)=c("nVec",sprintf("q%.2f",qVec))
+  return(as.data.frame(FDCCA))
 }
