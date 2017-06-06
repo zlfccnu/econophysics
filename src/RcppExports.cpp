@@ -6,6 +6,17 @@
 
 using namespace Rcpp;
 
+// df2list
+List df2list(const DataFrame& x);
+RcppExport SEXP econophysics_df2list(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const DataFrame& >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(df2list(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // isometricTrans
 SEXP isometricTrans(NumericVector x, double epsilon);
 RcppExport SEXP econophysics_isometricTrans(SEXP xSEXP, SEXP epsilonSEXP) {
@@ -51,4 +62,18 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(weightedVisibilityGraph(x));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"econophysics_df2list", (DL_FUNC) &econophysics_df2list, 1},
+    {"econophysics_isometricTrans", (DL_FUNC) &econophysics_isometricTrans, 2},
+    {"econophysics_funcPlanarTest", (DL_FUNC) &econophysics_funcPlanarTest, 2},
+    {"econophysics_unweightVisibilityGraph", (DL_FUNC) &econophysics_unweightVisibilityGraph, 1},
+    {"econophysics_weightedVisibilityGraph", (DL_FUNC) &econophysics_weightedVisibilityGraph, 1},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_econophysics(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }
