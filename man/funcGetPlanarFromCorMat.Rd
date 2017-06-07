@@ -4,7 +4,7 @@
 \alias{funcGetPlanarFromCorMat}
 \title{Planar Graph Edgelist}
 \usage{
-funcGetPlanarFromCorMat(corMat, outputFile)
+funcGetPlanarFromCorMat(corMat, outputFile = NULL, desending = TRUE)
 }
 \arguments{
 \item{corMat}{a correlation matrix}

@@ -1,12 +1,12 @@
 #' Function used to find the efficient frontier by using the modern portofilio theory
-#' @param covMat the covariance matrix
-#' @param returns argument should be a m x n matrix with one column per security
-#' @param max.allocation is the maximum % allowed for any one security- reduces concentration
-#' @param risk.premium.up is the upper limit of the risk premium modeled
-#' @param short short selling or not
-#' @param thread the multithreads argument
-#' @return a data.frame
-#' @export
+#'@param returns argument should be a m x n matrix with one column per security
+#'@param covMat the covariance matrix
+#'@param max.allocation is the maximum allowed for any one security- reduces concentration
+#'@param risk.premium.up is the upper limit of the risk premium modeled
+#'@param short short selling or not
+#'@param thread the multithreads argument
+#'@return a data.frame
+#'@export
 
 eff.frontier <- function (returns, covMat=NULL, short="no", max.allocation=NULL, risk.premium.up=20,thread=3){
   if(is.null(covMat)){

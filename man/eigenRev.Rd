@@ -7,7 +7,16 @@
 eigenRev(x, symmetric, only.values = FALSE, EISPACK = FALSE)
 }
 \arguments{
-\item{EISPACK}{return a list or a data.frame}
+\item{x}{the matrix}
+
+\item{symmetric}{symmetric or not}
+
+\item{only.values}{only calculate the eigen values}
+
+\item{EISPACK}{use the EISPACK}
+}
+\value{
+a list or a data.frame
 }
 \description{
 Function used to reverse the order of the eigen vectors

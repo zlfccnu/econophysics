@@ -4,7 +4,8 @@
 \alias{F_DCCA}
 \title{Function used to calculate the DCCA fluctuation}
 \usage{
-F_DCCA(x, y, n, overlap = 0.99999999, q = 2)
+F_DCCA(x, y, nVec = NULL, sampleNum = NULL, qVec = c(-5:5),
+  detrendOrder = 3, thread = 3, sampleMethod = 2, lengthRatio = 0.05)
 }
 \arguments{
 \item{x}{a numeric vector which convert from a time series}

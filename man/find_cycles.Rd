@@ -7,7 +7,7 @@
 find_cycles(x)
 }
 \arguments{
-\item{x}{a time series or}
+\item{x}{a time series}
 }
 \value{
 two numeric values, the cycle length of local maxima and minimia

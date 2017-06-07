@@ -4,15 +4,13 @@
 \alias{filteredCorMat}
 \title{Function used to filter the covariance matrix of a series of return time series}
 \usage{
-filteredCorMat(corMat, eigenNum = 1)
+filteredCorMat(returns)
 }
 \arguments{
-\item{corMat}{the correlation matrix}
-
-\item{eigenNum}{the number of eigevalues be removed}
+\item{returns}{the return matrix}
 }
 \value{
-a martix
+a list with four matrices: original,market,structure and random
 }
 \description{
 Function used to filter the covariance matrix of a series of return time series

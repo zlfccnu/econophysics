@@ -14,7 +14,7 @@ eff.frontier(returns, covMat = NULL, short = "no", max.allocation = NULL,
 
 \item{short}{short selling or not}
 
-\item{max.allocation}{is the maximum % allowed for any one security- reduces concentration}
+\item{max.allocation}{is the maximum allowed for any one security- reduces concentration}
 
 \item{risk.premium.up}{is the upper limit of the risk premium modeled}
 
