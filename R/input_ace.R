@@ -5,6 +5,11 @@
 #'@param fileName the outpu file name
 #'@export
 input_ace=function(x,p_theta=0.05,thread=3,fileName){
+  ## be sure the output file can be created
+  if(file.exists(fileName)){
+    readline(prompt=paste("remove",fileName,"Press [enter] to continue! OR [ESC] to escape!"))
+    file.remove(fileName)
+  }
   
   stateP=function(x,p_theta=0.05,thread=3){
     cl=makeCluster(thread)
@@ -38,10 +43,7 @@ input_ace=function(x,p_theta=0.05,thread=3,fileName){
   state_input=state_p
   state_input[(length(state_input)+1):(length(state_input)+length(state_pp))]=state_pp
   state_input=lapply(state_input,as.numeric)
-  if(file.exists(fileName)){
-    readline(prompt=paste("remove",fileName,"Press [enter] to continue!"))
-    file.remove(fileName)
-  }
+  
   cl=makeCluster(thread)
   parLapply(cl=cl,X=state_input,fun = function(x){
     write.table(matrix(x,nrow=1),fileName,append = T,sep=" ",col.names = FALSE,row.names = FALSE,quote = FALSE)
