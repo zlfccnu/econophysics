@@ -1,4 +1,4 @@
-#'rollapply to a data frame
+#'adaptive cluster expansion for potts model inference
 #'@param directory the working directory
 #'@param input the input file name
 #'@param output the ouput file name

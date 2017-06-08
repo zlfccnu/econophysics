@@ -2,7 +2,7 @@
 % Please edit documentation in R/ace.R
 \name{ace}
 \alias{ace}
-\title{rollapply to a data frame}
+\title{adaptive cluster expansion for potts model inference}
 \usage{
 ace(directory, input, output, sampleNum, g2)
 }
@@ -18,5 +18,5 @@ ace(directory, input, output, sampleNum, g2)
 \item{g2}{the L2 regulazation strength}
 }
 \description{
-rollapply to a data frame
+adaptive cluster expansion for potts model inference
 }
