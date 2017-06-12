@@ -11,5 +11,6 @@ contactMap=function(fileName,n){
   learn_j_norm[lower.tri(learn_j_norm,diag = FALSE)]=dat
   learn_j_norm=t(learn_j_norm)
   learn_j_norm[lower.tri(learn_j_norm,diag = FALSE)]=dat
-  return(average_product_correction(learn_j_norm))
+  apc=average_product_correction(learn_j_norm)
+  return(apc)
 }

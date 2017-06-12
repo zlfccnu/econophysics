@@ -43,10 +43,7 @@ input_ace=function(x,p_theta=0.05,thread=3,fileName){
   state_input=state_p
   state_input[(length(state_input)+1):(length(state_input)+length(state_pp))]=state_pp
   state_input=lapply(state_input,as.numeric)
-  
-  cl=makeCluster(thread)
-  parLapply(cl=cl,X=state_input,fun = function(x){
+  lapply(X=state_input,FUN= function(x){
     write.table(matrix(x,nrow=1),fileName,append = T,sep=" ",col.names = FALSE,row.names = FALSE,quote = FALSE)
   })
-  
 }

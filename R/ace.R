@@ -6,6 +6,8 @@
 #'@param g2 the L2 regulazation strength
 #'@export
 ace=function(directory,input,output,sampleNum,g2){
+  input=strsplit(input,split = ".",fixed = TRUE)[[1]][1]
+  output=strsplit(output,split = ".",fixed = TRUE)[[1]][1]
   commands=paste("ace","-d",directory,"-i",input,"-o",output,"-g2",g2,"-b",sampleNum)
   system(command = commands)
 }
