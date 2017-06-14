@@ -7,7 +7,7 @@
 contactMap(fileName, n)
 }
 \arguments{
-\item{fileName}{the normal matrix}
+\item{fileName}{the input files with external field and interaction strength}
 
 \item{n}{the system size, skip the first n lines, external field}
 }
