@@ -5,6 +5,6 @@
 #' @export
 h_nMF=function(returns,J_nMF){
   site_mean=colSums(returns)
-  h_nMF=1/tanh(site_mean) - colSums(J_nMF)*site_mean
+  h_nMF=atanh(site_mean) - colSums(J_nMF)*site_mean
   return(h_nMF)
 }
