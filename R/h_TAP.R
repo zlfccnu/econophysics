@@ -3,7 +3,7 @@
 #' @param J_TAP a interaction strength J matrix  
 #' @return a vector of external field for every site
 #' @export
-h_TAP=function(returns,J_TAP) {
+h_TAP=function(returns,J_TAP){
   site_mean=colSums(returns)
   J_nMF_Mat=J_nMF(retruns = retruns)
   h_nMF_Mat=h_nMF(returns = returns,J_nMF = J_nMF_Mat)
