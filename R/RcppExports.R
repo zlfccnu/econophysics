@@ -6,7 +6,7 @@
 #'@param x the dataframe to be converted
 #'@return an list
 df2list <- function(x) {
-    .Call('econophysics_df2list', PACKAGE = 'econophysics', x)
+    .Call('_econophysics_df2list', PACKAGE = 'econophysics', x)
 }
 
 #'Function to get the edgelist form a time series
@@ -16,7 +16,7 @@ df2list <- function(x) {
 #'@return a edgelist dataframe with weights with 2 columns
 #'@references Geometrical invariability of transformation between a time series and a complex network, PHYSICAL REVIEW E 90, 012804 (2014)
 isometricTrans <- function(x, epsilon) {
-    .Call('econophysics_isometricTrans', PACKAGE = 'econophysics', x, epsilon)
+    .Call('_econophysics_isometricTrans', PACKAGE = 'econophysics', x, epsilon)
 }
 
 #' Test a graph is planar or not
@@ -25,7 +25,7 @@ isometricTrans <- function(x, epsilon) {
 #'@param VNum vertex number of a graph which related to the edgelist
 #'@return FALSE OR TRUE
 funcPlanarTest <- function(edgelist, VNum) {
-    .Call('econophysics_funcPlanarTest', PACKAGE = 'econophysics', edgelist, VNum)
+    .Call('_econophysics_funcPlanarTest', PACKAGE = 'econophysics', edgelist, VNum)
 }
 
 #' Function to get the edgelist form a time series
@@ -33,7 +33,7 @@ funcPlanarTest <- function(edgelist, VNum) {
 #'@param x a numeric vector convert from a time series
 #'@return a edgelist dataframe without weights with 2 columns
 unweightVisibilityGraph <- function(x) {
-    .Call('econophysics_unweightVisibilityGraph', PACKAGE = 'econophysics', x)
+    .Call('_econophysics_unweightVisibilityGraph', PACKAGE = 'econophysics', x)
 }
 
 #'Function to get the edgelist form a time series
@@ -42,6 +42,6 @@ unweightVisibilityGraph <- function(x) {
 #'@return a edgelist dataframe with weights with 3 columns
 #'@references From time series to complex networks:The visibility graph,4972–4975, PNAS, April 1, 2008, vol. 105, no. 13
 weightedVisibilityGraph <- function(x) {
-    .Call('econophysics_weightedVisibilityGraph', PACKAGE = 'econophysics', x)
+    .Call('_econophysics_weightedVisibilityGraph', PACKAGE = 'econophysics', x)
 }
 

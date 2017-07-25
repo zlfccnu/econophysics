@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // df2list
 List df2list(const DataFrame& x);
-RcppExport SEXP econophysics_df2list(SEXP xSEXP) {
+RcppExport SEXP _econophysics_df2list(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -19,7 +19,7 @@ END_RCPP
 }
 // isometricTrans
 SEXP isometricTrans(NumericVector x, double epsilon);
-RcppExport SEXP econophysics_isometricTrans(SEXP xSEXP, SEXP epsilonSEXP) {
+RcppExport SEXP _econophysics_isometricTrans(SEXP xSEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -31,7 +31,7 @@ END_RCPP
 }
 // funcPlanarTest
 int funcPlanarTest(Rcpp::NumericMatrix edgelist, int VNum);
-RcppExport SEXP econophysics_funcPlanarTest(SEXP edgelistSEXP, SEXP VNumSEXP) {
+RcppExport SEXP _econophysics_funcPlanarTest(SEXP edgelistSEXP, SEXP VNumSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -43,7 +43,7 @@ END_RCPP
 }
 // unweightVisibilityGraph
 SEXP unweightVisibilityGraph(NumericVector x);
-RcppExport SEXP econophysics_unweightVisibilityGraph(SEXP xSEXP) {
+RcppExport SEXP _econophysics_unweightVisibilityGraph(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -54,7 +54,7 @@ END_RCPP
 }
 // weightedVisibilityGraph
 SEXP weightedVisibilityGraph(NumericVector x);
-RcppExport SEXP econophysics_weightedVisibilityGraph(SEXP xSEXP) {
+RcppExport SEXP _econophysics_weightedVisibilityGraph(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -65,11 +65,11 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"econophysics_df2list", (DL_FUNC) &econophysics_df2list, 1},
-    {"econophysics_isometricTrans", (DL_FUNC) &econophysics_isometricTrans, 2},
-    {"econophysics_funcPlanarTest", (DL_FUNC) &econophysics_funcPlanarTest, 2},
-    {"econophysics_unweightVisibilityGraph", (DL_FUNC) &econophysics_unweightVisibilityGraph, 1},
-    {"econophysics_weightedVisibilityGraph", (DL_FUNC) &econophysics_weightedVisibilityGraph, 1},
+    {"_econophysics_df2list", (DL_FUNC) &_econophysics_df2list, 1},
+    {"_econophysics_isometricTrans", (DL_FUNC) &_econophysics_isometricTrans, 2},
+    {"_econophysics_funcPlanarTest", (DL_FUNC) &_econophysics_funcPlanarTest, 2},
+    {"_econophysics_unweightVisibilityGraph", (DL_FUNC) &_econophysics_unweightVisibilityGraph, 1},
+    {"_econophysics_weightedVisibilityGraph", (DL_FUNC) &_econophysics_weightedVisibilityGraph, 1},
     {NULL, NULL, 0}
 };
 
