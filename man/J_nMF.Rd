@@ -4,10 +4,10 @@
 \alias{J_nMF}
 \title{naive mean field copuling strength reconstruction for ising model}
 \usage{
-J_nMF(retruns)
+J_nMF(returns)
 }
 \arguments{
-\item{retruns}{the return data.frame for stock market OR the configuation matrix for other system}
+\item{returns}{the return data.frame for stock market OR the configuation matrix for other system}
 }
 \value{
 a interaction strength J matrix

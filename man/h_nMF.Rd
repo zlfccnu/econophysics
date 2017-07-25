@@ -7,9 +7,9 @@
 h_nMF(returns, J_nMF)
 }
 \arguments{
-\item{J_nMF}{a interaction strength J matrix}
+\item{returns}{the return data.frame for stock market OR the configuation matrix for other system}
 
-\item{retruns}{the return data.frame for stock market OR the configuation matrix for other system}
+\item{J_nMF}{a interaction strength J matrix}
 }
 \value{
 a vector of external field for every site
