@@ -3,7 +3,7 @@
 #'@param outputFile a string as the name of outout file
 #'@return a edgelist file in current directory
 #'@export
-funcGetPlanarFromCorMat=function(corMat,outputFile=NULL,desending=TRUE){
+CorMat2PMFG=function(corMat,outputFile=NULL,desending=TRUE,format=c("edgelist", "pajek", "ncol","lgl","graphml", "dimacs", "gml", "dot", "leda")){
   ## construct the sorted correlation data.frame
   N=dim(corMat)[1]
   L=N*(N-1)/2
@@ -45,7 +45,8 @@ funcGetPlanarFromCorMat=function(corMat,outputFile=NULL,desending=TRUE){
     }
   }
   if(!is.null(outputFile)){
-    write.graph(PMFG,outputFile,format="edgelist")
+    format=match.arg(format)
+    write.graph(PMFG,outputFile,format=format)
   }else{
     return(PMFG)
   }
