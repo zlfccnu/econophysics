@@ -4,7 +4,7 @@
 \alias{rollapply.data.frame}
 \title{rollapply to a data frame}
 \usage{
-rollapply.data.frame(x, margin = 1, FUN = NULL, ..., thread = 3,
+\method{rollapply}{data.frame}(x, margin = 1, FUN = NULL, ..., thread = 3,
   windowSize = NULL, stepSize = NULL)
 }
 \arguments{
