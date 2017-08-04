@@ -12,8 +12,8 @@ rollapply.data.frame=function(x,margin=1,FUN=NULL,...,thread=3,windowSize=NULL,s
     x=t(x)
   }
   registerDoMC(thread)
-  tmp=foreach(i=seq(from=1,to = (dim(x)[1]-windowSize),by = stepSize))%dopar%{
-    y=slice(as.data.frame(x),i:(i+windowSize))
+  tmp=foreach(i=seq(from=1,to = (dim(x)[1]-windowSize+stepSize),by = stepSize))%dopar%{
+    y=slice(as.data.frame(x),i:(i+windowSize-1))
     FUN(y,...)
   }
   return(tmp)
