@@ -7,5 +7,7 @@
 
 safeSave <- function( ..., file=stop("'file' must be specified"), overwrite=FALSE, save.fun=save.image) {
   if ( file.exists(file) & !overwrite ) stop("'file' already exists")
+  if (file.exists(file) & overwrite) readline(prompt="Are you really want to over write? 
+Press [enter] to continue OR press [ESC] to escape")
   save.fun(..., file=file)
 }
