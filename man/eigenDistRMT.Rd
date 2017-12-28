@@ -13,8 +13,10 @@ eigenDistRMT(Q = NULL, L, N, S, n)
 
 \item{S}{the standeviation}
 
-\item{b}{the bin length
-return a dataframe with the lower and upper bound}
+\item{b}{the bin length}
+}
+\value{
+a dataframe with the lower and upper bound
 }
 \description{
 calculate the eigenvalue distribution for a random purely random matix

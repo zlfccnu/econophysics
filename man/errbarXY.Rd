@@ -16,6 +16,9 @@ errbarXY(x, y, xDelta = NULL, yDelta = NULL, col = "red", type = "o",
 
 \item{yDelta}{the statndrad devation of y which will be used to plot the errbar}
 }
+\value{
+invisible, a plot
+}
 \description{
 Function used to add the horizonal errbar and vertical errbar
 }

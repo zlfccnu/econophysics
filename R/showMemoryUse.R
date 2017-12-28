@@ -1,8 +1,8 @@
-#'Function used to show the memory useage in a readable format
-#'@export
-#'@param sort sort by which attribute
-#'@param decreasing sort by decreasing order or not
-#'@param limit the maximum objects listed
+#' Function used to show the memory useage in a readable format
+#' @param sort sort by which attribute
+#' @param decreasing sort by decreasing order or not
+#' @param limit the maximum objects listed
+#' @return a dataframe with memoryuse info
 showMemoryUse <- function(sort="size", decreasing=TRUE, limit=20) {
   objectList <- ls(parent.frame())
 

@@ -22,6 +22,9 @@
 
 \item{stepSize}{the moving window size}
 }
+\value{
+a list
+}
 \description{
 rollapply to a data frame
 }

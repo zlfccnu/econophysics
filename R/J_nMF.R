@@ -1,7 +1,7 @@
 #' naive mean field copuling strength reconstruction for ising model
 #' @param returns the return data.frame for stock market OR the configuation matrix for other system
 #' @return a interaction strength J matrix 
-#' @export
+
 J_nMF=function(returns){
   covMat=cov(returns)
   site_mean=colMeans(returns)

@@ -9,8 +9,10 @@ eigenBoundRMT(Q = NULL, L, N, S)
 \arguments{
 \item{L}{the length of the time series}
 
-\item{N}{the number of the time series
-return a vector with the lower and upper bound}
+\item{N}{the number of the time series}
+}
+\value{
+a vector with the lower and upper bound
 }
 \description{
 calculate the eigenvalue distribution for a random purely random matix

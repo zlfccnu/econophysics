@@ -7,8 +7,10 @@
 hybirdMeasure(GRAPH_W)
 }
 \arguments{
-\item{GRAPH_W}{an weighted igraph object 
-return a list or a data.frame}
+\item{GRAPH_W}{an weighted igraph object}
+}
+\value{
+a list or a data.frame with colnames X,Y,X-Y,X+Y, the variable X+Y can be used as compound centrality
 }
 \description{
 Function calculate hybird measure for centrality of graph

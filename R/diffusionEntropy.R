@@ -1,8 +1,9 @@
 #' use the difussion entropy method to calculate the Hurst exponent
-#'@param x the time series
-#'@param nVec the time scale
-#'@thread the multi threads
-#'@binSizeRatio the boxsize, fraction of standard deviation
+#' @param x the time series
+#' @param nVec the time scale
+#' @param thread the multi threads
+#' @param binSizeRatio the boxsize, fraction of standard deviation
+#' @return a data.frame
 diffusionEntropy=function(x,nVec=2^(3:8),thread=3,binSizeRatio=0.5){
   sgma=binSizeRatio*sd(x)
   N=length(x)

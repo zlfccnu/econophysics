@@ -1,12 +1,12 @@
-#'Function used to calculate the square DFA fluctuation
-#'@param x  a numeric vector which convert from a time series
-#'@param nVec  the time scale of the detrended operation
-#'@param sampleNum the random sampled number
-#'@param thread the parallel threads number 
-#'@param detrendOrder the detrending polynomial order 
-#'@param sampleMethod 1 means the determined sample number method, other values mean the nonoverlap method
-#'@return A list of the square DFA fluctuation for scale nVec
-#'@export
+#' Function used to calculate the square DFA fluctuation
+#' @param x  a numeric vector which convert from a time series
+#' @param nVec  the time scale of the detrended operation
+#' @param sampleNum the random sampled number
+#' @param thread the parallel threads number 
+#' @param detrendOrder the detrending polynomial order 
+#' @param sampleMethod 1 means the determined sample number method, other values mean the nonoverlap method
+#' @return A list of the square DFA fluctuation for scale nVec
+
 F2_DFA=function(x,nVec=NULL,sampleNum=NULL,thread=3,detrendOrder=3,sampleMethod=2,lengthRatio=0.05){
   require(parallel)
   require(RcppEigen)

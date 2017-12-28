@@ -1,7 +1,7 @@
-#'discretize the return of stock by standard deviation
-#'@param x the return time series
-#'@param sd_magnitude how many sd should use as threshold
-#'@export
+#' discretize the return of stock by standard deviation
+#' @param x the return time series
+#' @param sd_magnitude how many sd should use as threshold
+
 discrete_by_sd=function(x,sd_magnitude=2){
   x_sd=sd(x)
   state_seq=seq(-(sd_magnitude+1),sd_magnitude+1)

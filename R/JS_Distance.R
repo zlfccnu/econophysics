@@ -1,12 +1,10 @@
-library(igraph)
-#'Function used to calculate the Jensen-Shannon between two graphs, i.e, the distance between eigenvalue distributions of laplacian matrix of graphs
-#'  @param GRAPH1 graph object of igraph, undirected
-#'  @param GRAPH2 graph object of igraph , undirected
-#'  @param normalized compute the nornalized laplacian or not
-#'  @param n the number of equally spaced points at which the density is to be estimated
-#'  @param bw the bandwidth of the density function
-#'  @export
-#'  @return a numeric value between 0 and 1
+#' Function used to calculate the Jensen-Shannon between two graphs, i.e, the distance between eigenvalue distributions of laplacian matrix of graphs
+#' @param GRAPH1 graph object of igraph, undirected
+#' @param GRAPH2 graph object of igraph , undirected
+#' @param normalized compute the nornalized laplacian or not
+#' @param n the number of equally spaced points at which the density is to be estimated
+#' @param bw the bandwidth of the density function
+#' @return a numeric value between 0 and 1
 JS_Distance<- function(GRAPH1,GRAPH2,normalized=TRUE,n=512,bw=0.01){
   Laplacian1<- graph.laplacian(GRAPH1,normalized = normalized)
   Laplacian2<- graph.laplacian(GRAPH2,normalized = normalized)

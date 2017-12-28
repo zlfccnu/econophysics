@@ -1,8 +1,8 @@
 #' Planar Graph Edgelist
-#'@param corMat a correlation matrix
-#'@param outputFile a string as the name of outout file
-#'@return a edgelist file in current directory
-#'@export
+#' @param corMat a correlation matrix
+#' @param outputFile a string as the name of outout file
+#' @return a edgelist file in current directory
+
 corMat2PMFG=function(corMat,outputFile=NULL,desending=TRUE,format=c("edgelist", "pajek", "ncol","lgl","graphml", "dimacs", "gml", "dot", "leda")){
   ## construct the sorted correlation data.frame
   N=dim(corMat)[1]

@@ -1,7 +1,6 @@
 #' Function to find the local minimum and maximum of a time series
 #' @param x the time sereis
 #' @param  stepT the moving window to find the local min and max
-#' @export
 #' @return a two elements list, the first is the local min time index and the second is local max time index
 localMinMax<- function(x,stepT){
   timeX<- time(x)

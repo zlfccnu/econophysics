@@ -1,10 +1,10 @@
-#'Calculate the probability measure of a fractal set
-#'@param x  a numeric vector which convert from a time series
-#'@param nVec  the time scale of the detrended operation
-#'@param sampleNum the random sampled number
-#'@param thread the parallel thread number
-#'@return the unnormalized probability measure, a data.frame
-#'@export
+#' Calculate the probability measure of a fractal set
+#' @param x  a numeric vector which convert from a time series
+#' @param nVec  the time scale of the detrended operation
+#' @param sampleNum the random sampled number
+#' @param thread the parallel thread number
+#' @return the unnormalized probability measure, a data.frame
+
 probaMeasure=function(x,nVec,sampleNum,thread){
   registerDoMC(thread)
   probaMeasureScale=foreach(n=nVec,.combine = cbind)%dopar%{

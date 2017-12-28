@@ -1,7 +1,6 @@
 #' Function calculate hybird measure for centrality of graph
 #' @param GRAPH_W an weighted igraph object 
-#' return a list or a data.frame
-#' @export
+#' @return a list or a data.frame with colnames X,Y,X-Y,X+Y, the variable X+Y can be used as compound centrality
 hybirdMeasure=function(GRAPH_W){
   if(!is.weighted(GRAPH_W))
     stop("The graph must be weighted one!")

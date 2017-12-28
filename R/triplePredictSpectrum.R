@@ -3,7 +3,7 @@
 #' @param fAlpha the probability density of the holder exponent
 #' @param tol the tolerence used to determine the x_min and x_max in the fractal spectrum
 #' @return A vector with three elements
-#' @export
+
 triplePredictSpectrum=function(Alpha,fAlpha,tol=1e-4){
   triple=c(0,0,0,0)
   names(triple)<- c("alpha0","W","r","A")

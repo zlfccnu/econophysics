@@ -9,6 +9,9 @@ average_product_correction(norm_mat)
 \arguments{
 \item{norm_mat}{the normal matrix}
 }
+\value{
+a matrix
+}
 \description{
 average product correction for normal matrix
 }

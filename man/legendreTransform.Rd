@@ -13,6 +13,9 @@ legendreTransform(h_q, qVec, D_f = 1)
 
 \item{D_f}{the dimension of the support, default is 1 for time sereis}
 }
+\value{
+a data.frme with alpha(q) and f(alpha)
+}
 \description{
 Use the legendre transformation to calculate the lengendre spectrum from the generalized Hurst exponent
 }

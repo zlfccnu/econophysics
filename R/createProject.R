@@ -1,6 +1,6 @@
-#'Function used to create a simple project subdirectories
-#'@export
-#'@param projectName the name of the project, relative path or absolute path
+#' Function used to create a simple project subdirectories
+#' @param projectName the name of the project, relative path or absolute path
+#' @return invisible
 createProject=function(projectName){
   ## create project root directory
   dir.create(path = projectName)

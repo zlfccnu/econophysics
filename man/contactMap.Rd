@@ -11,6 +11,9 @@ contactMap(fileName, n)
 
 \item{n}{the system size, skip the first n lines, external field}
 }
+\value{
+a matrix of contact map
+}
 \description{
 calculate the contact map from the interaction strength matrix
 }

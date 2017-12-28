@@ -1,10 +1,9 @@
 #' calculate the eigenvalue distribution for a random purely random matix
-#'@param L the length of the time series
-#'@param N the number of the time series
-#'@param S the standeviation 
-#'@param b the bin length
-#'return a dataframe with the lower and upper bound
-#'@export
+#' @param L the length of the time series
+#' @param N the number of the time series
+#' @param S the standeviation 
+#' @param b the bin length
+#' @return a dataframe with the lower and upper bound
 
 eigenDistRMT=function(Q=NULL,L,N,S,n){
   if(is.null(Q)){

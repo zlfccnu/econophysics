@@ -1,11 +1,11 @@
-#'Function used to calculate the Jensen-Shannon between two matrices, i.e, the distance between eigenvalue distribution
-#'  @param mat1 a matrix
-#'  @param mat2 a matrix
-#'  @param n the number of equally spaced points at which the density is to be estimated
-#'  @param bw the bandwidth of the density function
-#'  @param thread the multi threads
-#'  @return a numeric value between 0 and 1
-#'  @export
+#' Function used to calculate the Jensen-Shannon between two matrices, i.e, the distance between eigenvalue distribution
+#' @param mat1 a matrix
+#' @param mat2 a matrix
+#' @param n the number of equally spaced points at which the density is to be estimated
+#' @param bw the bandwidth of the density function
+#' @param thread the multi threads
+#' @return a numeric value between 0 and 1
+
 JS_MatrixDistance=function (mat1, mat2, n = 512, bw = 0.01,thread=3) 
 {
   

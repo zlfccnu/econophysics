@@ -1,7 +1,6 @@
 #' Function used to calculate the averge trapping time for a node
 #' @param GRAPH A igraph object
 #' @param vids the vertex ids
-#' @export
 #' @return A numeric value
 
 nodeTrappingTime=function(GRAPH,vids=V(GRAPH)){

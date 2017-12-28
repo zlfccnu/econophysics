@@ -1,7 +1,6 @@
 #' Function used to filter the covariance matrix of a series of return time series
 #' @param returns the return matrix
 #' @return a list with four matrices: original,market,structure and random
-#' @export
 #' @references Random matrix approach to cross correlations in financial data
 filteredCorMat<- function(returns){
   if(dim(returns)[1]<dim(returns)[2]){

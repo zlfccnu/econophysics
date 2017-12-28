@@ -1,9 +1,9 @@
-#'convert from configuration to state probability and joint probability
-#'@param x a data.frame for configuration
-#'@param p_theta the threashold for the probability
-#'@param thread the multithread number
-#'@param fileName the outpu file name
-#'@export
+#' convert from configuration to state probability and joint probability
+#' @param x a data.frame for configuration
+#' @param p_theta the threashold for the probability
+#' @param thread the multithread number
+#' @param fileName the outpu file name
+#' @return a file
 input_ace=function(x,p_theta=0.05,thread=3,fileName){
   ## be sure the output file can be created
   if(file.exists(fileName)){

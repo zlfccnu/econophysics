@@ -12,7 +12,7 @@ randomShuffle(x, n)
 \item{n}{how many times you want to shuffle}
 }
 \value{
-a vector
+a vector after random shuffle
 }
 \description{
 Function used to random shuffle some time series

@@ -1,13 +1,12 @@
 #' get the efficient frontier, no matter the covariance matrix is postive semidefinite or not
-#'@param retruns The return matrix of all the assets,T*N dimension
-#'@param covMat The predefined covariance matrix
-#'@param short whether short selling is prohibited or not
-#'@param risk.premim the maximum risk aversion parameter
-#'@param risk.increment the incremental of the risk aversion
-#'@param thread the multi threads number
-#'@param maxiter Maximum number of iterations
-#'@return a data.frame include the weight, variance, return and shape ratio
-#'@export
+#' @param retruns The return matrix of all the assets,T*N dimension
+#' @param covMat The predefined covariance matrix
+#' @param short whether short selling is prohibited or not
+#' @param risk.premim the maximum risk aversion parameter
+#' @param risk.increment the incremental of the risk aversion
+#' @param thread the multi threads number
+#' @param maxiter Maximum number of iterations
+#' @return a data.frame include the weight, variance, return and shape ratio
 eff.frontier_ipop=function(returns,covMat=NULL,short="yes",risk.premium.up=20,thread=3,maxiter=40){
   ## parameter definition
   b=1

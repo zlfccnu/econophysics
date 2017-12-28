@@ -2,18 +2,18 @@
 % Please edit documentation in R/JS_ProbDistance.R
 \name{JS_ProbDistance}
 \alias{JS_ProbDistance}
-\title{Function used to calculate the Jensen-Shannon between two discrete probability distribution distribution
- @param p1 a discrete probability density function
- @param p2 a discrete probability density function
- @return a numeric value between 0 and 1
- @export}
+\title{Function used to calculate the Jensen-Shannon between two discrete probability distribution distribution}
 \usage{
 JS_ProbDistance(p1, p2)
 }
+\arguments{
+\item{p1}{a discrete probability density function}
+
+\item{p2}{a discrete probability density function}
+}
+\value{
+a numeric value between 0 and 1
+}
 \description{
 Function used to calculate the Jensen-Shannon between two discrete probability distribution distribution
- @param p1 a discrete probability density function
- @param p2 a discrete probability density function
- @return a numeric value between 0 and 1
- @export
 }

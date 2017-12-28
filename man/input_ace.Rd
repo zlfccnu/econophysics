@@ -15,6 +15,9 @@ input_ace(x, p_theta = 0.05, thread = 3, fileName)
 
 \item{fileName}{the outpu file name}
 }
+\value{
+a file
+}
 \description{
 convert from configuration to state probability and joint probability
 }

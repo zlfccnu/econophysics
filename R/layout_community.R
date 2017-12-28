@@ -1,9 +1,8 @@
-#'Function used to put each community as the same layout
-#'@param graph A igraph object
-#'@param algorithm A character name for the community detection method
-#'@param layout A character name for the layout function you use
-#'@export
-#'@return A data frame with four columns, the vertex label, the membership of each node, two columns of the coordinates
+#' Function used to put each community as the same layout
+#' @param graph A igraph object
+#' @param algorithm A character name for the community detection method
+#' @param layout A character name for the layout function you use
+#' @return A data frame with four columns, the vertex label, the membership of each node, two columns of the coordinates
 layout_community<- function(graph,community_algorithm,layout_desired){
   if (!is_igraph(graph)) {
     stop("Not a graph object")

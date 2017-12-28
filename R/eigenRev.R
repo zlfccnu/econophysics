@@ -4,7 +4,7 @@
 #' @param only.values only calculate the eigen values
 #' @param EISPACK use the EISPACK
 #' @return a list or a data.frame
-#' @export
+
  eigenRev=function(x, symmetric, only.values = FALSE, EISPACK = FALSE){
    eigenResults=eigen(x=x, symmetric=symmetric, only.values = FALSE, EISPACK = FALSE)
     if(only.values==TRUE){

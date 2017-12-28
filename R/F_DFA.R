@@ -1,13 +1,13 @@
-#'Function used to calculate the DFA fluctuation
-#'@param x the time series
-#'@param nVec the detrended length vector
-#'@param qVec the mutifractal order vector
-#'@param sampleNum the number of random sample
-#'@param thread the parallel threads number
-#'@param detrendOrder the detrending polynomial order
-#'@param sampleMethod 1 means the determined sample number method, other values mean the nonoverlap method
-#'@return the DFA fluctuation which enhanced by q^th order, a dataframe
-#'@export
+#' Function used to calculate the DFA fluctuation
+#' @param x the time series
+#' @param nVec the detrended length vector
+#' @param qVec the mutifractal order vector
+#' @param sampleNum the number of random sample
+#' @param thread the parallel threads number
+#' @param detrendOrder the detrending polynomial order
+#' @param sampleMethod 1 means the determined sample number method, other values mean the nonoverlap method
+#' @return the DFA fluctuation which enhanced by q^th order, a dataframe
+
 F_DFA=function(x,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),thread=3,detrendOrder=3,sampleMethod=2,lengthRatio=0.05){
   require(parallel)
   require(RcppEigen)

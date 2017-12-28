@@ -1,7 +1,6 @@
 library("igraph")
 
 #' Function to calculate the laplacian energy of a graph, weighted or unweighted
-#' @export
 #' @param GRAPH is a igraph object,
 #' @param weights the weights atrribute of a graph object
 #' @param normalized means use the normalized energy or not

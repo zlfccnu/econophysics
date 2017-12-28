@@ -1,19 +1,20 @@
 #' Function used to find the efficient frontier by using the modern portofilio theory
-#'@param returns argument should be a m x n matrix with one column per security
-#'@param covMat the covariance matrix
-#'@param max.allocation is the maximum allowed for any one security- reduces concentration
-#'@param risk.premium.up is the upper limit of the risk premium modeled
-#'@param short short selling or not
-#'@param thread the multithreads argument
-#'@return a data.frame
-#'@export
+#' @param returns argument should be a m x n matrix with one column per security
+#' @param covMat the covariance matrix
+#' @param max.allocation is the maximum allowed for any one security- reduces concentration
+#' @param risk.premium.up is the upper limit of the risk premium modeled, usd the nearPD to make the correlation matrix postive definite
+#' @param short short selling or not
+#' @param thread the multithreads argument
+#' @return a data.frame
 
 eff.frontier <- function (returns, covMat=NULL, short="no", max.allocation=NULL, risk.premium.up=20,thread=3){
   if(is.null(covMat)){
     covMat=cov(returns)
   }
   n <- ncol(covMat)## the covMat is determined
-  
+  if(length(which(eigen(covMat,only.values = TRUE)$values <=0))!=0){
+    covMat=Matrix::nearPD(covMat)
+  }
   # Create initial Amat and bvec assuming only equality constraint (short-selling is allowed, no allocation constraints)
   Amat <- matrix (1, nrow=n)
   bvec <- 1

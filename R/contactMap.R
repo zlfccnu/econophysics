@@ -1,7 +1,7 @@
-#'calculate the contact map from the interaction strength matrix
-#'@param fileName the input files with external field and interaction strength
-#'@param n the system size, skip the first n lines, external field
-#'@export
+#' calculate the contact map from the interaction strength matrix
+#' @param fileName the input files with external field and interaction strength
+#' @param n the system size, skip the first n lines, external field
+#' @return  a matrix of contact map
 contactMap=function(fileName,n){
   learn_j_norm=matrix(data = 0,nrow = n,ncol = n)
   dat=scan(file = fileName,what = "",sep="\n",skip = n)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/funcEidtDistance.R
 \name{funcEditDistance}
 \alias{funcEditDistance}
-\title{Function to calculate a simple edit distance}
+\title{Function to calculate a simple edit distance or jaccard index}
 \usage{
 funcEditDistance(GRAPH1, GRAPH2)
 }
@@ -15,5 +15,5 @@ funcEditDistance(GRAPH1, GRAPH2)
 A numeric value ranging from 0 to 1
 }
 \description{
-Function to calculate a simple edit distance
+Function to calculate a simple edit distance or jaccard index
 }

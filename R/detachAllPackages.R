@@ -1,5 +1,4 @@
 #'Function used to detach all the packages except basics pkgs
-#'@export
 detachAllPackages <- function() {
   
   basic.packages <- c("package:stats","package:graphics","package:grDevices","package:utils","package:datasets","package:methods","package:base")

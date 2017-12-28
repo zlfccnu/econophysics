@@ -1,11 +1,10 @@
-#'Direct determine the sigularity spectrum of fractal set
-#'@param x  a numeric vector which convert from a time series
-#'@param nVec  the time scale of the detrended operation
-#'@param sampleNum the random sampled number
-#'@param thread the parallel thread number
-#'@param qVec the qth order
-#'@return the holder exponent and singularity spectrum
-#'@export
+#' Direct determine the sigularity spectrum of fractal set
+#' @param x  a numeric vector which convert from a time series
+#' @param nVec  the time scale of the detrended operation
+#' @param sampleNum the random sampled number
+#' @param thread the parallel thread number
+#' @param qVec the qth order
+#' @return the holder exponent and singularity spectrum
 
 directSingularity=function(x,nVec,sampleNum,thread,qVec){
   unormalProbaMeasure=probaMeasure(x,nVec,sampleNum,thread)##dim=sampleNum*nVec

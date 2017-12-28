@@ -2,7 +2,6 @@
 #' @param graph an igraph object
 #' @param diag set the diag elements of null model matrix to zero
 #' @return the modularity matrix
-#' @export
 
 communityCentrality=function(graph,diag=FALSE){
   modMat=modularityMatrix(graph = graph,diag=diag)

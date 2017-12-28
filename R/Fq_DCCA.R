@@ -1,15 +1,15 @@
 #' Function used to calculate the DCCA power of fluctuation
-#'@param x  a numeric vector which convert from a time series
-#'@param y  a numeric vector which convert from a time series
-#'@param nVec  the time scale of the detrended operation
-#'@param sampleNum the number of sample
-#'@param qVec the order of the multifractal
-#'@param detrendOrder the detrending polynomial order
-#'@param thread the multithread number
-#'@param sampleMethod 1 means the determined sample number, other values means the nonoverlap method
-#'@param lengthRatio detremine how long is the largest scale
-#'@return the the sqrt DCCA fluctuation
-#'@export
+#' @param x  a numeric vector which convert from a time series
+#' @param y  a numeric vector which convert from a time series
+#' @param nVec  the time scale of the detrended operation
+#' @param sampleNum the number of sample
+#' @param qVec the order of the multifractal
+#' @param detrendOrder the detrending polynomial order
+#' @param thread the multithread number
+#' @param sampleMethod 1 means the determined sample number, other values means the nonoverlap method
+#' @param lengthRatio detremine how long is the largest scale
+#' @return the the sqrt DCCA fluctuation
+
 Fq_DCCA=function(x,y,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
   require(parallel)
   require(RcppEigen)

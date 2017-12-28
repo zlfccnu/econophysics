@@ -1,6 +1,6 @@
-#'average product correction for normal matrix
-#'@param norm_mat the normal matrix
-#'@export
+#' average product correction for normal matrix
+#' @param norm_mat the normal matrix
+#' @return a matrix
 average_product_correction=function(norm_mat){
   N=dim(norm_mat)[1]
   f_i=apply(norm_mat,MARGIN = 1,mean)

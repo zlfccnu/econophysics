@@ -9,6 +9,9 @@ createProject(projectName)
 \arguments{
 \item{projectName}{the name of the project, relative path or absolute path}
 }
+\value{
+invisible
+}
 \description{
 Function used to create a simple project subdirectories
 }

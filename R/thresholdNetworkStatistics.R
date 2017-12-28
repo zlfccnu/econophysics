@@ -3,7 +3,7 @@
 #' @param mix whether use the mixed rank or not
 #' @param d the d_th largest elements should be used
 #' @return a dataframe
-#' @export
+
 rankBasedThresholdNetworkStatiscs = function(MAT, mix=FALSE, d = 2) {
 
     ## edgelist for both ascending and descending order

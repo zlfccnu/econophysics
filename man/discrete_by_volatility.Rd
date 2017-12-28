@@ -11,6 +11,9 @@ discrete_by_volatility(x, sd_magnitude = 2)
 
 \item{sd_magnitude}{how many sd should use as threshold}
 }
+\value{
+a vector for the return time series
+}
 \description{
 discretize the volatility of stock by standard deviation
 }

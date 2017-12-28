@@ -11,6 +11,9 @@ diagModify(x, diagValue)
 
 \item{diagValue}{a numeric value or a vector}
 }
+\value{
+a matrix
+}
 \description{
 change the diag function in order to complain with pipe operator
 }

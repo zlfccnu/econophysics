@@ -2,7 +2,6 @@
 #' @param returns the N*L dimensional matrix with return time series for each stock per column
 #' @param bulk whether use the bulk eigenvalues to construct the correlation matrix or not
 #' @return a list with corMat and covMat
-#' @export
 #' @references Random matrix approach to cross correlations in financial data
 filteredCovMat<- function(returns,bulk=FALSE){
   standardlizing= function(x){

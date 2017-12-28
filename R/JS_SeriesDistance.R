@@ -1,11 +1,11 @@
-#'Function used to calculate the Jensen-Shannon between two vectors, i.e, the distance between distributions of two vectors
-#'  @param x a vector
-#'  @param y a vector
-#'  @param n the number of equally spaced points at which the density is to be estimated
-#'  @param bw the bandwidth of the density function
-#'  @param thread the multi threads
-#'  @return a numeric value between 0 and 1
-#'  @export
+#' Function used to calculate the Jeanson shannon distance for two time sereis
+#' @param x a vector
+#' @param y a vector
+#' @param n the number of equally spaced points at which the density is to be estimated
+#' @param bw the bandwidth of the density function
+#' @param thread the multi threads
+#' @return a numeric value between 0 and 1
+
 JS_SeriesDistance=function (x, y, n = 512, bw = 0.01,thread=3)
 {
   registerDoMC(thread)

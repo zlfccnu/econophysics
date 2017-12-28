@@ -2,7 +2,7 @@
 % Please edit documentation in R/find_cycles.R
 \name{find_cycles}
 \alias{find_cycles}
-\title{Function used to calculate the averge degree of a graph}
+\title{Function used to find the local minimum and local maximum}
 \usage{
 find_cycles(x)
 }
@@ -13,5 +13,5 @@ find_cycles(x)
 two numeric values, the cycle length of local maxima and minimia
 }
 \description{
-Function used to calculate the averge degree of a graph
+Function used to find the local minimum and local maximum
 }

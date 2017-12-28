@@ -1,8 +1,7 @@
-#'power mapping the correlation matrix
-#'@param corMat the original correlation matrix
-#'@param q the order of the power mapping
-#'@return a matrix after power mapping
-#'@export
+#' power mapping the correlation matrix
+#' @param corMat the original correlation matrix
+#' @param q the order of the power mapping
+#' @return a matrix after power mapping
 
 powerMapping <- function(corMat,q=1.5) {
   a=unlist(corMat)

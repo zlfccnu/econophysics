@@ -13,6 +13,9 @@ showMemoryUse(sort = "size", decreasing = TRUE, limit = 20)
 
 \item{limit}{the maximum objects listed}
 }
+\value{
+a dataframe with memoryuse info
+}
 \description{
 Function used to show the memory useage in a readable format
 }

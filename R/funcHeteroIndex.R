@@ -1,6 +1,5 @@
 library("igraph")
 #' Function to eavaluate the heterogeneity of a graph
-#' @export
 #' @param GRAPH a igraph object
 #' @return A numeric value ranges from 0 to 1
 funcHeteroIndex=function(GRAPH){

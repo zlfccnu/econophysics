@@ -1,7 +1,7 @@
-#'discretize the volatility of stock by standard deviation
-#'@param x the return OR volatility time series
-#'@param sd_magnitude how many sd should use as threshold
-#'@export
+#' discretize the volatility of stock by standard deviation
+#' @param x the return OR volatility time series
+#' @param sd_magnitude how many sd should use as threshold
+#' @return a vector for the return time series
 discrete_by_volatility=function(x,sd_magnitude=2){
   x=abs(x)
   x_sd=sd(x)
