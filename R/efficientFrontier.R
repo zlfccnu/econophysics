@@ -12,9 +12,10 @@ eff.frontier <- function (returns, covMat=NULL, short="no", max.allocation=NULL,
     covMat=cov(returns)
   }
   n <- ncol(covMat)## the covMat is determined
-  if(length(which(eigen(covMat,only.values = TRUE)$values <=0))!=0){
+  if(min(eigen(covMat)$values)<.Machine$double.eps){
     covMat=Matrix::nearPD(covMat)$mat
   }
+  
   # Create initial Amat and bvec assuming only equality constraint (short-selling is allowed, no allocation constraints)
   Amat <- matrix (1, nrow=n)
   bvec <- 1

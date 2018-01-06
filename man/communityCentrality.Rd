@@ -17,3 +17,6 @@ the modularity matrix
 \description{
 community centrality of network
 }
+\references{
+"Finding community structure in networks using the eigenvectors of matrices"
+}
