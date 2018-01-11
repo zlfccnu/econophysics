@@ -8,16 +8,17 @@
 #' @param min_sum the minimum of the weight sum
 #' @param max_sum the maximum of the weight sum
 #' @param p the confidence level of the ES
+#' @param trace whether print the interctive process or not
 #' @return A numeric value
 
-optimalES=function(stockNames,returns,wMin=0,wMax=1,searchSize=50000,itermax=200,min_sum=0.99,max_sum=1.01,p=0.95){
+optimalES=function(stockNames,returns,wMin=0,wMax=1,searchSize=50000,itermax=200,min_sum=0.99,max_sum=1.01,p=0.95,trace=FALSE){
   if(prod(stockNames%in%colnames(returns))==1){
-    controlDE=DEoptim.control(itermax = itermax)
+    controlDE=DEoptim.control(itermax = itermax,trace=trace)
     ES=portfolio.spec(assets = stockNames)
     ES=add.constraint(portfolio=ES, type='box', min = wMin, max=wMax)
     ES=add.constraint(portfolio = ES,type="weight_sum",min_sum=min_sum,max_sum=max_sum)
     ES=add.objective(portfolio=ES, type="risk", name="CVaR",arguments=list(p=p,clean="boudt"))
-    ESOptimOut=optimize.portfolio(R=as.xts(returns), portfolio=ES,trace = FALSE,search_size = searchSize,optimize_method="DEoptim",control=controlDE)
+    ESOptimOut=optimize.portfolio(R=as.xts(returns), portfolio=ES,trace =trace,search_size = searchSize,optimize_method="DEoptim",control=controlDE)
     return(ESOptimOut$out)
   }else{
     stop("please give the correct stock ticker names!")

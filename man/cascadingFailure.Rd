@@ -4,21 +4,28 @@
 \alias{cascadingFailure}
 \title{This program is trying to modeling the cascading failure}
 \usage{
-cascadingFailure(GRAPH1, GRAPH2, attack = "random", p = 0.7, q = NULL,
-  plot = FALSE, vids = NULL)
+cascadingFailure(GRAPH1, GRAPH2, attack = c("random", "target", "localized"),
+  p = 0.7, q = NULL, plot = FALSE, vids = NULL, Trace = TRUE,
+  decreasing = TRUE, normalized = TRUE)
 }
 \arguments{
 \item{GRAPH1}{the first layer of inter dependent network}
 
 \item{GRAPH2}{the scond layer of inter dependent network}
 
-\item{attack}{the type of attack, random, target}
+\item{attack}{the type of attack, random, target and localized}
 
 \item{p}{1-p is the fraction of nodes that the initial attack start}
 
-\item{q}{the coupling strength between two layers}
+\item{q}{the coupling strength between two layers(not valid)}
 
 \item{plot}{whether to plot the network or not}
+
+\item{vids}{the vertex ids for localized attack}
+
+\item{Trace}{whether to trace the process of the cascading failure}
+
+\item{normalized}{normalized the ratio of the giant component}
 }
 \value{
 a vector with length two give the node numbers of the giant component
