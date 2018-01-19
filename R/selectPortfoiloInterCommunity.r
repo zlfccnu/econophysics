@@ -22,7 +22,11 @@ selectPortfolioInterCommunity=function(GRAPH,mem,stock_id,portfolioSize=4){
     v_id=intersect(which(membership(mem)==i),which(membership(mem)==i)[which(inter_com_nei_num==0)])
     
     if(length(v_id)!=0){
-      select_stocks=c(select_stocks,stock_id[sample(v_id,1)])
+      if(length(v_id==1)){
+        select_stocks=c(select_stocks,stock_id[v_id])
+      }else{
+        select_stocks=c(select_stocks,stock_id[sample(v_id,1)])
+      }
     }
   }
   if(portfolioSize<=length(select_stocks)){

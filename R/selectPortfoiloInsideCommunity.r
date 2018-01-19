@@ -7,7 +7,7 @@ selectPortfolioInsideCommunity=function(GRAPH,mem,stock_id,portfolioSize=4){
   communitySize=sizes(mem)
   mem_id=which(communitySize>=portfolioSize)
   if(length(mem_id)!=0){
-    mem_id=sample(mem_id,1)
+    mem_id=ifelse(length(mem_id)==1,yes =mem_id,no =  sample(mem_id,1))
     selectStocks=stock_id[which(membership(mem)==mem_id)]
     selectStocks=sample(selectStocks,portfolioSize)
     return(selectStocks)

@@ -5,7 +5,7 @@
 \title{Random attack for single network}
 \usage{
 randomAttackSingNetwork(GRAPH, p = 0.1, vids = NULL, attack = c("random",
-  "target", "localized"), decreasing = TRUE, normalized = TRUE)
+  "target", "localized", "motif"), decreasing = TRUE, normalized = TRUE)
 }
 \arguments{
 \item{GRAPH}{a igraph object}
@@ -14,7 +14,7 @@ randomAttackSingNetwork(GRAPH, p = 0.1, vids = NULL, attack = c("random",
 
 \item{vids}{the selected initial attack nodes in the target and localized attack}
 
-\item{attack}{the type of attack for random, target and localized}
+\item{attack}{the type of attack for random, target and localized and motif}
 
 \item{decreasing}{sort degree from large to small or not}
 

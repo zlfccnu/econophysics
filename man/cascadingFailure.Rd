@@ -4,16 +4,16 @@
 \alias{cascadingFailure}
 \title{This program is trying to modeling the cascading failure}
 \usage{
-cascadingFailure(GRAPH1, GRAPH2, attack = c("random", "target", "localized"),
-  p = 0.7, q = NULL, plot = FALSE, vids = NULL, Trace = TRUE,
-  decreasing = TRUE, normalized = TRUE)
+cascadingFailure(GRAPH1, GRAPH2, attack = c("random", "target", "localized",
+  "motif"), p = 0.7, q = NULL, plot = FALSE, vids = NULL,
+  Trace = TRUE, decreasing = TRUE, normalized = TRUE)
 }
 \arguments{
 \item{GRAPH1}{the first layer of inter dependent network}
 
 \item{GRAPH2}{the scond layer of inter dependent network}
 
-\item{attack}{the type of attack, random, target and localized}
+\item{attack}{the type of attack, random, target and localized and motif}
 
 \item{p}{1-p is the fraction of nodes that the initial attack start}
 

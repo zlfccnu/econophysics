@@ -1,7 +1,7 @@
 #' This program is trying to modeling the cascading failure
 #' @param GRAPH1 the first layer of inter dependent network
 #' @param GRAPH2 the scond layer of inter dependent network
-#' @param attack the type of attack, random, target and localized
+#' @param attack the type of attack, random, target and localized and motif
 #' @param p 1-p is the fraction of nodes that the initial attack start
 #' @param q the coupling strength between two layers(not valid)
 #' @param plot whether to plot the network or not
@@ -9,7 +9,7 @@
 #' @param normalized normalized the ratio of the giant component
 #' @param vids the vertex ids for localized attack
 #' @return a vector with length two give the node numbers of the giant component
-cascadingFailure=function(GRAPH1,GRAPH2,attack=c("random","target","localized"),p=0.7,q=NULL,plot=FALSE,vids=NULL,Trace=TRUE,decreasing=TRUE,normalized=TRUE){
+cascadingFailure=function(GRAPH1,GRAPH2,attack=c("random","target","localized","motif"),p=0.7,q=NULL,plot=FALSE,vids=NULL,Trace=TRUE,decreasing=TRUE,normalized=TRUE){
   n1=vcount(graph = GRAPH1)
   n2=vcount(graph = GRAPH2)
   GRAPH1=set.vertex.attribute(GRAPH1,"name",value = paste0("A",1:n1))
@@ -26,6 +26,15 @@ cascadingFailure=function(GRAPH1,GRAPH2,attack=c("random","target","localized"),
   if(attack=="localized"){
     n1_id=names(V(GRAPH1)[vids])
   }
+  if(attack=="motif"){
+    triangles_ids=matrix(triangles(GRAPH1),ncol=3,byrow = TRUE)
+    n_triangles=dim(triangles_ids)[1]
+    n_attack=sample(1:n_triangles,ceiling(n_triangles*p))
+    triangles_ids=triangles_ids[n_attack,]
+    n1_id=unique(as.vector(triangles_ids))
+    n1_id=names(V(GRAPH1)[n1_id])
+  }
+  
   par(mfcol=c(1,2),mar=c(1,1,1,1))
   if(isTRUE(plot)){
     layout_cf=layout.fruchterman.reingold(GRAPH1)
