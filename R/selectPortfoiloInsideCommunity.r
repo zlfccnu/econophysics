@@ -3,6 +3,7 @@
 #' @param mem the community membership of te GRAPH
 #' @param stock_id the names of the stocks 
 #' @param portfolioSize the size of the portfolio
+#' @return a vector with stock names
 selectPortfolioInsideCommunity=function(GRAPH,mem,stock_id,portfolioSize=4){
   communitySize=sizes(mem)
   mem_id=which(communitySize>=portfolioSize)
