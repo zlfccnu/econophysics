@@ -40,6 +40,7 @@ eff.frontier <- function (returns, covMat=NULL, short="no", max.allocation=NULL,
   }
   
   registerDoMC(thread)
+  #stepSize=risk.premium.up/100
   riskSeq=(exp(seq(0.001,log(risk.premium.up),0.1))-1)
   eff<- foreach(i=riskSeq, .combine='rbind')%dopar%{
     dvec <- colMeans(returns) * i # This moves the solution up along the efficient frontier
