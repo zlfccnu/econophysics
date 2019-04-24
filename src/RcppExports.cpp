@@ -6,6 +6,72 @@
 
 using namespace Rcpp;
 
+// caviar_ADAPTIVE
+NumericVector caviar_ADAPTIVE(double K, double THETA, NumericVector BETA, NumericVector y, double empiricalQuantile, NumericVector VaR, int RowsOfy, int varPredict);
+RcppExport SEXP _econophysics_caviar_ADAPTIVE(SEXP KSEXP, SEXP THETASEXP, SEXP BETASEXP, SEXP ySEXP, SEXP empiricalQuantileSEXP, SEXP VaRSEXP, SEXP RowsOfySEXP, SEXP varPredictSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type K(KSEXP);
+    Rcpp::traits::input_parameter< double >::type THETA(THETASEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type BETA(BETASEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
+    Rcpp::traits::input_parameter< double >::type empiricalQuantile(empiricalQuantileSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type VaR(VaRSEXP);
+    Rcpp::traits::input_parameter< int >::type RowsOfy(RowsOfySEXP);
+    Rcpp::traits::input_parameter< int >::type varPredict(varPredictSEXP);
+    rcpp_result_gen = Rcpp::wrap(caviar_ADAPTIVE(K, THETA, BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict));
+    return rcpp_result_gen;
+END_RCPP
+}
+// caviar_AS
+NumericVector caviar_AS(NumericVector BETA, NumericVector y, double empiricalQuantile, NumericVector VaR, int RowsOfy, int varPredict);
+RcppExport SEXP _econophysics_caviar_AS(SEXP BETASEXP, SEXP ySEXP, SEXP empiricalQuantileSEXP, SEXP VaRSEXP, SEXP RowsOfySEXP, SEXP varPredictSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type BETA(BETASEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
+    Rcpp::traits::input_parameter< double >::type empiricalQuantile(empiricalQuantileSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type VaR(VaRSEXP);
+    Rcpp::traits::input_parameter< int >::type RowsOfy(RowsOfySEXP);
+    Rcpp::traits::input_parameter< int >::type varPredict(varPredictSEXP);
+    rcpp_result_gen = Rcpp::wrap(caviar_AS(BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict));
+    return rcpp_result_gen;
+END_RCPP
+}
+// caviar_GARCH
+NumericVector caviar_GARCH(NumericVector BETA, NumericVector y, double empiricalQuantile, NumericVector VaR, int RowsOfy, int varPredict);
+RcppExport SEXP _econophysics_caviar_GARCH(SEXP BETASEXP, SEXP ySEXP, SEXP empiricalQuantileSEXP, SEXP VaRSEXP, SEXP RowsOfySEXP, SEXP varPredictSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type BETA(BETASEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
+    Rcpp::traits::input_parameter< double >::type empiricalQuantile(empiricalQuantileSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type VaR(VaRSEXP);
+    Rcpp::traits::input_parameter< int >::type RowsOfy(RowsOfySEXP);
+    Rcpp::traits::input_parameter< int >::type varPredict(varPredictSEXP);
+    rcpp_result_gen = Rcpp::wrap(caviar_GARCH(BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict));
+    return rcpp_result_gen;
+END_RCPP
+}
+// caviar_SAV
+NumericVector caviar_SAV(NumericVector BETA, NumericVector y, double empiricalQuantile, NumericVector VaR, int RowsOfy, int varPredict);
+RcppExport SEXP _econophysics_caviar_SAV(SEXP BETASEXP, SEXP ySEXP, SEXP empiricalQuantileSEXP, SEXP VaRSEXP, SEXP RowsOfySEXP, SEXP varPredictSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type BETA(BETASEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
+    Rcpp::traits::input_parameter< double >::type empiricalQuantile(empiricalQuantileSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type VaR(VaRSEXP);
+    Rcpp::traits::input_parameter< int >::type RowsOfy(RowsOfySEXP);
+    Rcpp::traits::input_parameter< int >::type varPredict(varPredictSEXP);
+    rcpp_result_gen = Rcpp::wrap(caviar_SAV(BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict));
+    return rcpp_result_gen;
+END_RCPP
+}
 // df2list
 List df2list(const DataFrame& x);
 RcppExport SEXP _econophysics_df2list(SEXP xSEXP) {
@@ -65,6 +131,10 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_econophysics_caviar_ADAPTIVE", (DL_FUNC) &_econophysics_caviar_ADAPTIVE, 8},
+    {"_econophysics_caviar_AS", (DL_FUNC) &_econophysics_caviar_AS, 6},
+    {"_econophysics_caviar_GARCH", (DL_FUNC) &_econophysics_caviar_GARCH, 6},
+    {"_econophysics_caviar_SAV", (DL_FUNC) &_econophysics_caviar_SAV, 6},
     {"_econophysics_df2list", (DL_FUNC) &_econophysics_df2list, 1},
     {"_econophysics_isometricTrans", (DL_FUNC) &_econophysics_isometricTrans, 2},
     {"_econophysics_funcPlanarTest", (DL_FUNC) &_econophysics_funcPlanarTest, 2},

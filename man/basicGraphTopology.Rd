@@ -7,7 +7,7 @@
 basicGraphTopology(GRAPH)
 }
 \arguments{
-\item{GRAPH}{a igraph object}
+\item{GRAPH}{an igraph object}
 }
 \value{
 a vector with six elements

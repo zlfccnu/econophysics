@@ -4,7 +4,7 @@
 #' @param vids the vertex ids
 #' @param normalized normalize the number of the giant component
 #' @param decreasing sort degree from large to small or not
-#' @normalized normalized the giant component size
+#' @param normalized normalized the giant component size
 #' @return a number of the giant component node
 randomTargetAttackSingleNetwork=function(GRAPH,l=10,vids=NULL,attack=c("random","target","localized","motif"),decreasing=TRUE,normalized=TRUE){
   n1=vcount(GRAPH)

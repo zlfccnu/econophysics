@@ -4,9 +4,9 @@
 \alias{optimalES}
 \title{use the DEoptim algorithm to calculate the optimal ES by using the box constriant}
 \usage{
-optimalES(stockNames, returns, wMin = 0, wMax = 1, searchSize = 50000,
-  itermax = 200, min_sum = 0.99, max_sum = 1.01, p = 0.95,
-  trace = FALSE)
+optimalES(stockNames, returns, wMin = 0, wMax = 1,
+  searchSize = 50000, itermax = 200, min_sum = 0.99,
+  max_sum = 1.01, p = 0.95, trace = FALSE)
 }
 \arguments{
 \item{stockNames}{the ticker of stocks}

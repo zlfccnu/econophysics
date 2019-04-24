@@ -15,6 +15,9 @@ selectPortfolioInsideCommunity(GRAPH, mem, stock_id, portfolioSize = 4)
 
 \item{portfolioSize}{the size of the portfolio}
 }
+\value{
+a vector with stock names
+}
 \description{
 Select sotcks based the community detection info,inside community
 }

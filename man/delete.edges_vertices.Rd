@@ -4,12 +4,14 @@
 \alias{delete.edges_vertices}
 \title{Delete edges end with specific nodes}
 \usage{
-delete.edges_vertices(GRAPH, v)
+delete.edges_vertices(GRAPH, v, mode = c("out", "in", "all", "total"))
 }
 \arguments{
 \item{GRAPH}{an igraph object}
 
 \item{v}{a vector of vids}
+
+\item{mode}{delete the outgoing or incoming edges or both, ignored for undirecte graphs}
 }
 \value{
 an igraph object

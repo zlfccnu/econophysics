@@ -4,8 +4,8 @@
 \alias{safeSave}
 \title{safe save for objects}
 \usage{
-safeSave(..., file = stop("'file' must be specified"), overwrite = FALSE,
-  save.fun = save.image)
+safeSave(..., file = stop("'file' must be specified"),
+  overwrite = FALSE, save.fun = save.image)
 }
 \arguments{
 \item{...}{the objects}

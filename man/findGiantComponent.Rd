@@ -4,10 +4,12 @@
 \alias{findGiantComponent}
 \title{Find the giant component}
 \usage{
-findGiantComponent(GRAPH)
+findGiantComponent(GRAPH, returnGRAPH = FALSE)
 }
 \arguments{
 \item{GRAPH}{a igraph object}
+
+\item{returnGRAPH}{return graph or not}
 }
 \value{
 the size of the giant component

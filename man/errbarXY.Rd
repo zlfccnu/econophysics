@@ -4,8 +4,8 @@
 \alias{errbarXY}
 \title{Function used to add the horizonal errbar and vertical errbar}
 \usage{
-errbarXY(x, y, xDelta = NULL, yDelta = NULL, col = "red", type = "o",
-  pch_h = "|", pch_v = "-")
+errbarXY(x, y, xDelta = NULL, yDelta = NULL, col = "red",
+  type = "o", pch_h = "|", pch_v = "-")
 }
 \arguments{
 \item{x}{the x coordinate of data}

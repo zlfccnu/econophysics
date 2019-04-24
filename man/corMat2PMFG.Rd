@@ -5,8 +5,8 @@
 \title{Planar Graph Edgelist}
 \usage{
 corMat2PMFG(corMat, outputFile = NULL, desending = TRUE,
-  format = c("edgelist", "pajek", "ncol", "lgl", "graphml", "dimacs", "gml",
-  "dot", "leda"))
+  format = c("edgelist", "pajek", "ncol", "lgl", "graphml", "dimacs",
+  "gml", "dot", "leda"))
 }
 \arguments{
 \item{corMat}{a correlation matrix}
