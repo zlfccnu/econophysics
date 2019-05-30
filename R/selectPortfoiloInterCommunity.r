@@ -1,8 +1,9 @@
-#' Select sotcks based the community detection info
+#' Select sotcks based the community detection info and the centrality ranking
 #' @param GRAPH the correlation-based graph
 #' @param mem the community membership of te GRAPH
 #' @param stock_id the names of the stocks 
 #' @param portfolioSize the size of the portfolio
+#' @return a vector of stock tickers
 selectPortfolioInterCommunity=function(GRAPH,mem,stock_id,portfolioSize=4){
   inter_com_neighbor=function(GRAPH,mem,v){
     nei_v=neighborhood(graph = GRAPH,order = 1,nodes = v)
@@ -25,7 +26,9 @@ selectPortfolioInterCommunity=function(GRAPH,mem,stock_id,portfolioSize=4){
       if(length(v_id==1)){
         select_stocks=c(select_stocks,stock_id[v_id])
       }else{
-        select_stocks=c(select_stocks,stock_id[sample(v_id,1)])
+        tmp=hybirdMeasure(GRAPH)[v_id,"XpY"]
+        tmp=which.max(tmp)
+        select_stocks=c(select_stocks,stock_id[tmp])
       }
     }
   }

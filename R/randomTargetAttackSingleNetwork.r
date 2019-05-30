@@ -6,6 +6,7 @@
 #' @param decreasing sort degree from large to small or not
 #' @param normalized normalized the giant component size
 #' @return a number of the giant component node
+#' @export
 randomTargetAttackSingleNetwork=function(GRAPH,l=10,vids=NULL,attack=c("random","target","localized","motif"),decreasing=TRUE,normalized=TRUE){
   n1=vcount(GRAPH)
   if(attack=="random"){

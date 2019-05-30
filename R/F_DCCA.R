@@ -3,7 +3,6 @@ library("RcppEigen")
 #' @param x  a numeric vector which convert from a time series
 #' @param y  a numeric vector which convert from a time series
 #' @param n  the time scale of the detrended operation
-#' @param overlap the overlap of the boxes,default 0.99999999
 #' @param q the order of the multifractal
 #' @return the the DCCA fluctuation
 
