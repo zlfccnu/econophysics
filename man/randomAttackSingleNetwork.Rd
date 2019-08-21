@@ -6,7 +6,8 @@
 \usage{
 randomAttackSingleNetwork(GRAPH, p = 0.1, vids = NULL,
   attack = c("random", "target", "localized", "motif"), mode = c("out",
-  "in", "all", "total"), decreasing = TRUE, normalized = TRUE)
+  "in", "all", "total"), decreasing = TRUE, normalized = TRUE,
+  returnGRAPH = FALSE)
 }
 \arguments{
 \item{GRAPH}{a igraph object}
@@ -15,7 +16,7 @@ randomAttackSingleNetwork(GRAPH, p = 0.1, vids = NULL,
 
 \item{vids}{the selected initial attack nodes in the target and localized attack}
 
-\item{attack}{the type of attack for random, target and localized and motif}
+\item{attack}{the type of attack for random, target and localized and motif, the attack by id can be proceeded by the localized attack}
 
 \item{mode}{whether to delete the outgoing incoming or both edges for selected nodes}
 
@@ -24,6 +25,8 @@ randomAttackSingleNetwork(GRAPH, p = 0.1, vids = NULL,
 \item{normalized}{normalize the number of the giant component}
 
 \item{normalized}{the giant component size}
+
+\item{returnGraph}{a logical, whether return the remaining graph or not}
 }
 \value{
 a number of the giant component node

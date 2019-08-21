@@ -15,8 +15,6 @@ F_DCCA(x, y, nVec = NULL, sampleNum = NULL, qVec = c(-5:5),
 
 \item{n}{the time scale of the detrended operation}
 
-\item{overlap}{the overlap of the boxes,default 0.99999999}
-
 \item{q}{the order of the multifractal}
 }
 \value{

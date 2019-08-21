@@ -2,7 +2,7 @@
 % Please edit documentation in R/selectPortfoiloInterCommunity.r
 \name{selectPortfolioInterCommunity}
 \alias{selectPortfolioInterCommunity}
-\title{Select sotcks based the community detection info}
+\title{Select sotcks based the community detection info and the centrality ranking}
 \usage{
 selectPortfolioInterCommunity(GRAPH, mem, stock_id, portfolioSize = 4)
 }
@@ -15,6 +15,9 @@ selectPortfolioInterCommunity(GRAPH, mem, stock_id, portfolioSize = 4)
 
 \item{portfolioSize}{the size of the portfolio}
 }
+\value{
+a vector of stock tickers
+}
 \description{
-Select sotcks based the community detection info
+Select sotcks based the community detection info and the centrality ranking
 }

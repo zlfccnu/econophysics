@@ -4,12 +4,14 @@
 \alias{findGiantComponent}
 \title{Find the giant component}
 \usage{
-findGiantComponent(GRAPH, returnGRAPH = FALSE)
+findGiantComponent(GRAPH, returnGRAPH = FALSE, normalized = TRUE)
 }
 \arguments{
 \item{GRAPH}{a igraph object}
 
 \item{returnGRAPH}{return graph or not}
+
+\item{normalized}{a logical, normalize the vertex number or not}
 }
 \value{
 the size of the giant component

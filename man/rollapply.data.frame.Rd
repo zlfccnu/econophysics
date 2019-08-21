@@ -5,7 +5,8 @@
 \title{rollapply to a data frame}
 \usage{
 \method{rollapply}{data.frame}(x, margin = 1, FUN = NULL, ...,
-  thread = 3, windowSize = NULL, stepSize = NULL)
+  thread = 3, windowSize = NULL, stepSize = NULL,
+  returnAsTbl = TRUE)
 }
 \arguments{
 \item{x}{the data frame}

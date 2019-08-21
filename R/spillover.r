@@ -5,8 +5,10 @@
 #' @param VaR2 the VaR of r2
 #' @param M the lag parameter use to calculate the spillover 
 #' @param BETA the significant threshold for the causality test
-#' @return a vector with two element, 1 or 0
-spillover=function(r1,r2,VaR1,VaR2,M,BETA){
+#' @param weighted logic value, default TRUE, return the spillover value or not
+#' @return a vector with two element, 1 or 0 if weighted=FALSE, otherwise return the spillover value
+#' @export
+spillover=function(r1,r2,VaR1,VaR2,M,BETA,weighted=TRUE){
   k_z=function(x){
     y=pi*x
     return(sin(y)/y)
@@ -27,7 +29,12 @@ spillover=function(r1,r2,VaR1,VaR2,M,BETA){
   z2=indicatorFun(r = r2,VaR = VaR2)
   s1_2=Q_M(z2,z1,M=M)
   s2_1=Q_M(z1,z2,M=M)
-  s2_1=ifelse(s2_1>qnorm(1 - BETA),1,0)
-  s1_2=ifelse(s1_2>qnorm(1 - BETA),1,0)
+  if(isTRUE(weighted)){
+    s2_1=ifelse(s2_1>qnorm(1 - BETA),s2_1,0)
+    s1_2=ifelse(s1_2>qnorm(1 - BETA),s1_2,0)
+  }else{
+    s2_1=ifelse(s2_1>qnorm(1 - BETA),1,0)
+    s1_2=ifelse(s1_2>qnorm(1 - BETA),1,0)
+  }
   return(c(s1_2=s1_2,s2_1=s2_1))
 }
