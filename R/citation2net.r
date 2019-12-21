@@ -1,6 +1,7 @@
 #' convert the citation information to co-occurrence network
 #' @param database A dataframe with authors, institutions, keywords at each row
 #' @return an weighted and named igraph object
+#' @export
 citation2net=function(database){
   require(igraph)
   ## construct the key words network

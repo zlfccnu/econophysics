@@ -6,7 +6,7 @@
 #' @param short short selling or not
 #' @param thread the multithreads argument
 #' @return a data.frame
-
+#' @export
 eff.frontier <- function (returns, covMat=NULL, short="no", max.allocation=NULL, risk.premium.up=20,thread=3){
   if(is.null(covMat)){
     covMat=cov(returns)

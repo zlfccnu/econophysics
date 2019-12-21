@@ -2,6 +2,7 @@
 #' @param GRAPH A igraph object
 #' @param vids the vertex ids
 #' @return A numeric value
+#' @export
 
 nodeTrappingTime=function(GRAPH,vids=V(GRAPH)){
   if(!is_igraph(GRAPH)){

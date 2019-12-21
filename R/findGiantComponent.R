@@ -3,6 +3,7 @@
 #' @param returnGRAPH return graph or not
 #' @param normalized a logical, normalize the vertex number or not
 #' @return the size of the giant component
+#' @export
 findGiantComponent=function(GRAPH,returnGRAPH=FALSE,normalized=TRUE){
   n=vcount(GRAPH)
   if(is.named(GRAPH)){

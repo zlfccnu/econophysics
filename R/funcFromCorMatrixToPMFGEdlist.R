@@ -3,7 +3,7 @@
 #' @param outputFile a string as the name of outout file
 #' @param descending 
 #' @return a edgelist file in current directory
-
+#' @export
 corMat2PMFG=function(corMat,outputFile=NULL,desending=TRUE,format=c("edgelist", "pajek", "ncol","lgl","graphml", "dimacs", "gml", "dot", "leda")){
   ## construct the sorted correlation data.frame
   N=dim(corMat)[1]

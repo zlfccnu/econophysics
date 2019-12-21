@@ -3,6 +3,7 @@
 #' @param bulk whether use the bulk eigenvalues to construct the correlation matrix or not
 #' @return a list with corMat and covMat
 #' @references Random matrix approach to cross correlations in financial data
+#' @export
 filteredCovMat<- function(returns,bulk=FALSE){
   standardlizing= function(x){
     x=(x-mean(x))/sd(x)

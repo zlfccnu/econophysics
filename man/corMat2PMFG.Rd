@@ -12,6 +12,8 @@ corMat2PMFG(corMat, outputFile = NULL, desending = TRUE,
 \item{corMat}{a correlation matrix}
 
 \item{outputFile}{a string as the name of outout file}
+
+\item{descending}{}
 }
 \value{
 a edgelist file in current directory

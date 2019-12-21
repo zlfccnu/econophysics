@@ -2,6 +2,7 @@
 #' @param GRAPH an igraph object
 #' @param prob the ratio of the total edge weight
 #' @return an igraph object
+#' @export
 extract_graph=function(GRAPH,prob=0.8){
   stopifnot(is.weighted(GRAPH))
   E(GRAPH)[order(weight)] %>% rev()-> test

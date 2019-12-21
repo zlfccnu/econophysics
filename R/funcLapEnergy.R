@@ -1,12 +1,11 @@
-library("igraph")
-
 #' Function to calculate the laplacian energy of a graph, weighted or unweighted
 #' @param GRAPH is a igraph object,
 #' @param weights the weights atrribute of a graph object
 #' @param normalized means use the normalized energy or not
 #' @return A numeric value
+#' @export
 funcLaplacianEnergy=function(GRAPH,normalized=FALSE,weights=NULL){
-  if(weights==NULL&&is.weighted(GRAPH)){
+  if(is.null(weights)&&is.weighted(GRAPH)){
     lapGraph<- graph.laplacian(GRAPH,normalized=normalized,sparse = FALSE,weights=weights)
     eigenvalueLapGraph<- eigen(lapGraph,only.values = TRUE,symmetric = TRUE)
     if(normalized==FALSE){
@@ -17,7 +16,7 @@ funcLaplacianEnergy=function(GRAPH,normalized=FALSE,weights=NULL){
     }
     return(lapEnergy)
   }
-  if(weights==NA&&is.weighted(GRAPH)){##weights==NA
+  if(is.na(weights)&&is.weighted(GRAPH)){##weights==NA
     lapGraph<- graph.laplacian(GRAPH,normalized=normalized,sparse = FALSE,weights=weights)
     eigenvalueLapGraph<- eigen(lapGraph,only.values = TRUE,symmetric = TRUE)
     if(normalized==FALSE){

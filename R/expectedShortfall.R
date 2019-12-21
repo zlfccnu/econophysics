@@ -2,7 +2,7 @@
 #'@param tickers the names of the stocks
 #'@param returns the return time series of stocks, log return
 #'@return a numeric value 
-
+#' @export
 expectedShortfall=function(tickers,returns){
   stopifnot(is.xts(returns))
   if(prod(tickers%in%colnames(returns))==1){

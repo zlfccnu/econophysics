@@ -9,6 +9,7 @@
 #' @param weight a logical value, whether use edge weight or not
 #' @param N the size of the network
 #' @return a list with the order parameter and the phase
+#' @export
 
 kuramoto=function(graph=NULL,adjMat,h=0.01,phase=runif(N,0,2*pi),natFreq=rnorm(N),thread=3,steps=1000,lambda=0.1,weight=TRUE,N=vcount(graph)){
   if(is.null(graph)){

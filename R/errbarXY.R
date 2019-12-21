@@ -4,6 +4,7 @@
 #' @param xDelta the statndrad devation of x which will be used to plot the errbar
 #' @param yDelta the statndrad devation of y which will be used to plot the errbar
 #' @return invisible, a plot
+#' @export
 errbarXY=function(x,y,xDelta=NULL,yDelta=NULL,col="red",type="o",pch_h="|",pch_v="-"){
   if(!is.null(xDelta)){
     for(i in 1:length(x)){## horizonal errbar

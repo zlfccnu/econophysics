@@ -7,6 +7,7 @@
 #' @param windowSize the size of the rolling window
 #' @param stepSize the moving window size
 #' @return a list
+#' @export
   rollapply.data.frame=function(x,margin=1,FUN=NULL,...,thread=3,windowSize=NULL,stepSize=NULL,returnAsTbl=TRUE){
     if(margin==2){
       x=t(x)

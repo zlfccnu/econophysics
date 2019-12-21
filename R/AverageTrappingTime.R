@@ -1,6 +1,7 @@
 #' Function used to calculate the averge trapping time for a graph
 #' @param GRAPH A igraph object
 #' @return A numeric value
+#' @export
 averageTrappingTime = function(GRAPH){
   if(!is_igraph(GRAPH)){
     stop("Not a graph object")

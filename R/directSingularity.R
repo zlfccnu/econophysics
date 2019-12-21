@@ -5,7 +5,7 @@
 #' @param thread the parallel thread number
 #' @param qVec the qth order
 #' @return the holder exponent and singularity spectrum
-
+#' @export
 directSingularity=function(x,nVec,sampleNum,thread,qVec){
   unormalProbaMeasure=probaMeasure(x,nVec,sampleNum,thread)##dim=sampleNum*nVec
   registerDoMC(thread)

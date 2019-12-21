@@ -4,6 +4,7 @@
 #' @param thread the multi threads
 #' @param binSizeRatio the boxsize, fraction of standard deviation
 #' @return a data.frame
+#' @export
 diffusionEntropy=function(x,nVec=2^(3:8),thread=3,binSizeRatio=0.5){
   sgma=binSizeRatio*sd(x)
   N=length(x)

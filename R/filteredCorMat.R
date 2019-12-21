@@ -2,6 +2,7 @@
 #' @param returns the return matrix
 #' @return a list with four matrices: original,market,structure and random
 #' @references Random matrix approach to cross correlations in financial data
+#' @export
 filteredCorMat<- function(returns){
   if(dim(returns)[1]<dim(returns)[2]){
     stop("time series is too short!")

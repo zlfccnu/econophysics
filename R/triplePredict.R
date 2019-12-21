@@ -3,7 +3,7 @@
 #' @param qVec the order of q
 #' @param tol the tolerence of splinfun used to determine the x_min and x_max in the fractal spectrum
 #' @return A vector with three elements
-
+#' @export
 triplePredict<- function(h_q,qVec,tol=1e-4){
   triple=c(0,0,0,0)
   names(triple)<- c("alpha0","W","r","A")

@@ -5,6 +5,7 @@
 #' @param bw the bandwidth of the density function
 #' @param thread the multi threads
 #' @return a numeric value between 0 and 1
+#' @export
 
 JS_SeriesDistance=function (x, y, n = 512, bw = 0.01,thread=3)
 {

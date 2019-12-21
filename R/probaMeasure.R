@@ -4,6 +4,7 @@
 #' @param sampleNum the random sampled number
 #' @param thread the parallel thread number
 #' @return the unnormalized probability measure, a data.frame
+#' @export
 
 probaMeasure=function(x,nVec,sampleNum,thread){
   registerDoMC(thread)

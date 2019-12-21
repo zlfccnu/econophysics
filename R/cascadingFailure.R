@@ -9,6 +9,7 @@
 #' @param normalized normalized the ratio of the giant component
 #' @param vids the vertex ids for localized attack
 #' @return a vector with length two give the node numbers of the giant component
+#' @export
 cascadingFailure=function(GRAPH1,GRAPH2,attack=c("random","target","localized","motif"),p=0.7,q=NULL,plot=FALSE,vids=NULL,Trace=TRUE,decreasing=TRUE,normalized=TRUE){
   n1=vcount(graph = GRAPH1)
   n2=vcount(graph = GRAPH2)

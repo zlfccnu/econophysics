@@ -5,6 +5,7 @@
 #' @param bw the bandwidth of the density function
 #' @param thread the multi threads
 #' @return a numeric value between 0 and 1
+#' @export
 
 JS_MatrixDistance=function (mat1, mat2, n = 512, bw = 0.01,thread=3) 
 {

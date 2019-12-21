@@ -2,6 +2,7 @@ library("MASS")
 #' Function used to calculate the DPCCA partial coefficient
 #' @param corMat the DCCA correlation matrix
 #' @return the partial correlation matrix
+#' @export
 
 rho_DPCCA=function(corMat){
   invCorMat=MASS::ginv(corMat)

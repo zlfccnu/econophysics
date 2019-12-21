@@ -2,6 +2,7 @@
 #' @param x the time sereis
 #' @param  stepT the moving window to find the local min and max
 #' @return a two elements list, the first is the local min time index and the second is local max time index
+#' @export
 localMinMax<- function(x,stepT){
   timeX<- time(x)
   t_minP<- c()

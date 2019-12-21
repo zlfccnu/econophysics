@@ -12,6 +12,7 @@
 #' @param inter_com_type the inter community link type
 #' @param random_color the way to generate color, random or not
 #' @return an ggplot object
+#' @export
 network2map=function(GRAPH,node_size=NULL,node_color=NULL,inter_com_size=0.5,inner_com_size=0.8,label_color=NULL,label_size=NULL,hue="blue",luminosity="bright",inter_com_color="red",inter_com_type=2,random_color=FALSE){
   library(ggrepel)
   ## prepare the data for plot

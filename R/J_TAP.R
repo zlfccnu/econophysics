@@ -1,6 +1,7 @@
 #' TAP approximation of copuling strength reconstruction for ising model
 #' @param returns the return data.frame for stock market OR the configuation matrix for other system
 #' @return a interaction strength J matrix 
+#' @export
 
 J_TAP <- function(returns) {
   covMat=cov(returns)

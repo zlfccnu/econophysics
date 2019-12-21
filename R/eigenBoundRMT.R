@@ -2,7 +2,7 @@
 #' @param L the length of the time series
 #' @param N the number of the time series
 #' @return a vector with the lower and upper bound
-
+#' @export
 eigenBoundRMT=function(Q=NULL,L,N,S){
   if(is.null(Q)){
     Q=L/N

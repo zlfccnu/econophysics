@@ -9,7 +9,7 @@
 #' @param sampleMethod 1 means the determined sample number, other values means the nonoverlap method
 #' @param lengthRatio detremine how long is the largest scale
 #' @return the the sqrt DCCA fluctuation
-
+#' @export
 Fq_DCCA=function(x,y,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),detrendOrder=3,thread=3,sampleMethod=2,lengthRatio=0.05){
   require(parallel)
   require(RcppEigen)

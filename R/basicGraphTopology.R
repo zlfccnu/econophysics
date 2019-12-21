@@ -1,6 +1,7 @@
 #' Function used to calculate the basic network topology
 #' @param GRAPH an igraph object
 #' @return a vector with six elements
+#' @export
 basicGraphTopology=function(GRAPH){
     library(econophysics)
     if(is.directed(GRAPH)&&is.weighted(GRAPH)){

@@ -3,6 +3,7 @@
 #' @param decreasing sort by decreasing order or not
 #' @param limit the maximum objects listed
 #' @return a dataframe with memoryuse info
+#' @export
 showMemoryUse <- function(sort="size", decreasing=TRUE, limit=20) {
   objectList <- ls(parent.frame())
 

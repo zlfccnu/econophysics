@@ -3,6 +3,7 @@
 #' @param algorithm A character name for the community detection method
 #' @param layout A character name for the layout function you use
 #' @return A data frame with four columns, the vertex label, the membership of each node, two columns of the coordinates
+#' @export
 layout_community<- function(graph,community_algorithm,layout_desired){
   if (!is_igraph(graph)) {
     stop("Not a graph object")

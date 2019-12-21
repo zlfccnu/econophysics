@@ -7,7 +7,7 @@
 #' @param detrendOrder the detrending polynomial order
 #' @param sampleMethod 1 means the determined sample number method, other values mean the nonoverlap method
 #' @return the DFA fluctuation which enhanced by q^th order, a dataframe
-
+#' @export
 F_DFA=function(x,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),thread=3,detrendOrder=3,sampleMethod=2,lengthRatio=0.05){
   require(parallel)
   require(RcppEigen)
@@ -32,5 +32,7 @@ F_DFA=function(x,nVec=NULL,sampleNum=NULL,qVec=c(-5:5),thread=3,detrendOrder=3,s
   f_DFA=as.data.frame(f_DFA)
   colnames(f_DFA)<- sprintf("q%.2f",qVec)
   rownames(f_DFA)<- sprintf("n%d",nVec)
-  return(as.data.frame(cbind(nVec,f_DFA)))
+  res=as.data.frame(cbind(nVec,f_DFA))
+  zeroID=apply(res,MARGIN = 1,FUN = function(row){all(row!=0)})
+  return(res[zeroID,])
 }

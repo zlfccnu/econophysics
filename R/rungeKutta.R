@@ -5,6 +5,7 @@
 #' @param couple_vec the couping vector for i and its neighbors
 #' @param natFreq the nature frequency for the oscillator
 #' @return the phase of the focal oscillator at next time
+#' @export
 
 RK=function(theta_i,theta_j,h,couple_vec,natFreq){
   K_1=natFreq + sum(couple_vec*sin(theta_j-theta_i))

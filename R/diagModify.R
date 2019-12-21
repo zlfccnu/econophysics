@@ -2,6 +2,7 @@
 #' @param x a matrix
 #' @param diagValue a numeric value or a vector
 #' @return a matrix
+#' @export
 diagModify=function(x,diagValue){
   diag(x)=diagValue
   return(x)

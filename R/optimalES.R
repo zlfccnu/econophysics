@@ -10,6 +10,7 @@
 #' @param p the confidence level of the ES
 #' @param trace whether print the interctive process or not
 #' @return A numeric value
+#' @export
 
 optimalES=function(stockNames,returns,wMin=0,wMax=1,searchSize=50000,itermax=200,min_sum=0.99,max_sum=1.01,p=0.95,trace=FALSE){
   if(prod(stockNames%in%colnames(returns))==1){

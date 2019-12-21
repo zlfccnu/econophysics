@@ -2,6 +2,7 @@
 #' @param p1 a discrete probability density function
 #' @param p2 a discrete probability density function
 #' @return a numeric value between 0 and 1
+#' @export
 
 JS_ProbDistance=function (p1, p2) 
 {

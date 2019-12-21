@@ -9,6 +9,7 @@
 #' @param mode whether to delete the outgoing incoming or both edges for selected nodes
 #' @param returnGraph a logical, whether return the remaining graph or not
 #' @return a number of the giant component node
+#' @export
 randomAttackSingleNetwork=function(GRAPH,p=0.1,vids=NULL,attack=c("random","target","localized","motif"),mode=c("out","in","all","total"),decreasing=TRUE,normalized=TRUE,returnGRAPH=FALSE){
   n=vcount(GRAPH)
   GRAPH=set.vertex.attribute(GRAPH,"name",value = paste0("A",1:n))

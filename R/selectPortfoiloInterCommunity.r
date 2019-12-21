@@ -4,6 +4,7 @@
 #' @param stock_id the names of the stocks 
 #' @param portfolioSize the size of the portfolio
 #' @return a vector of stock tickers
+#' @export
 selectPortfolioInterCommunity=function(GRAPH,mem,stock_id,portfolioSize=4){
   inter_com_neighbor=function(GRAPH,mem,v){
     nei_v=neighborhood(graph = GRAPH,order = 1,nodes = v)

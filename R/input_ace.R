@@ -4,6 +4,7 @@
 #' @param thread the multithread number
 #' @param fileName the outpu file name
 #' @return a file
+#' @export
 input_ace=function(x,p_theta=0.05,thread=3,fileName){
   ## be sure the output file can be created
   if(file.exists(fileName)){

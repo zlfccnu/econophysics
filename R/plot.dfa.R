@@ -5,6 +5,7 @@
 #' @param ylim the y coordinate range 
 #' @param the plot tck
 #' @return invisible
+#' @export
 plot.dfa=function(x,xlab="s",ylab="fq",ylim=NULL,tck=0.02){
   par(tck=tck)
   if(is.null(ylim)){

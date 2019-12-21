@@ -4,7 +4,7 @@
 \alias{spillover}
 \title{calculate the spillover relationship between two time series}
 \usage{
-spillover(r1, r2, VaR1, VaR2, M, BETA)
+spillover(r1, r2, VaR1, VaR2, M, BETA, weighted = TRUE)
 }
 \arguments{
 \item{r1}{a time series}
@@ -18,9 +18,11 @@ spillover(r1, r2, VaR1, VaR2, M, BETA)
 \item{M}{the lag parameter use to calculate the spillover}
 
 \item{BETA}{the significant threshold for the causality test}
+
+\item{weighted}{logic value, default TRUE, return the spillover value or not}
 }
 \value{
-a vector with two element, 1 or 0
+a vector with two element, 1 or 0 if weighted=FALSE, otherwise return the spillover value
 }
 \description{
 calculate the spillover relationship between two time series

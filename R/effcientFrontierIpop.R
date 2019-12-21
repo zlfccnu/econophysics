@@ -7,6 +7,7 @@
 #' @param thread the multi threads number
 #' @param maxiter Maximum number of iterations
 #' @return a data.frame include the weight, variance, return and shape ratio
+#' @export
 eff.frontier_ipop=function(returns,covMat=NULL,short="yes",risk.premium.up=20,thread=3,maxiter=40){
   ## parameter definition
   b=1

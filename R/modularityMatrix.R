@@ -2,6 +2,7 @@
 #' @param graph an igraph object
 #' @param diag set the diag elements of matrix to zero or not
 #' @return the modularity matrix
+#' @export
 
 modularityMatrix=function(graph,diag=FALSE){
   if(!is.igraph(graph = graph)){

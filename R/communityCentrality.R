@@ -3,7 +3,7 @@
 #' @param diag set the diag elements of null model matrix to zero
 #' @return the modularity matrix
 #' @references "Finding community structure in networks using the eigenvectors of matrices"
-
+#' @export
 communityCentrality=function(graph,diag=FALSE){
   modMat=modularityMatrix(graph = graph,diag=diag)
   modMatEigen=eigen(modMat)
