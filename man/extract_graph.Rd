@@ -7,12 +7,12 @@
 extract_graph(GRAPH, prob = 0.8)
 }
 \arguments{
-\item{GRAPH}{an igraph object}
+\item{GRAPH}{an tidygraph object}
 
 \item{prob}{the ratio of the total edge weight}
 }
 \value{
-an igraph object
+an tidygraph object
 }
 \description{
 Extract a sub-graph according to the ratio of total edge weight

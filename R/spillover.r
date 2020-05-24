@@ -1,7 +1,7 @@
 #' calculate the spillover relationship between two time series
 #' @param r1 a time series
 #' @param r2 a time series
-#' @param VaR1 the VaR of r1
+#' @param VaR1 the VaR of r1, calculate by the caviarOptim function
 #' @param VaR2 the VaR of r2
 #' @param M the lag parameter use to calculate the spillover 
 #' @param BETA the significant threshold for the causality test

@@ -6,6 +6,9 @@
 \usage{
 detachAllPackages()
 }
+\value{
+invisible
+}
 \description{
 Function used to detach all the packages except basics pkgs
 }

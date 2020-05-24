@@ -12,8 +12,8 @@
     if(margin==2){
       x=t(x)
     }
-    registerDoMC(thread)
-    tmp=foreach(i=seq(from=1,to = (dim(x)[1]-windowSize+stepSize),by = stepSize))%dopar%{
+    doMC::registerDoMC(thread)
+    tmp<- foreach::foreach(i=seq(from=1,to = (dim(x)[1]-windowSize+stepSize),by = stepSize))%dopar%{
       y=slice(as.data.frame(x),i:(i+windowSize-1))
       y=FUN(y,...)
       return(y)

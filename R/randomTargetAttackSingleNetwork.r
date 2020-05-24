@@ -1,3 +1,4 @@
+#' attack a network with different ways
 #' @param attack the type of attack for random, target and localized and motif
 #' @param GRAPH igraph object
 #' @param l the largets attack steps

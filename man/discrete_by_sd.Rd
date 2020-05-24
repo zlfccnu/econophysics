@@ -11,6 +11,9 @@ discrete_by_sd(x, sd_magnitude = 2)
 
 \item{sd_magnitude}{how many sd should use as threshold}
 }
+\value{
+a vector
+}
 \description{
 discretize the return of stock by standard deviation
 }

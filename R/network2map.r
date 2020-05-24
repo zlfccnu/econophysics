@@ -21,9 +21,9 @@ network2map=function(GRAPH,node_size=NULL,node_color=NULL,inter_com_size=0.5,inn
   if(isTRUE(random_color)){
     node_color=distinctColorPalette(k=max(mem))[mem]##
   }else{
-    node_color=randomColor(count = max(mem),hue =hue,luminosity = luminosity)[mem]
+    node_color=randomcoloR::randomColor(count = max(mem),hue =hue,luminosity = luminosity)[mem]
   }
-  nodes1=data.frame(id=1:vcount(GRAPH),lon=V(GRAPH)$lon,lat=V(GRAPH)$lat,name=V(GRAPH)$name,mem=mem,node_size=round(log10(strength(GRAPH))),node_color=node_color,label_size=round(log10(strength(GRAPH))),label_color=node_color,stringsAsFactors = FALSE)
+  nodes1=data.frame(id=1:vcount(GRAPH),lon=V(GRAPH)$longitude,lat=V(GRAPH)$latitude,name=V(GRAPH)$name,mem=mem,node_size=round(log10(strength(GRAPH))),node_color=node_color,label_size=round(log10(strength(GRAPH))),label_color=node_color,stringsAsFactors = FALSE)
   rownames(nodes1)=NULL
   nodes1=mutate(nodes1,mem=factor(mem))
   

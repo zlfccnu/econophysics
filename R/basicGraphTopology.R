@@ -30,5 +30,7 @@ basicGraphTopology=function(GRAPH){
       topology["density"]=graph.density(GRAPH)
       topology["assortativity"]=assortativity.degree(GRAPH)
     }
+   topology=t(topology)
+   topology=as_tibble(topology)
     return(topology)
 }

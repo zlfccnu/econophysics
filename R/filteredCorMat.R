@@ -15,7 +15,8 @@ filteredCorMat<- function(returns){
   randomIndex=which(eigenCorMat$values<eigenBound[2])
   corMatStructure=eigenCorMat$vectors%*%diag(c(0,eigenCorMat$values[structureIndex],rep(0,dim(returns)[2]-length(structureIndex)-1)))%*%t(eigenCorMat$vectors)
   corMatRandom=eigenCorMat$vectors%*%diag(c(rep(0,dim(returns)[2]-length(randomIndex)),eigenCorMat$values[randomIndex]))%*%t(eigenCorMat$vectors)
- results=list(corMat,corMatMarket,corMatStructure,corMatRandom)
- names(results)=c("corMat","corMatMarket","corMatStructure","corMatRandom")
+  corMatRemoveMarket=eigenCorMat$values[-1]*eigenCorMat$vectors[,-1]%*%t(eigenCorMat$vectors[,-1])
+ results=list(corMat,corMatMarket,corMatStructure,corMatRandom,corMatRemoveMarket)
+ names(results)=c("corMat","corMatMarket","corMatStructure","corMatRandom","corMatRemoveMarket")
   return(results)
 }
