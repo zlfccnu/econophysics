@@ -11,7 +11,7 @@ spillover(r1, r2, VaR1, VaR2, M, BETA, weighted = TRUE)
 
 \item{r2}{a time series}
 
-\item{VaR1}{the VaR of r1}
+\item{VaR1}{the VaR of r1, calculate by the caviarOptim function}
 
 \item{VaR2}{the VaR of r2}
 
