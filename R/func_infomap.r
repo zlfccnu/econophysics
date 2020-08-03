@@ -1,6 +1,7 @@
 #' the latest version of infomap algorithm for directed and weighted network
 #' @param net a igraph object
-#' @return a vector for the community membership of the vertex, different from the membership class in igraph package
+#' @return a community class, the same as in igraph package
+#' @export
 cluster_infomap_new<- function(net){
   write_graph(net,file = "/tmp/net.net",format = "pajek")
   directeFlag=ifelse(is.directed(net),"directed","undirected")
@@ -10,5 +11,6 @@ cluster_infomap_new<- function(net){
   clusterINFO=rename(clusterINFO,c(node="X1",cluster="X2",flow="X3"))
   clusterINFO=arrange(clusterINFO,node)
   membershipID=clusterINFO$cluster
-  return(membershipID)
+  comms = make_clusters(net,membership = membershipID,algorithm = "infomap")
+  return(comms)
 }
