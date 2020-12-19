@@ -10,6 +10,8 @@ chordDiagramFromNet(GRAPH, dat = FALSE, weight_factor = 1)
 \item{GRAPH}{a tidygraph object}
 
 \item{dat}{Logical value, whether return the trade flow data or not}
+
+\item{weight_factor, }{the denominator to scale the trade volume}
 }
 \value{
 a plot

@@ -1,9 +1,12 @@
 #' plot the chord diagram for the uncomtrade among different continent from a network
 #' @param GRAPH a tidygraph object
 #' @param dat Logical value, whether return the trade flow data or not
+#' @param weight_factor, the denominator to scale the trade volume
 #' @return a plot
 #' @export
 chordDiagramFromNet=function(GRAPH,dat=FALSE,weight_factor=1){
+  library("conflicted")
+  conflict_prefer("filter", "dplyr")
   stopifnot(is.tbl_graph(GRAPH))
   ### construct the trade flow dataframe
   continent_trade_from_net<-  GRAPH %>% activate(edges) %>% filter(from_name!=to_name) %>% as_tibble() %>% group_by(from_continent,to_continent) %>% summarise(trade_volume=sum(weight)/weight_factor) %>% ungroup() %>% rename(source=from_continent,target=to_continent)

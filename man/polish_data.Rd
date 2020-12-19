@@ -5,7 +5,7 @@
 \title{polish data from the uncomtrade database}
 \usage{
 polish_data(data, merge = FALSE, weight_method = c("mean", "max",
-  "min"))
+  "min"), continent_info = continent)
 }
 \arguments{
 \item{data}{a tidyverse like tibble}

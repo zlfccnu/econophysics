@@ -1,5 +1,4 @@
 #' @title Core-Periphery for Weighted Networks
-#'
 #' @description This function implements rich club core-periphery algorithm
 #' (Ma & Mondragón, 2015) to identify members of the core and periphery in weighted networks
 #' @param gs International Trade Network - igraph object.

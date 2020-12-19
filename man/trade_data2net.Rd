@@ -4,13 +4,15 @@
 \alias{trade_data2net}
 \title{convert the uncomtrade data tibble to igraph networks}
 \usage{
-trade_data2net(trade_data)
+trade_data2net(trade_data, Y = TRUE)
 }
 \arguments{
 \item{trade_data}{a tidyverse like tibble generate by the "polish_data" function}
+
+\item{Y, }{TRUE means we use the year variable to slice the trade data into different pieces and will return a graph list, FALSE means we aggregate the trade information into a single network}
 }
 \value{
-a tidygraph object
+a tidygraph object or a tidygraph list
 }
 \description{
 convert the uncomtrade data tibble to igraph networks
