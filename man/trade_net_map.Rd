@@ -4,8 +4,21 @@
 \alias{trade_net_map}
 \title{plot the trade network on map and color the country according to the core and periphery}
 \usage{
-trade_net_map(net, core_node_col = "red",
-  periphery_node_col = "orange", mode = c("all", "out", "in"))
+trade_net_map(
+  net,
+  core_node_col = "red",
+  periphery_node_col = "orange",
+  mode = c("all", "out", "in"),
+  label.size = 5,
+  arrow.size = 0.3,
+  segment.size = 0.25,
+  legend.size = 5,
+  scale.edge = TRUE,
+  scale.edge.max = 5,
+  cluster_algo = "cluster_infomap_new",
+  prob = 0.8,
+  title = NULL
+)
 }
 \arguments{
 \item{net}{the trade network}

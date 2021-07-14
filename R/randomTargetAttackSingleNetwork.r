@@ -3,7 +3,6 @@
 #' @param GRAPH igraph object
 #' @param l the largets attack steps
 #' @param vids the vertex ids
-#' @param normalized normalize the number of the giant component
 #' @param decreasing sort degree from large to small or not
 #' @param normalized normalized the giant component size
 #' @return a number of the giant component node

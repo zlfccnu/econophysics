@@ -1,9 +1,10 @@
 #' convert the uncomtrade data tibble to igraph networks
 #' @param trade_data a tidyverse like tibble generate by the "polish_data" function
 #' @param Y, TRUE means we use the year variable to slice the trade data into different pieces and will return a graph list, FALSE means we aggregate the trade information into a single network
+#' @param weight_var the name of the variable used to determine the edge weight, either cargo weight by metric tone or cargo value by USD 1000 dollars
 #' @return a tidygraph object or a tidygraph list
 #' @export
-trade_data2net=function(trade_data,Y=TRUE){
+trade_data2net=function(trade_data,Y=TRUE,weight_var=c("netweight_ton","trade_value_usd_k")){
   #vars_names=c("year","reporter","partner","netweight_tone","reporter_continent","partner_continent")
   ## check the variables of the trade data tibble
   select<- dplyr::select
@@ -20,7 +21,7 @@ trade_data2net=function(trade_data,Y=TRUE){
   if(isTRUE(Y)){
     for(i in years){
       ## filter edge list data for one year
-      edgeList_data<- filter(trade_data,year==i) %>% select(from=reporter,to=partner,weight=netweight_tone)
+      edgeList_data<- filter(trade_data,year==i) %>% select(from=reporter,to=partner,weight=!!sym(weight_var))
       ## all the country names
       tmp_country<- edgeList_data %>% select(from,to) %>% unlist() %>% unique()
       ## compile the vertex information such as lat and lon, continent info as a tibble
@@ -54,8 +55,13 @@ trade_data2net=function(trade_data,Y=TRUE){
       return(graph)
     }
     tmp_net=lapply(tmp_net,tmp_func)
+    if(weight_var=="netweight_ton"){
+      tmp_net=lapply(tmp_net,set.graph.attribute,name="weight_type",value="ton")
+    }else{
+      tmp_net=lapply(tmp_net,set.graph.attribute,name="weight_type",value="usd_k")
+    }
   }else{
-    edgeList_data<- trade_data%>% select(from=reporter,to=partner,weight=netweight_tone)
+    edgeList_data<- trade_data%>% select(from=reporter,to=partner,weight=!!sym(weight_var))
     edgeList_data<- edgeList_data %>% group_by(from,to) %>% summarise(weight=sum(weight))
     ## all the country names
     tmp_country<- edgeList_data %>% select(from,to) %>% unlist() %>% unique()
@@ -81,6 +87,11 @@ trade_data2net=function(trade_data,Y=TRUE){
       return(graph)
     }
     tmp_net=tmp_func(tmp_net)
+    if(weight_var=="netweight_ton"){
+      tmp_net=set.graph.attribute(tmp_net,name="weight_type",value="ton")
+    }else{
+      tmp_net=set.graph.attribute(tmp_net,name="weight_type",value="usd_k")
+    }
   }
   return(tmp_net)
 }

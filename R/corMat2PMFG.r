@@ -1,10 +1,12 @@
-#' Planar Graph Edgelist
+#' Planar Graph from the correlation matrix of financial time series 
 #' @param corMat a correlation matrix
-#' @param outputFile a string as the name of outout file
-#' @param descending 
-#' @return a edgelist file in current directory
+#' @param outputFile a string as the name of output file
+#' @param format the output file format for graph object
+#' @param descending whether arrange the correlation value in descending order or not
+#' @references "Tumminello, M., T. Aste, T. Di Matteo, and R. N. Mantegna. 2005. “A Tool for Filtering Information in Complex Systems.” Proceedings of the National Academy of Sciences of the United States of America 102(30):10421–26."
+#' @return a igraph object or edge_list file in current directory
 #' @export
-corMat2PMFG=function(corMat,outputFile=NULL,desending=TRUE,format=c("edgelist", "pajek", "ncol","lgl","graphml", "dimacs", "gml", "dot", "leda")){
+corMat2PMFG=function(corMat,outputFile=NULL,descending=TRUE,format=c("edgelist", "pajek", "ncol","lgl","graphml", "dimacs", "gml", "dot", "leda")){
   ## construct the sorted correlation data.frame
   N=dim(corMat)[1]
   L=N*(N-1)/2
@@ -25,7 +27,7 @@ corMat2PMFG=function(corMat,outputFile=NULL,desending=TRUE,format=c("edgelist", 
   }
   ##GET THE DATAFRAME
   corSort=data.frame(v1,v2,corValue)
-  if(desending==TRUE){
+  if(isTRUE(desending)){
     corSort=corSort[order(corSort[,3],decreasing = TRUE),]
   }else{
     corSort=corSort[order(corSort[,3],decreasing = FALSE),]

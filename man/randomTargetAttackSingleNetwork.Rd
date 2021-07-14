@@ -4,9 +4,14 @@
 \alias{randomTargetAttackSingleNetwork}
 \title{attack a network with different ways}
 \usage{
-randomTargetAttackSingleNetwork(GRAPH, l = 10, vids = NULL,
+randomTargetAttackSingleNetwork(
+  GRAPH,
+  l = 10,
+  vids = NULL,
   attack = c("random", "target", "localized", "motif"),
-  decreasing = TRUE, normalized = TRUE)
+  decreasing = TRUE,
+  normalized = TRUE
+)
 }
 \arguments{
 \item{GRAPH}{igraph object}
@@ -18,8 +23,6 @@ randomTargetAttackSingleNetwork(GRAPH, l = 10, vids = NULL,
 \item{attack}{the type of attack for random, target and localized and motif}
 
 \item{decreasing}{sort degree from large to small or not}
-
-\item{normalized}{normalize the number of the giant component}
 
 \item{normalized}{normalized the giant component size}
 }

@@ -78,7 +78,7 @@ unweightVisibilityGraph <- function(x) {
 #'@export
 #'@param x a numeric vector convert from a time series
 #'@return a edgelist dataframe with weights with 3 columns
-#'@references From time series to complex networks:The visibility graph,4972–4975, PNAS, April 1, 2008, vol. 105, no. 13
+#'@references "From time series to complex networks:The visibility graph,4972–4975, PNAS, April 1, 2008, vol. 105, no. 13"
 weightedVisibilityGraph <- function(x) {
     .Call('_econophysics_weightedVisibilityGraph', PACKAGE = 'econophysics', x)
 }

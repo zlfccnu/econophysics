@@ -4,9 +4,18 @@
 \alias{kuramoto}
 \title{simulate the kuramoto model}
 \usage{
-kuramoto(graph = NULL, adjMat, h = 0.01, phase = runif(N, 0, 2 * pi),
-  natFreq = rnorm(N), thread = 3, steps = 1000, lambda = 0.1,
-  weight = TRUE, N = vcount(graph))
+kuramoto(
+  graph = NULL,
+  adjMat,
+  h = 0.01,
+  phase = runif(N, 0, 2 * pi),
+  natFreq = rnorm(N),
+  thread = 3,
+  steps = 1000,
+  lambda = 0.1,
+  weight = TRUE,
+  N = vcount(graph)
+)
 }
 \arguments{
 \item{graph}{the network structure, can be weighted}

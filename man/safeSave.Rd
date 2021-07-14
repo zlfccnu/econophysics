@@ -4,8 +4,12 @@
 \alias{safeSave}
 \title{safe save for objects}
 \usage{
-safeSave(..., file = stop("'file' must be specified"),
-  overwrite = FALSE, save.fun = save.image)
+safeSave(
+  ...,
+  file = stop("'file' must be specified"),
+  overwrite = FALSE,
+  save.fun = save.image
+)
 }
 \arguments{
 \item{...}{the objects}
@@ -14,7 +18,7 @@ safeSave(..., file = stop("'file' must be specified"),
 
 \item{overwrite}{overwrite the existed file or not}
 
-\item{the}{function used to save the objects}
+\item{save.fun}{the function used to perform the save operation, defalut is save.image}
 }
 \value{
 invisible

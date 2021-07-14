@@ -5,9 +5,8 @@
 #' Note for networks not produced using ITNr there needs to be a vertex attribute "name" and edge attribute "weight"
 #' @param type directed/undirected
 #' @export
-#' @return List - 1.)igraph object with core-periphery results added as a node attribute.
-#' 2.) Dataframe of core-periphery results.
-#' @references Ma A, Mondragón RJ (2015) Rich-Cores in Networks. PLoS ONE 10(3): e0119678. https://doi.org/10.1371/journal.pone.0119678
+#' @return List 1.)igraph object with core-periphery results added as a node attribute. 2.) Dataframe of core-periphery results.
+#' @references "Ma A, Mondragón RJ (2015) Rich-Cores in Networks. PLoS ONE 10(3): e0119678. https://doi.org/10.1371/journal.pone.0119678"
 #' @examples
 #' require(igraph)
 #' ##Create random International Trade Network (igraph object)

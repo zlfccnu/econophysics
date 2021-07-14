@@ -4,10 +4,16 @@
 \alias{randomAttackSingleNetwork}
 \title{Random attack for single network}
 \usage{
-randomAttackSingleNetwork(GRAPH, p = 0.1, vids = NULL,
-  attack = c("random", "target", "localized", "motif"), mode = c("out",
-  "in", "all", "total"), decreasing = TRUE, normalized = TRUE,
-  returnGRAPH = FALSE)
+randomAttackSingleNetwork(
+  GRAPH,
+  p = 0.1,
+  vids = NULL,
+  attack = c("random", "target", "localized", "motif"),
+  mode = c("out", "in", "all", "total"),
+  decreasing = TRUE,
+  normalized = TRUE,
+  returnGRAPH = FALSE
+)
 }
 \arguments{
 \item{GRAPH}{a igraph object}
@@ -22,11 +28,9 @@ randomAttackSingleNetwork(GRAPH, p = 0.1, vids = NULL,
 
 \item{decreasing}{sort degree from large to small or not}
 
-\item{normalized}{normalize the number of the giant component}
-
 \item{normalized}{the giant component size}
 
-\item{returnGraph}{a logical, whether return the remaining graph or not}
+\item{returnGRAPH}{a logical, whether return the remaining graph or not}
 }
 \value{
 a number of the giant component node

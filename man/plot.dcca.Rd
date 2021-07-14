@@ -4,10 +4,10 @@
 \alias{plot.dcca}
 \title{plot the fluctuation function for DCCA}
 \usage{
-plot.dcca(x, xlab = "s", ylab = "fq", ylim = NULL, tck = 0.02)
+\method{plot}{dcca}(x, xlab = "s", ylab = "fq", ylim = NULL, tck = 0.02)
 }
 \arguments{
-\item{x}{the fuctuation function}
+\item{x}{the fluctuation value}
 
 \item{xlab}{the x label}
 
@@ -15,7 +15,7 @@ plot.dcca(x, xlab = "s", ylab = "fq", ylim = NULL, tck = 0.02)
 
 \item{ylim}{the y coordinate range}
 
-\item{the}{plot tck}
+\item{tck}{the plot tck value for the paramter option}
 }
 \value{
 invisible

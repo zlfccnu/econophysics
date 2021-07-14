@@ -4,9 +4,18 @@
 \alias{optimalES}
 \title{use the DEoptim algorithm to calculate the optimal ES by using the box constriant}
 \usage{
-optimalES(stockNames, returns, wMin = 0, wMax = 1,
-  searchSize = 50000, itermax = 200, min_sum = 0.99,
-  max_sum = 1.01, p = 0.95, trace = FALSE)
+optimalES(
+  stockNames,
+  returns,
+  wMin = 0,
+  wMax = 1,
+  searchSize = 50000,
+  itermax = 200,
+  min_sum = 0.99,
+  max_sum = 1.01,
+  p = 0.95,
+  trace = FALSE
+)
 }
 \arguments{
 \item{stockNames}{the ticker of stocks}
@@ -19,6 +28,8 @@ optimalES(stockNames, returns, wMin = 0, wMax = 1,
 
 \item{searchSize}{the search steps of DEoptim algorithm}
 
+\item{itermax}{the parameter for DEoptim.control function}
+
 \item{min_sum}{the minimum of the weight sum}
 
 \item{max_sum}{the maximum of the weight sum}
@@ -26,8 +37,6 @@ optimalES(stockNames, returns, wMin = 0, wMax = 1,
 \item{p}{the confidence level of the ES}
 
 \item{trace}{whether print the interctive process or not}
-
-\item{intermax}{the parameter for DEoptim.control function}
 }
 \value{
 A numeric value

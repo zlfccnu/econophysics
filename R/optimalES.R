@@ -4,7 +4,7 @@
 #' @param wMin the minimum weight of each stock
 #' @param wMax the maximum weight of each stock
 #' @param searchSize the search steps of DEoptim algorithm
-#' @param intermax the parameter for DEoptim.control function
+#' @param itermax the parameter for DEoptim.control function
 #' @param min_sum the minimum of the weight sum
 #' @param max_sum the maximum of the weight sum
 #' @param p the confidence level of the ES

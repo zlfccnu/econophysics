@@ -4,8 +4,14 @@
 \alias{eff.frontier}
 \title{Function used to find the efficient frontier by using the modern portofilio theory}
 \usage{
-eff.frontier(returns, covMat = NULL, short = "no",
-  max.allocation = NULL, risk.premium.up = 20, thread = 3)
+eff.frontier(
+  returns,
+  covMat = NULL,
+  short = "no",
+  max.allocation = NULL,
+  risk.premium.up = 20,
+  thread = 3
+)
 }
 \arguments{
 \item{returns}{argument should be a m x n matrix with one column per security}

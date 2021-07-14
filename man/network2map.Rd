@@ -4,10 +4,20 @@
 \alias{network2map}
 \title{plot network on world map}
 \usage{
-network2map(GRAPH, node_size = NULL, node_color = NULL,
-  inter_com_size = 0.5, inner_com_size = 0.8, label_color = NULL,
-  label_size = NULL, hue = "blue", luminosity = "bright",
-  inter_com_color = "red", inter_com_type = 2, random_color = FALSE)
+network2map(
+  GRAPH,
+  node_size = NULL,
+  node_color = NULL,
+  inter_com_size = 0.5,
+  inner_com_size = 0.8,
+  label_color = NULL,
+  label_size = NULL,
+  hue = "blue",
+  luminosity = "bright",
+  inter_com_color = "red",
+  inter_com_type = 2,
+  random_color = FALSE
+)
 }
 \arguments{
 \item{GRAPH}{an igraph object}
@@ -26,13 +36,11 @@ network2map(GRAPH, node_size = NULL, node_color = NULL,
 
 \item{luminosity}{the color type, "random", "light", "bright", "dark"}
 
-\item{inter_com_color}{inter community link color}
+\item{inter_com_color}{the inter community link colors}
 
 \item{inter_com_type}{the inter community link type}
 
 \item{random_color}{the way to generate color, random or not}
-
-\item{inter_com_color}{the inter community link colors}
 }
 \value{
 an ggplot object

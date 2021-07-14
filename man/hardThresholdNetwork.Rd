@@ -6,6 +6,9 @@
 \usage{
 hardThresholdNetwork(MAT, threshold = 0.1)
 }
+\value{
+
+}
 \description{
 Construct the hard threshold network form correlation matrix
 }

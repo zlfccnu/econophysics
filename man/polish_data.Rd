@@ -4,13 +4,27 @@
 \alias{polish_data}
 \title{polish data from the uncomtrade database}
 \usage{
-polish_data(data, merge = FALSE, weight_method = c("mean", "max",
-  "min"), continent_info = continent)
+polish_data(
+  data,
+  merge = FALSE,
+  metric_var = c("weight", "value"),
+  weight_method = c("mean", "max", "min"),
+  continent_info = continent,
+  keep_world = FALSE
+)
 }
 \arguments{
 \item{data}{a tidyverse like tibble}
 
 \item{merge}{merge HK and Maco to mainland China or not}
+
+\item{metric_var}{whether use the weight(by KG) of the cargo or the value(by USD)}
+
+\item{weight_method}{the evaluation method to polish the metric variable}
+
+\item{continent_info}{the supplementary data for the continent information}
+
+\item{keep_world}{whether keep the data for world total}
 }
 \value{
 a tidyverse like tibble

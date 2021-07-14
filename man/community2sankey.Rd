@@ -4,8 +4,14 @@
 \alias{community2sankey}
 \title{plot community as sankey diagram}
 \usage{
-community2sankey(net_list, font_size = 18, scaled = FALSE,
-  sinksRight = TRUE, nodePadding = 10, nodeWidth = 30)
+community2sankey(
+  net_list,
+  font_size = 18,
+  scaled = FALSE,
+  sinksRight = TRUE,
+  nodePadding = 10,
+  nodeWidth = 30
+)
 }
 \arguments{
 \item{net_list}{a list of igraph objects}

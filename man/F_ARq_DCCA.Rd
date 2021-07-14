@@ -4,9 +4,17 @@
 \alias{F_ARq_DCCA}
 \title{ARMA based MFDCCA analysis}
 \usage{
-F_ARq_DCCA(x, y, nVec = NULL, sampleNum = NULL, qVec = c(-5:5),
-  thread = 3, detrendMethod = "AR", sampleMethod = 2,
-  lengthRatio = 0.05)
+F_ARq_DCCA(
+  x,
+  y,
+  nVec = NULL,
+  sampleNum = NULL,
+  qVec = c(-5:5),
+  thread = 3,
+  detrendMethod = "AR",
+  sampleMethod = 2,
+  lengthRatio = 0.05
+)
 }
 \arguments{
 \item{x}{a numeric vector which convert from a time series}

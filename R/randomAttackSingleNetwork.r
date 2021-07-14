@@ -3,11 +3,10 @@
 #' @param p the fraction of remaining nodes
 #' @param vids the selected initial attack nodes in the target and localized attack
 #' @param attack the type of attack for random, target and localized and motif, the attack by id can be proceeded by the localized attack
-#' @param normalized normalize the number of the giant component
 #' @param decreasing sort degree from large to small or not
 #' @param normalized the giant component size
 #' @param mode whether to delete the outgoing incoming or both edges for selected nodes
-#' @param returnGraph a logical, whether return the remaining graph or not
+#' @param returnGRAPH a logical, whether return the remaining graph or not
 #' @return a number of the giant component node
 #' @export
 randomAttackSingleNetwork=function(GRAPH,p=0.1,vids=NULL,attack=c("random","target","localized","motif"),mode=c("out","in","all","total"),decreasing=TRUE,normalized=TRUE,returnGRAPH=FALSE){

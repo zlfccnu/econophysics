@@ -3,7 +3,7 @@
 #' @param xlab the x label
 #' @param ylab the y label
 #' @param ylim the y coordinate range 
-#' @param the plot tck
+#' @param tck the plot tck value for the parameter option
 #' @return invisible
 #' @export
 plot.dfa=function(x,xlab="s",ylab="fq",ylim=NULL,tck=0.02){

@@ -1,9 +1,9 @@
 #' plot the fluctuation function for DCCA
-#' @param x the fuctuation function
+#' @param x the fluctuation value
 #' @param xlab the x label
 #' @param ylab the y label
 #' @param ylim the y coordinate range 
-#' @param the plot tck
+#' @param tck the plot tck value for the paramter option
 #' @return invisible
 #' @export
 

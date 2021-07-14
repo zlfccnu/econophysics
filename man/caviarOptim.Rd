@@ -4,8 +4,15 @@
 \alias{caviarOptim}
 \title{Function used to calculate the CAViaR}
 \usage{
-caviarOptim(data, model = 1, pval = 0.01, k = 5, REP = 5,
-  MAXITER = 500, predict = F)
+caviarOptim(
+  data,
+  model = 1,
+  pval = 0.01,
+  k = 5,
+  REP = 5,
+  MAXITER = 500,
+  predict = F
+)
 }
 \arguments{
 \item{data}{a vector of return time series}

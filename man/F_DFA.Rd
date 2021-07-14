@@ -4,8 +4,16 @@
 \alias{F_DFA}
 \title{Function used to calculate the DFA fluctuation}
 \usage{
-F_DFA(x, nVec = NULL, sampleNum = NULL, qVec = c(-5:5), thread = 3,
-  detrendOrder = 3, sampleMethod = 2, lengthRatio = 0.05)
+F_DFA(
+  x,
+  nVec = NULL,
+  sampleNum = NULL,
+  qVec = c(-5:5),
+  thread = 3,
+  detrendOrder = 3,
+  sampleMethod = 2,
+  lengthRatio = 0.05
+)
 }
 \arguments{
 \item{x}{the time series}

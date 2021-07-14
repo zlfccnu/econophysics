@@ -4,7 +4,7 @@
 \alias{plot.dfa}
 \title{plot the fluctuation function for DFA}
 \usage{
-plot.dfa(x, xlab = "s", ylab = "fq", ylim = NULL, tck = 0.02)
+\method{plot}{dfa}(x, xlab = "s", ylab = "fq", ylim = NULL, tck = 0.02)
 }
 \arguments{
 \item{x}{the time series}
@@ -15,7 +15,7 @@ plot.dfa(x, xlab = "s", ylab = "fq", ylim = NULL, tck = 0.02)
 
 \item{ylim}{the y coordinate range}
 
-\item{the}{plot tck}
+\item{tck}{the plot tck value for the parameter option}
 }
 \value{
 invisible

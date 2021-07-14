@@ -4,8 +4,15 @@
 \alias{F2_DFA}
 \title{Function used to calculate the square DFA fluctuation}
 \usage{
-F2_DFA(x, nVec = NULL, sampleNum = NULL, thread = 3,
-  detrendOrder = 3, sampleMethod = 2, lengthRatio = 0.05)
+F2_DFA(
+  x,
+  nVec = NULL,
+  sampleNum = NULL,
+  thread = 3,
+  detrendOrder = 3,
+  sampleMethod = 2,
+  lengthRatio = 0.05
+)
 }
 \arguments{
 \item{x}{a numeric vector which convert from a time series}

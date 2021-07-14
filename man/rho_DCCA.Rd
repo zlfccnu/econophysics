@@ -4,8 +4,17 @@
 \alias{rho_DCCA}
 \title{Function used to calculate the DCCA coefficient}
 \usage{
-rho_DCCA(x, y, nVec = NULL, sampleNum = NULL, qVec, detrendOrder = 3,
-  thread = 3, sampleMethod = 2, lengthRatio = 0.05)
+rho_DCCA(
+  x,
+  y,
+  nVec = NULL,
+  sampleNum = NULL,
+  qVec,
+  detrendOrder = 3,
+  thread = 3,
+  sampleMethod = 2,
+  lengthRatio = 0.05
+)
 }
 \arguments{
 \item{x}{a numeric vector which convert from a time series}

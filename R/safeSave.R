@@ -2,7 +2,7 @@
 #' @param ... the objects
 #' @param file the file name to store the objects
 #' @param overwrite overwrite the existed file or not
-#' @param the function used to save the objects 
+#' @param save.fun the function used to perform the save operation, defalut is save.image
 #' @return invisible
 #' @export
 safeSave <- function( ..., file=stop("'file' must be specified"), overwrite=FALSE, save.fun=save.image) {

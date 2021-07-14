@@ -4,8 +4,14 @@
 \alias{eff.frontier_ipop}
 \title{get the efficient frontier, no matter the covariance matrix is postive semidefinite or not}
 \usage{
-eff.frontier_ipop(returns, covMat = NULL, short = "yes",
-  risk.premium.up = 20, thread = 3, maxiter = 40)
+eff.frontier_ipop(
+  returns,
+  covMat = NULL,
+  short = "yes",
+  risk.premium.up = 20,
+  thread = 3,
+  maxiter = 40
+)
 }
 \arguments{
 \item{covMat}{The predefined covariance matrix}

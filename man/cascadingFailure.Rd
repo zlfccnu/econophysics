@@ -4,9 +4,18 @@
 \alias{cascadingFailure}
 \title{This program is trying to modeling the cascading failure}
 \usage{
-cascadingFailure(GRAPH1, GRAPH2, attack = c("random", "target",
-  "localized", "motif"), p = 0.7, q = NULL, plot = FALSE,
-  vids = NULL, Trace = TRUE, decreasing = TRUE, normalized = TRUE)
+cascadingFailure(
+  GRAPH1,
+  GRAPH2,
+  attack = c("random", "target", "localized", "motif"),
+  p = 0.7,
+  q = NULL,
+  plot = FALSE,
+  vids = NULL,
+  Trace = TRUE,
+  decreasing = TRUE,
+  normalized = TRUE
+)
 }
 \arguments{
 \item{GRAPH1}{the first layer of inter dependent network}

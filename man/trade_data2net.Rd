@@ -4,12 +4,18 @@
 \alias{trade_data2net}
 \title{convert the uncomtrade data tibble to igraph networks}
 \usage{
-trade_data2net(trade_data, Y = TRUE)
+trade_data2net(
+  trade_data,
+  Y = TRUE,
+  weight_var = c("netweight_ton", "trade_value_usd_k")
+)
 }
 \arguments{
 \item{trade_data}{a tidyverse like tibble generate by the "polish_data" function}
 
 \item{Y, }{TRUE means we use the year variable to slice the trade data into different pieces and will return a graph list, FALSE means we aggregate the trade information into a single network}
+
+\item{weight_var}{the name of the variable used to determine the edge weight, either cargo weight by metric tone or cargo value by USD 1000 dollars}
 }
 \value{
 a tidygraph object or a tidygraph list

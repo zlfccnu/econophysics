@@ -29,7 +29,6 @@ trade_net_map=function(net,core_node_col="red",periphery_node_col="orange",mode=
   world_data<- map_data("world")
   world_data<- mutate(world_data,color="#f9f9f9")
   world_data<- mutate(world_data,iso=countrycode(region,origin = "country.name",destination = "iso3c"))
-  ## 需要改进一下用带权重的core算法
   core_rank<- bind_cols(vertex=V(net)$name,core_rank=coreness(net,mode = mode))
   core_rank<- mutate(core_rank,core_rank=ifelse(core_rank==max(core_rank),core_node_col,periphery_node_col))
   core_rank<- mutate(core_rank,iso=countrycode(vertex,origin = "country.name",destination = "iso3c"))

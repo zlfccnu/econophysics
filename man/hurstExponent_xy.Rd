@@ -4,9 +4,18 @@
 \alias{hurstExponent_xy}
 \title{Function used to calculate the generalized hurst exponent}
 \usage{
-hurstExponent_xy(x, y, nVec = NULL, sampleNum = NULL, thread = 3,
-  qVec = c(-5:5), detrendOrder = 3, sampleMethod = 2,
-  lengthRatio = 0.05, returnFluctuation = FALSE)
+hurstExponent_xy(
+  x,
+  y,
+  nVec = NULL,
+  sampleNum = NULL,
+  thread = 3,
+  qVec = c(-5:5),
+  detrendOrder = 3,
+  sampleMethod = 2,
+  lengthRatio = 0.05,
+  returnFluctuation = FALSE
+)
 }
 \arguments{
 \item{x}{a numeric vector which convert from a time series}

@@ -1,11 +1,11 @@
 #' plot the network with sankey diagram, either by country or by continent
 #' @param net an igraph or tidygraph object
-#' @param country logical value, defalut TRUE, the node of diagram is country or not
+#' @param percent the cumulative percnet value used to filter out the edges by cumulative weight
 #' @param fontSize the font size of the plot
 #' @param fontFamily the font type of the plt
 #' @param nodeWidth the width of the nodes
 #' @param nodePadding the width of the height
-#' @param sinksRight whehter the plot will align to the right
+#' @param sinksRight whether the plot will align to the right
 #' @return a list with the sankey data for both country and continent and the sankey digram object for the country and continent with different coloring scheme
 #' @export
 net2sankey<- function(net,percent=NULL,fontSize=25,fontFamily="Times New Roman",nodeWidth=20,nodePadding=10,sinksRight=FALSE){

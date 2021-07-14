@@ -4,8 +4,13 @@
 \alias{bump_chart}
 \title{bump chart or ranking chart for the uncomtrade data}
 \usage{
-bump_chart(d, y, rank_limit = 10, rank_name, trade_flow = c("Export",
-  "Import"))
+bump_chart(
+  d,
+  y,
+  rank_limit = 10,
+  rank_name,
+  trade_flow = c("Export", "Import")
+)
 }
 \arguments{
 \item{d}{the ranking dataframe provide by the node_ranking() function}

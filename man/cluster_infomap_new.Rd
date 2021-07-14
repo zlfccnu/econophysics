@@ -9,8 +9,6 @@ cluster_infomap_new(net)
 cluster_infomap_new(net)
 }
 \arguments{
-\item{net}{the igraph object}
-
 \item{net}{a igraph object}
 }
 \value{

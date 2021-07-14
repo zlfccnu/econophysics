@@ -1,28 +1,30 @@
 #' generate the spillover network for a return dataframe
-#' @param 
-#' @param 
-#' @return 
+#' @param return_ts a tibble object with multiple return time series for assets, the first column is the date indexes
+#' @param VaR_ts a tisbble object with multiple VaR time series for assets, the first column is the date indexes
+#' @param M the lag paramter for the risk spillover
+#' @param BETA the significant threshold for the causality test
+#' @return a tidygraph object, the risk spillover network
 #' @export
 
-spilloverNet<- function(dat,parallel=TRUE, n_cores=3){
-  parallel::makeCluster(n_cores)
-  spilloverMatListM5=foreach(i=1:length(sp500_returns_slices))%dopar%{
-    n=dim(sp500_returns_VaR[[i]])[2]-1
-    spilloverMat=matrix(data = 0,nrow = n,ncol = n)
-    tickers=colnames(sp500_returns_VaR[[i]])[-1]
-    colnames(spilloverMat)=tickers
-    rownames(spilloverMat)=tickers
-    for(j in 1:(n-1)){
-      for(k in (j+1):n){
-        r1=pull(select(sp500_returns_slices[[i]],tickers[j]))
-        r2=pull(select(sp500_returns_slices[[i]],tickers[k]))
-        VaR1=pull(select(sp500_returns_VaR[[i]],tickers[j]))
-        VaR2=pull(select(sp500_returns_VaR[[i]],tickers[k]))
-        spValue=spillover(r1=r1,r2 = r2,VaR1 = VaR1,VaR2 = VaR2,M=M,BETA = BETA)
-        spilloverMat[tickers[j],tickers[k]]=spValue[1]
-        spilloverMat[tickers[k],tickers[j]]=spValue[2]
-      }
+spilloverNet<- function(return_ts,VaR_ts,M,BETA){
+    ### check if the first column is the date variable
+    col_types<- return_ts %>% summarise_all(class) %>% as.character()
+    if(!"Date"%in%col_types){
+      stop("the return ts tibble should include the Date index")
     }
-    return(spilloverMat)
-  }
+    col_types<- VaR_ts %>% summarise_all(class) %>% as.character()
+    if(!"Date"%in%col_types){
+      stop("the VaR ts tibble should include the Date index")
+    }
+    
+    tickers=colnames(return_ts)[-1]
+    edge_data <- tibble::tibble(from=tickers,to=tickers) %>% tidyr::expand(from=from,to=to)## all possible edges
+    edge_data<- edge_data %>% dplyr::filter(from!=to)## remove the duplicate combinations
+    edge_data<- edge_data %>% mutate(sp_value= purrr::pmap_dbl(list(from,to),function(from,to,return_ts,VaR_ts,M,BETA){
+      sp_value<- spillover(r1=return_ts %>% dplyr::pull(from),r2 = return_ts %>% dplyr::pull(from),VaR1 = VaR_ts %>% dplyr::pull(from),VaR2 = VaR_ts %>% dplyr::pull(to),M=M,BETA = BETA)
+      return(sp_value[1])
+    },return_ts=return_ts,VaR_ts=VaR_ts,M=M,BETA=BETA))
+    edge_data<- edge_data %>% dplyr::filter(sp_value!=0) 
+    net<- as_tbl_graph(edge_data)
+    return(net)
 }

@@ -4,7 +4,19 @@
 \alias{spilloverNet}
 \title{generate the spillover network for a return dataframe}
 \usage{
-spilloverNet(dat, parallel = TRUE, n_cores = 3)
+spilloverNet(return_ts, VaR_ts, M, BETA)
+}
+\arguments{
+\item{return_ts}{a tibble object with multiple return time series for assets, the first column is the date indexes}
+
+\item{VaR_ts}{a tisbble object with multiple VaR time series for assets, the first column is the date indexes}
+
+\item{M}{the lag paramter for the risk spillover}
+
+\item{BETA}{the significant threshold for the causality test}
+}
+\value{
+a tidygraph object, the risk spillover network
 }
 \description{
 generate the spillover network for a return dataframe

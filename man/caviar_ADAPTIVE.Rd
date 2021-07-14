@@ -4,8 +4,7 @@
 \alias{caviar_ADAPTIVE}
 \title{adaptive model for CoViaR}
 \usage{
-caviar_ADAPTIVE(K, THETA, BETA, y, empiricalQuantile, VaR, RowsOfy,
-  varPredict)
+caviar_ADAPTIVE(K, THETA, BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict)
 }
 \arguments{
 \item{k}{}

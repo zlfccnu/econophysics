@@ -1,5 +1,7 @@
-#' Function used to put each community as the same layout
+#' Function used to layout each sub community as the same layout
 #' @param graph A igraph object
+#' @param community_algorithm the algorithm used to detect the community
+#' @param layout_desired the layout for each sub community
 #' @param algorithm A character name for the community detection method
 #' @param layout A character name for the layout function you use
 #' @return A data frame with four columns, the vertex label, the membership of each node, two columns of the coordinates
