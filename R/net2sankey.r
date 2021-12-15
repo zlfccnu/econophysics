@@ -11,18 +11,16 @@
 net2sankey<- function(net,percent=NULL,fontSize=25,fontFamily="Times New Roman",nodeWidth=20,nodePadding=10,sinksRight=FALSE){
   library(tidyverse)
   library(dplyr)
+  library(igraph)
+  library(networkD3)
+  library(tidygraph)
   library(conflicted)
   ## dplyr functions win
   fs<- showPackageContents("package:dplyr")
   for(i in fs$Non_primitiveFunctions){
     conflicted::conflict_prefer(i,winner = "dplyr",quiet = TRUE)
   }
-  
-  library(tidygraph)
-  library(igraph)
-  library(networkD3)
- 
- 
+
   net<- as_tbl_graph(net)
   net1<- net
   stopifnot(is.tbl_graph(net))
@@ -41,7 +39,7 @@ net2sankey<- function(net,percent=NULL,fontSize=25,fontFamily="Times New Roman",
   
   
   ## add link groups reference to the node groups
-  net<- left_join(net %>% activate(edges),activate(net,nodes) %>% select(name,group) %>% as_tibble(),by=c("from_name"="name"))
+  net<- left_join(net %>% activate(edges),activate(net,nodes) %>% dplyr::select(name,group) %>% as_tibble(),by=c("from_name"="name"))
   net<- activate(net,edges)
   sankeyData[[2]]<- as_tibble(net)### sankey data for edges
   ## id rename from 0

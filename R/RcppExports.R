@@ -9,7 +9,7 @@
 #' @param y
 #' @return a list
 caviar_ADAPTIVE <- function(K, THETA, BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict) {
-    .Call('_econophysics_caviar_ADAPTIVE', PACKAGE = 'econophysics', K, THETA, BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict)
+    .Call(`_econophysics_caviar_ADAPTIVE`, K, THETA, BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict)
 }
 
 #' Asyomptic slope model for CoViaR
@@ -18,7 +18,7 @@ caviar_ADAPTIVE <- function(K, THETA, BETA, y, empiricalQuantile, VaR, RowsOfy, 
 #' @param y
 #' @return a list
 caviar_AS <- function(BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict) {
-    .Call('_econophysics_caviar_AS', PACKAGE = 'econophysics', BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict)
+    .Call(`_econophysics_caviar_AS`, BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict)
 }
 
 #' GARCH model for CoViaR
@@ -27,7 +27,7 @@ caviar_AS <- function(BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict) {
 #' @param y
 #' @return a list
 caviar_GARCH <- function(BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict) {
-    .Call('_econophysics_caviar_GARCH', PACKAGE = 'econophysics', BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict)
+    .Call(`_econophysics_caviar_GARCH`, BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict)
 }
 
 #' SAV  model for CoViaR
@@ -36,7 +36,7 @@ caviar_GARCH <- function(BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict) {
 #' @param y
 #' @return a list
 caviar_SAV <- function(BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict) {
-    .Call('_econophysics_caviar_SAV', PACKAGE = 'econophysics', BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict)
+    .Call(`_econophysics_caviar_SAV`, BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict)
 }
 
 #' convert a data.frame to list
@@ -44,7 +44,7 @@ caviar_SAV <- function(BETA, y, empiricalQuantile, VaR, RowsOfy, varPredict) {
 #'@param x the dataframe to be converted
 #'@return an list
 df2list <- function(x) {
-    .Call('_econophysics_df2list', PACKAGE = 'econophysics', x)
+    .Call(`_econophysics_df2list`, x)
 }
 
 #'Function to get the edgelist form a time series
@@ -54,7 +54,7 @@ df2list <- function(x) {
 #'@return a edgelist dataframe with weights with 2 columns
 #'@references Geometrical invariability of transformation between a time series and a complex network, PHYSICAL REVIEW E 90, 012804 (2014)
 isometricTrans <- function(x, epsilon) {
-    .Call('_econophysics_isometricTrans', PACKAGE = 'econophysics', x, epsilon)
+    .Call(`_econophysics_isometricTrans`, x, epsilon)
 }
 
 #' Test a graph is planar or not
@@ -63,7 +63,7 @@ isometricTrans <- function(x, epsilon) {
 #'@param VNum vertex number of a graph which related to the edgelist
 #'@return FALSE OR TRUE
 funcPlanarTest <- function(edgelist, VNum) {
-    .Call('_econophysics_funcPlanarTest', PACKAGE = 'econophysics', edgelist, VNum)
+    .Call(`_econophysics_funcPlanarTest`, edgelist, VNum)
 }
 
 #' Function to get the edgelist form a time series
@@ -71,7 +71,7 @@ funcPlanarTest <- function(edgelist, VNum) {
 #'@param x a numeric vector convert from a time series
 #'@return a edgelist dataframe without weights with 2 columns
 unweightVisibilityGraph <- function(x) {
-    .Call('_econophysics_unweightVisibilityGraph', PACKAGE = 'econophysics', x)
+    .Call(`_econophysics_unweightVisibilityGraph`, x)
 }
 
 #'Function to get the edgelist form a time series
@@ -80,6 +80,6 @@ unweightVisibilityGraph <- function(x) {
 #'@return a edgelist dataframe with weights with 3 columns
 #'@references "From time series to complex networks:The visibility graph,4972–4975, PNAS, April 1, 2008, vol. 105, no. 13"
 weightedVisibilityGraph <- function(x) {
-    .Call('_econophysics_weightedVisibilityGraph', PACKAGE = 'econophysics', x)
+    .Call(`_econophysics_weightedVisibilityGraph`, x)
 }
 

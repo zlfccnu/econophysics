@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // caviar_ADAPTIVE
 NumericVector caviar_ADAPTIVE(double K, double THETA, NumericVector BETA, NumericVector y, double empiricalQuantile, NumericVector VaR, int RowsOfy, int varPredict);
 RcppExport SEXP _econophysics_caviar_ADAPTIVE(SEXP KSEXP, SEXP THETASEXP, SEXP BETASEXP, SEXP ySEXP, SEXP empiricalQuantileSEXP, SEXP VaRSEXP, SEXP RowsOfySEXP, SEXP varPredictSEXP) {

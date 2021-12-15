@@ -14,13 +14,13 @@ createProject=function(projectName){
   # raw data
   dir.create("./rawData")
   # R processed data
-  dir.create("./rData")
+  dir.create("./processedData")
   # figures
   dir.create("./figures")
   # report files
-  dir.create("./reports")
+  dir.create("./manuscript")
   # documents
-  dir.create("./doc")
+  dir.create("./ref")
   ## create project related text files
   # REAME file
   file.create("./README")

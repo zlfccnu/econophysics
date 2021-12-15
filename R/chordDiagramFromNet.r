@@ -2,10 +2,15 @@
 #' @param GRAPH a tidygraph object
 #' @param dat Logical value, whether return the trade flow data or not
 #' @param weight_factor, the denominator to scale the trade volume
+#' @param text_cex the text cex for the labels
+#' @param text_height control the distance between the text and the circle
+#' @param axis_cex the font size for the axis
+#' @param facing the direction and arrangement for the text
 #' @return a plot
 #' @export
-chordDiagramFromNet=function(GRAPH,dat=FALSE,weight_factor=1){
+chordDiagramFromNet=function(GRAPH,dat=FALSE,weight_factor=1, text_height=4,text_cex=1,axis_cex=1,facing="clockwise",text_seperate_factor=40){
   library("conflicted")
+  require("circlize")
   conflict_prefer("filter", "dplyr")
   stopifnot(is.tbl_graph(GRAPH))
   ### construct the trade flow dataframe
@@ -32,13 +37,13 @@ chordDiagramFromNet=function(GRAPH,dat=FALSE,weight_factor=1){
   # add labels and axis
   circos.track(track.index = 1, bg.border = NA, panel.fun = function(x, y) {
     xlim = get.cell.meta.data("xlim")
-    adjust=sum(continent_trade_from_net$trade_volume)/100## the position of second label
+    adjust=sum(continent_trade_from_net$trade_volume)/text_seperate_factor## the position of second label
     sector.index = get.cell.meta.data("sector.index")
     reg1 = d1 %>% dplyr::filter(region == sector.index) %>% pull(reg1)
     reg2 = d1 %>% dplyr::filter(region == sector.index) %>% pull(reg2)
-    circos.text(x = mean(xlim)+adjust, y =3.5,labels = reg1, cex = 1,niceFacing = TRUE,facing = "clockwise",font=2)
-    circos.text(x = mean(xlim), y =3.5,labels = reg2, cex = 1,niceFacing = TRUE,facing = "clockwise",font=2)
-    circos.axis(h = "top", labels.cex = 1,labels.niceFacing = TRUE, labels.pos.adjust = TRUE)
+    circos.text(x = mean(xlim)-adjust, y =text_height,labels = reg1, cex = text_cex,niceFacing = TRUE,facing = facing,font=2)
+    circos.text(x = mean(xlim)+adjust, y =text_height,labels = reg2, cex = text_cex,niceFacing = TRUE,facing = facing,font=2)
+    circos.axis(h = "top", labels.cex = axis_cex,labels.niceFacing = TRUE, labels.pos.adjust = TRUE)
   })
   
   if(isTRUE(dat)){

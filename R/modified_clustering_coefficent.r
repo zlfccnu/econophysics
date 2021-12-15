@@ -1,0 +1,1 @@
+#' The modified clustering coefficent for a complete weighted graph

@@ -10,6 +10,8 @@ risk_transmission(
   n_id = NULL,
   e_id = NULL,
   alpha = 0.1,
+  alpha_lower_limit = 0.1,
+  alpha_increase_type = c("export", "degree"),
   return_net = FALSE
 )
 }
@@ -22,7 +24,11 @@ risk_transmission(
 
 \item{e_id}{the initial shocked edge id}
 
-\item{alpha}{the threshold above which the infected nodes during the transmission process will change into active state}
+\item{alpha}{the threshold above which the infected nodes during the transmission process will change into active state, the default is 0.1, if it is NULL, the alpha value for each country will be scaled to [alpha_lower_limit,1] based on the export value or the degree of each country.}
+
+\item{alpha_lower_limit}{the lower limit of the alpha value range when alpha=NULL.}
+
+\item{alpha_increase_type}{export or degree, in the mitigate scenario, export means we will increase the alpha according to the export volume, degree means the alpha parameter will increase according to the node degree}
 
 \item{return_net}{whether return the final network structure or not}
 }
@@ -31,4 +37,7 @@ the active node size for each iteration
 }
 \description{
 modeling the risk transmission of the trade network
+}
+\references{
+
 }

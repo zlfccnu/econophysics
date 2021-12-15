@@ -3,10 +3,11 @@
 #' @param outputFile a string as the name of output file
 #' @param format the output file format for graph object
 #' @param descending whether arrange the correlation value in descending order or not
-#' @references "Tumminello, M., T. Aste, T. Di Matteo, and R. N. Mantegna. 2005. “A Tool for Filtering Information in Complex Systems.” Proceedings of the National Academy of Sciences of the United States of America 102(30):10421–26."
+#' @param weighted default is TRUE for the weighted one
+#' @references  A Tool for Filtering Information in Complex Systems, PNAS
 #' @return a igraph object or edge_list file in current directory
 #' @export
-corMat2PMFG=function(corMat,outputFile=NULL,descending=TRUE,format=c("edgelist", "pajek", "ncol","lgl","graphml", "dimacs", "gml", "dot", "leda")){
+corMat2PMFG=function(corMat,outputFile=NULL,descending=TRUE,format=c("edgelist","pajek","ncol","lgl","graphml","dimacs","gml","dot","leda"),weighted=TRUE){
   ## construct the sorted correlation data.frame
   N=dim(corMat)[1]
   L=N*(N-1)/2
@@ -27,7 +28,7 @@ corMat2PMFG=function(corMat,outputFile=NULL,descending=TRUE,format=c("edgelist",
   }
   ##GET THE DATAFRAME
   corSort=data.frame(v1,v2,corValue)
-  if(isTRUE(desending)){
+  if(isTRUE(descending)){
     corSort=corSort[order(corSort[,3],decreasing = TRUE),]
   }else{
     corSort=corSort[order(corSort[,3],decreasing = FALSE),]
@@ -47,6 +48,16 @@ corMat2PMFG=function(corMat,outputFile=NULL,descending=TRUE,format=c("edgelist",
       }
     }
   }
+  ### add the weight to the network
+  DistMat = sqrt(2*(1- corMat))
+  PMFG_Adj = get.adjacency(PMFG,type = "both")
+  PMFG_Adj = PMFG_Adj*DistMat
+  if(isTRUE(weighted)){
+    PMFG = graph_from_adjacency_matrix(PMFG_Adj,weighted = weighted)
+  }else{
+    PMFG = graph_from_adjacency_matrix(PMFG_Adj,weighted = NULL)
+  }
+  ### output to file
   if(!is.null(outputFile)){
     format=match.arg(format)
     write.graph(PMFG,outputFile,format=format)

@@ -1,21 +1,30 @@
 #' the latest version of infomap algorithm
-#' @param net the igraph object
+#' @param graph the igraph object
+#' @param multilevel whether use the multilevel algorithm or not, default is 2 level detection
 #' @return the community objects from the igraph package
 #' @export
-cluster_infomap_new<- function(net,multilevel=FALSE){
+cluster_infomap_new<- function(graph,multilevel=FALSE){
   library(tidyverse)
   library(igraph)
+  net = graph
   write_graph(net,file = "/tmp/net.net",format = "pajek")
-  directeFlag=ifelse(is.directed(net),"directed","undirected")
   
   if(isTRUE(multilevel)){
-    commandLine=sprintf("Infomap /tmp/net.net /tmp/ -%s --clu --silent",directeFlag)
+    if(is.directed(net)){
+      commandLine="Infomap -directed --ftree --clu --silent -i pajek /tmp/net.net /tmp/"
+    }else{
+      commandLine="Infomap --ftree --clu --silent -i pajek /tmp/net.net /tmp/"
+    }
   }else{
-    commandLine=sprintf("Infomap /tmp/net.net /tmp/ -2 -%s --clu --silent",directeFlag)
+    if(is.directed(net)){
+      commandLine="Infomap /tmp/net.net /tmp/ -2 -directed --clu --ftree --silent -i pajek "
+    }else{
+      commandLine="Infomap /tmp/net.net /tmp/ -2 --clu --ftree --silent -i pajek "
+    }
   }
  
   system(commandLine)
-  clusterINFO=read_delim("/tmp/net.clu",skip = 2,delim = ' ',col_names = FALSE)
+  clusterINFO=read_delim("/tmp/net.clu",skip = 9,delim = ' ',col_names = FALSE) %>% suppressMessages()
   clusterINFO=rename(clusterINFO,c(node="X1",cluster="X2",flow="X3"))
   clusterINFO=arrange(clusterINFO,node)
   # clusterINFO=arrange(clusterINFO,cluster)

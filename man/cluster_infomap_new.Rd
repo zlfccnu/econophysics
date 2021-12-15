@@ -10,6 +10,10 @@ cluster_infomap_new(net)
 }
 \arguments{
 \item{net}{a igraph object}
+
+\item{graph}{the igraph object}
+
+\item{multilevel}{whether use the multilevel algorithm or not, default is 2 level detection}
 }
 \value{
 the community objects from the igraph package

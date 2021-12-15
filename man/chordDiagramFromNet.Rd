@@ -4,7 +4,16 @@
 \alias{chordDiagramFromNet}
 \title{plot the chord diagram for the uncomtrade among different continent from a network}
 \usage{
-chordDiagramFromNet(GRAPH, dat = FALSE, weight_factor = 1)
+chordDiagramFromNet(
+  GRAPH,
+  dat = FALSE,
+  weight_factor = 1,
+  text_height = 4,
+  text_cex = 1,
+  axis_cex = 1,
+  facing = "clockwise",
+  text_seperate_factor = 40
+)
 }
 \arguments{
 \item{GRAPH}{a tidygraph object}
@@ -12,6 +21,14 @@ chordDiagramFromNet(GRAPH, dat = FALSE, weight_factor = 1)
 \item{dat}{Logical value, whether return the trade flow data or not}
 
 \item{weight_factor, }{the denominator to scale the trade volume}
+
+\item{text_height}{control the distance between the text and the circle}
+
+\item{text_cex}{the text cex for the labels}
+
+\item{axis_cex}{the font size for the axis}
+
+\item{facing}{the direction and arrangement for the text}
 }
 \value{
 a plot
