@@ -5,19 +5,19 @@
 \title{bump chart or ranking chart for the uncomtrade data}
 \usage{
 bump_chart(
-  d,
-  y,
+  net_list,
+  Y,
   rank_limit = 10,
-  rank_name,
-  trade_flow = c("Export", "Import")
+  rank_range = c(30, 1),
+  size_range = c(3, 10)
 )
 }
 \arguments{
-\item{d}{the ranking dataframe provide by the node_ranking() function}
-
-\item{y}{the ranking end year, for example 2017}
+\item{net_list}{}
 
 \item{rank_limit}{the largest ranking number of countries}
+
+\item{y}{the ranking end year, for example 2017}
 
 \item{rank_name}{the variable name use in dataframe d to perform ranking}
 

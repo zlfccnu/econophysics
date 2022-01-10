@@ -41,8 +41,8 @@ chordDiagramFromNet=function(GRAPH,dat=FALSE,weight_factor=1, text_height=4,text
     sector.index = get.cell.meta.data("sector.index")
     reg1 = d1 %>% dplyr::filter(region == sector.index) %>% pull(reg1)
     reg2 = d1 %>% dplyr::filter(region == sector.index) %>% pull(reg2)
-    circos.text(x = mean(xlim)-adjust, y =text_height,labels = reg1, cex = text_cex,niceFacing = TRUE,facing = facing,font=2)
-    circos.text(x = mean(xlim)+adjust, y =text_height,labels = reg2, cex = text_cex,niceFacing = TRUE,facing = facing,font=2)
+    circos.text(x = mean(xlim)-adjust, y =text_height,labels = reg1, cex = text_cex,niceFacing = TRUE,facing = facing,font=2,family="Times")
+    circos.text(x = mean(xlim)+adjust, y =text_height,labels = reg2, cex = text_cex,niceFacing = TRUE,facing = facing,font=2,family="Times")
     circos.axis(h = "top", labels.cex = axis_cex,labels.niceFacing = TRUE, labels.pos.adjust = TRUE)
   })
   

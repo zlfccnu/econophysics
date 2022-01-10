@@ -1,9 +1,8 @@
 #' @title Core-Periphery for Weighted Networks
 #' @description This function implements rich club core-periphery algorithm
-#' (Ma & Mondragón, 2015) to identify members of the core and periphery in weighted networks
 #' @param gs International Trade Network - igraph object.
 #' Note for networks not produced using ITNr there needs to be a vertex attribute "name" and edge attribute "weight"
-#' @param type directed/undirected
+#' @param type directed or undirected
 #' @export
 #' @return List 1.)igraph object with core-periphery results added as a node attribute. 2.) Dataframe of core-periphery results.
 #' @references "Ma A, Mondragón RJ (2015) Rich-Cores in Networks. PLoS ONE 10(3): e0119678. https://doi.org/10.1371/journal.pone.0119678"

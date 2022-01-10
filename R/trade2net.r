@@ -17,7 +17,7 @@ trade_data2net=function(trade_data,Y=TRUE,weight_var=c("netweight_ton","trade_va
   summarise<- dplyr::summarise
   ## reuse codes, will not change
   tmp_net<- list()
-  years<- select(trade_data,year) %>% pull() %>% unique()
+  years<- select(trade_data,year) %>% pull() %>% unique() %>% sort()
   if(isTRUE(Y)){
     for(i in years){
       ## filter edge list data for one year
@@ -60,6 +60,8 @@ trade_data2net=function(trade_data,Y=TRUE,weight_var=c("netweight_ton","trade_va
     }else{
       tmp_net=lapply(tmp_net,set.graph.attribute,name="weight_type",value="usd_k")
     }
+    tmp_net = purrr::map(tmp_net,.f = tidygraph::as_tbl_graph)
+    tmp_net = setNames(tmp_net,as.character(years))
   }else{
     edgeList_data<- trade_data%>% select(from=reporter,to=partner,weight=!!sym(weight_var))
     edgeList_data<- edgeList_data %>% group_by(from,to) %>% summarise(weight=sum(weight))
@@ -92,6 +94,7 @@ trade_data2net=function(trade_data,Y=TRUE,weight_var=c("netweight_ton","trade_va
     }else{
       tmp_net=set.graph.attribute(tmp_net,name="weight_type",value="usd_k")
     }
+    tmp_net = tidygraph::as_tbl_graph(tmp_net)
   }
   return(tmp_net)
 }

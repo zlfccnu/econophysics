@@ -1,4 +1,4 @@
-#' Planar Graph from the correlation matrix of financial time series 
+#' Planar Graph from the correlation matrix of financial time series
 #' @param corMat a correlation matrix
 #' @param outputFile a string as the name of output file
 #' @param format the output file format for graph object
@@ -49,13 +49,13 @@ corMat2PMFG=function(corMat,outputFile=NULL,descending=TRUE,format=c("edgelist",
     }
   }
   ### add the weight to the network
-  DistMat = sqrt(2*(1- corMat))
-  PMFG_Adj = get.adjacency(PMFG,type = "both")
-  PMFG_Adj = PMFG_Adj*DistMat
+  DistMat = sqrt(2*(1- corMat)) %>% Matrix::Matrix(sparse = TRUE)
+  PMFG_Adj = get.adjacency(PMFG,type = "both",sparse = TRUE) %>% Matrix::Matrix(sparse = TRUE)
+  PMFG_Adj = PMFG_Adj*DistMat %>% Matrix::Matrix(sparse = TRUE)
   if(isTRUE(weighted)){
-    PMFG = graph_from_adjacency_matrix(PMFG_Adj,weighted = weighted)
+    PMFG = graph_from_adjacency_matrix(PMFG_Adj,weighted = weighted,diag = FALSE,mode = "upper")
   }else{
-    PMFG = graph_from_adjacency_matrix(PMFG_Adj,weighted = NULL)
+    PMFG = graph_from_adjacency_matrix(PMFG_Adj,weighted = NULL,mode = "upper")
   }
   ### output to file
   if(!is.null(outputFile)){

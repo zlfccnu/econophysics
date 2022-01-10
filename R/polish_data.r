@@ -1,5 +1,5 @@
 #' polish data from the uncomtrade database
-#' @param data a tidyverse like tibble
+#' @param data a tidyverse like tibble obtain from the UNCOMTRADE data base
 #' @param merge merge HK and Maco to mainland China or not
 #' @param metric_var whether use the weight(by KG) of the cargo or the value(by USD)
 #' @param weight_method the evaluation method to polish the metric variable

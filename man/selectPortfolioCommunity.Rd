@@ -7,10 +7,11 @@
 selectPortfolioCommunity(
   GRAPH,
   mem = NULL,
-  mem_algo = "cluster_infomap",
+  mem_algo = "cluster_infomap_new",
   stock_id = NULL,
   portfolioSize = 4,
-  type = c("inside", "inter")
+  type = c("inside", "inter"),
+  central_rule = c("sum", "mean")
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ selectPortfolioCommunity(
 \item{portfolioSize}{the size of the portfolio, ie., the stocks you want to pick from the graph}
 
 \item{type}{"inside" means the stocks are all picked from one community with very strong connection, "inter" means the stocks are all picked from different communities}
+
+\item{central_rule}{the rule use to compare different community by the hybird centrality measure when choose one stocks over another}
 }
 \value{
 a vector with stock names or id
