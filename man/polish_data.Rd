@@ -14,7 +14,7 @@ polish_data(
 )
 }
 \arguments{
-\item{data}{a tidyverse like tibble}
+\item{data}{a tidyverse like tibble obtain from the UNCOMTRADE data base}
 
 \item{merge}{merge HK and Maco to mainland China or not}
 

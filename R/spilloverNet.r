@@ -5,6 +5,7 @@
 #' @param BETA the significant threshold for the causality test
 #' @return a tidygraph object, the risk spillover network
 #' @export
+#' @references "Wang, G.-J., Xie, C., He, K., & Stanley, H. E. (2017). Extreme risk spillover network: application to financial institutions. Quantitative Finance, 17(9), 1417–1433. https://doi.org/10.1080/14697688.2016.1272762"
 
 spilloverNet<- function(return_ts,VaR_ts,M,BETA){
     ### check if the first column is the date variable
